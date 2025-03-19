@@ -1,0 +1,64 @@
+{
+    "Research": {
+        "applies_for": [
+            "Funding"
+        ],
+        "seeks_cooperations": [
+            "Academia",
+            "Industry (SME / user)"
+        ]
+    },
+    "Academia": {
+        "seeks_cooperations": [
+            "Research",
+            "Industry (SME / user)"
+        ]
+    },
+    "Funding": {
+        "finances_projects": [
+            "Industry (SME / user)"
+        ],
+        "seeks_funding": [
+            "Industry (SME / user)"
+        ]
+    },
+    "Government": {
+        "finances": [
+            "Funding"
+        ],
+        "supports": [
+            "Network"
+        ]
+    },
+    "Network": {
+        "informs_and_connects": [
+            "Industry (SME / user)"
+        ],
+        "informs_and_supports": [
+            "Government"
+        ]
+    },
+    "Industry (SME / user)": {
+        "seeks_cooperations": [
+            "Academia",
+            "Research"
+        ],
+        "seeks_funding": [
+            "Funding"
+        ],
+        "receives_financing": [
+            "Funding"
+        ],
+        "receives_information_and_connections": [
+            "Network"
+        ],
+        "represented_and_advised_by": [
+            "Association"
+        ]
+    },
+    "Association": {
+        "represents_and_advises": [
+            "Industry (SME / user)"
+        ]
+    }
+}
