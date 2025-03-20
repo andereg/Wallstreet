@@ -220,8 +220,8 @@ button {
   /* Light Green Outline Button */
 .button-light-outline {
     background: radial-gradient(circle at 20% 80%, rgba(243, 243, 243, 0.815), transparent),
-    radial-gradient(circle at 80% 20%, rgba(243, 249, 246, 0.332), transparent),
-    radial-gradient(circle at 50% 50%, rgba(26, 220, 91, 0.116), transparent);
+    radial-gradient(circle at 80% 20%, rgba(243, 249, 246, 0.884), transparent),
+    radial-gradient(circle at 50% 50%, rgba(26, 220, 91, 0.072), transparent);
     color: black;
     padding: 10px 18px;
     border: 2px solid var(--primary-color);

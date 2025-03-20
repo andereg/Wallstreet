@@ -216,11 +216,11 @@ export function Dashboard() {
       case 'todos':
         return (
           <div className="p-6 max-w-xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">Hier liegen Ihre Herausforderungen 🎉</h1>
+            <h1 className="text-2xl font-bold mb-4">Hier liegen Ihre Herausforderungen 🎉</h1>
             <div className="markdown-container mb-10">
-                <h2 className="text-2xl font-bold mb-5">Kategorie:</h2>
+                <h2 className="text-xl font-bold mb-5">Kategorie:</h2>
                 <h3 className="text-l mb-5 italic">{userProblem.category}</h3>
-                <h2 className="text-2xl font-bold mb-5">Beschreibung:</h2>
+                <h2 className="text-xl font-bold mb-5">Beschreibung:</h2>
                 <p>{userProblem.description}</p>
                 {isExpanded ? <div>
                     <h2 className="text-2xl font-bold mt-5 mb-5">Auswirkungen:</h2>
@@ -235,7 +235,7 @@ export function Dashboard() {
                 </button>
 
             </div>
-            <h1 className="text-2xl font-bold mb-4">Was Sie jetzt tun können</h1>
+            <h1 className="text-xl font-bold mb-4">Action Plan</h1>
             <div className="space-y-4">
               {todosList.length === 0 ? 'Lade Checkliste...' : ''}
               {todosList.map((todo) => (
