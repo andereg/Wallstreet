@@ -1,0 +1,121 @@
+{
+  "titel": "Beweislastproblem",
+  "definition": "Die Forderung nach konkreten Erfolgsbeispielen und umfassenden Wirtschaftlichkeitsnachweisen, bevor überhaupt erste Innovationsschritte unternommen werden können, was insbesondere bei neuartigen Ansätzen einen Innovationshemmenden Teufelskreis erzeugt.",
+  "ursachen": {
+    "psychologische_faktoren": [
+      {
+        "name": "Risikoaversion",
+        "beschreibung": "Grundsätzliche Vermeidungshaltung gegenüber Risiken und Unsicherheiten"
+      },
+      {
+        "name": "Rechtfertigungsdruck",
+        "beschreibung": "Angst vor persönlicher Verantwortung bei Misserfolgen und dem damit verbundenen Karriererisiko"
+      },
+      {
+        "name": "Survivorship Bias",
+        "beschreibung": "Überbewertung bereits erfolgreicher Beispiele und Unterschätzung gescheiterter Versuche, die für Innovation jedoch wichtig sind"
+      },
+      {
+        "name": "Konkretheitseffekt",
+        "beschreibung": "Tendenz, greifbaren, bekannten Kosten mehr Gewicht beizumessen als ungewissen zukünftigen Gewinnen"
+      }
+    ],
+    "strukturelle_faktoren": [
+      {
+        "name": "Klassische Budgetierungsprozesse",
+        "beschreibung": "Finanzielle Planungsmethoden, die detaillierte Prognosen und ROI-Berechnungen als Voraussetzung für Investitionen fordern"
+      },
+      {
+        "name": "Governance-Strukturen",
+        "beschreibung": "Entscheidungsgremien, die primär auf Risikominimierung ausgerichtet sind"
+      },
+      {
+        "name": "Innovationsfremde Leistungsindikatoren",
+        "beschreibung": "KPIs, die kurzfristige Ergebnisse und Effizienz gegenüber Experimentierfreude und Lernfortschritten bevorzugen"
+      },
+      {
+        "name": "Isolierte Innovationsbereiche",
+        "beschreibung": "Mangelnde Integration von Innovationsteams in die Kernorganisation, was Beweisführung erschwert"
+      }
+    ]
+  },
+  "symptome_und_auswirkungen": {
+    "erkennungsmerkmale": [
+      "Übermäßig detaillierte Business Cases werden bereits für frühe Konzeptphasen gefordert",
+      "Innovationsvorschläge werden regelmäßig mit der Frage 'Wo funktioniert das schon?' blockiert",
+      "Hohe Hürden für erste Finanzierungsrunden von Innovationsprojekten",
+      "Ständige Nachforderung zusätzlicher Analysen und Belege vor Entscheidungen",
+      "Überdimensionierte Pilotprojekte, um 'vollständige Beweise' zu liefern"
+    ],
+    "negative_folgen": [
+      {
+        "name": "Innovationsprozesshemmung",
+        "beschreibung": "Verzögerung oder Verhinderung von potenziell wertvollen Innovationen durch überzogene Nachweispflichten"
+      },
+      {
+        "name": "Fokus auf inkrementelle Verbesserungen",
+        "beschreibung": "Vermeidung radikaler Innovationsansätze zugunsten leichter beweisbarer, aber weniger transformativer Ideen"
+      },
+      {
+        "name": "Scheinrationalität",
+        "beschreibung": "Scheinbar objektive Entscheidungsprozesse, die in Wirklichkeit auf manipulierten oder unrealistischen Berechnungen basieren"
+      },
+      {
+        "name": "Innovationsmüdigkeit",
+        "beschreibung": "Abnehmende Motivation von Innovationstreibern durch wiederholte Beweisforderungen"
+      }
+    ]
+  },
+  "loesungsansaetze": {
+    "methodische_ansaetze": [
+      {
+        "name": "Leanere Validierungsmethoden",
+        "beschreibung": "Ersatz umfassender Business Cases durch schnelle, kostengünstige Experimente zur Validierung grundlegender Annahmen"
+      },
+      {
+        "name": "Innovation Accounting",
+        "beschreibung": "Alternative Kennzahlen für frühe Innovationsphasen, die Lernfortschritte statt finanzieller Ergebnisse messen"
+      },
+      {
+        "name": "Reverse-Burden-of-Proof",
+        "beschreibung": "Umkehrung der Beweislast - nicht die Innovation muss sich rechtfertigen, sondern die Ablehnung der Innovation"
+      },
+      {
+        "name": "Real-Options-Ansatz",
+        "beschreibung": "Betrachtung früher Innovationsinvestitionen als Optionen mit begrenztem Risiko und Potenzial für hohe Renditen"
+      }
+    ],
+    "kulturelle_veraenderungen": [
+      {
+        "name": "Experimentierkultur",
+        "beschreibung": "Etablierung einer Haltung, die Tests und Experimente als wertvollen Erkenntnisgewinn unabhängig vom Ergebnis betrachtet"
+      },
+      {
+        "name": "Fehlerfreundlichkeit",
+        "beschreibung": "Offener Umgang mit Misserfolgen als wichtige Lernquelle für zukünftige Entscheidungen"
+      },
+      {
+        "name": "Leadership-Vorbildfunktion",
+        "beschreibung": "Führungskräfte, die selbst Unsicherheit aushalten und Entscheidungen trotz unvollständiger Informationen treffen"
+      },
+      {
+        "name": "Diversifizierte Entscheidungsgremien",
+        "beschreibung": "Einbeziehung unterschiedlicher Perspektiven und Erfahrungshintergründe in Innovationsentscheidungen"
+      }
+    ],
+    "unterstuetzende_tools": [
+      {
+        "name": "Experiment-Tracking-Systeme",
+        "beschreibung": "Digitale Werkzeuge zur systematischen Dokumentation und Auswertung von Innovationsexperimenten"
+      },
+      {
+        "name": "Evidence-Based Portfolio Management",
+        "beschreibung": "Tools zur datengetriebenen Steuerung eines ausgewogenen Innovationsportfolios"
+      },
+      {
+        "name": "Assumption-Mapping-Software",
+        "beschreibung": "Visualisierungstools zur Identifikation und Priorisierung kritischer Annahmen"
+      },
+      {
+        "name": "Lean Business Canvas",
+        "beschreibung": "Vereinfachte, hypothesenbasierte Geschäftsmodellieru

@@ -1,0 +1,138 @@
+{
+  "titel": "Investitionsrisiko-Aversion bei Innovationsprojekten",
+  "definition": "Übermäßige Zurückhaltung bei Investitionsentscheidungen für Innovationsprojekte aufgrund starker Bedenken bezüglich finanzieller Risiken und unklarer Amortisationszeiten, gekennzeichnet durch die Angst vor Fehlinvestitionen.",
+  "ursachen": {
+    "psychologische_faktoren": [
+      {
+        "name": "Verlustaversion",
+        "beschreibung": "Menschen bewerten potenzielle Verluste stärker als potenzielle Gewinne gleicher Höhe"
+      },
+      {
+        "name": "Status-quo-Bias",
+        "beschreibung": "Tendenz, am Bestehenden festzuhalten und Veränderungen zu vermeiden"
+      },
+      {
+        "name": "Ambiguitätsaversion",
+        "beschreibung": "Unbehagen bei Entscheidungen unter Unsicherheit, wenn Wahrscheinlichkeiten nicht klar bezifferbar sind"
+      }
+    ],
+    "strukturelle_faktoren": [
+      {
+        "name": "Kurzfristige Erfolgsmetriken",
+        "beschreibung": "Quartalsfokussierte Leistungsbewertungen erschweren langfristige Investitionen"
+      },
+      {
+        "name": "Starre Budgetprozesse",
+        "beschreibung": "Unflexible Jahresbudgets ohne Spielräume für emergente Innovationschancen"
+      },
+      {
+        "name": "Fehlende Risikokultur",
+        "beschreibung": "Organisationskulturen, die Fehler bestrafen statt als Lernchance zu begreifen"
+      }
+    ]
+  },
+  "symptome_und_auswirkungen": {
+    "erkennungsmerkmale": [
+      "Übermäßig lange Prüf- und Genehmigungsprozesse für Innovationsvorhaben",
+      "Forderung nach unrealistisch detaillierten Business Cases bei frühen Innovationsideen",
+      "Vermeidung größerer Innovationsinvestitionen zugunsten vieler kleiner, risikoarmer Initiativen"
+    ],
+    "negative_folgen": [
+      {
+        "name": "Innovationsstau",
+        "beschreibung": "Vielversprechende Ideen kommen nicht über frühe Konzeptphasen hinaus"
+      },
+      {
+        "name": "Wettbewerbsnachteile",
+        "beschreibung": "Disruptive Veränderungen werden zu spät erkannt und adressiert"
+      },
+      {
+        "name": "Motivationsverlust",
+        "beschreibung": "Innovationstreiber werden frustriert und verlassen das Unternehmen"
+      }
+    ]
+  },
+  "loesungsansaetze": {
+    "methodische_ansaetze": [
+      {
+        "name": "Staged Funding",
+        "beschreibung": "Stufenweise Finanzierung mit definierten Meilensteinen und Entscheidungspunkten"
+      },
+      {
+        "name": "Portfoliodenken",
+        "beschreibung": "Risikostreuung durch parallele Verfolgung verschiedener Innovationsansätze"
+      },
+      {
+        "name": "Minimal Viable Products",
+        "beschreibung": "Frühe Markterprobung mit minimalen Investitionen"
+      }
+    ],
+    "kulturelle_veraenderungen": [
+      {
+        "name": "Fehlertoleranz",
+        "beschreibung": "Etablierung einer Kultur, die kontrolliertes Scheitern als wertvolle Lernerfahrung akzeptiert"
+      },
+      {
+        "name": "Experimentierräume",
+        "beschreibung": "Geschützte Bereiche mit eigenen Budgets für risikoreichere Innovationen"
+      },
+      {
+        "name": "Innovation Accounting",
+        "beschreibung": "Alternative Metriken für frühe Innovationsphasen jenseits klassischer ROI-Betrachtungen"
+      }
+    ],
+    "unterstuetzende_tools": [
+      {
+        "name": "Risiko-Simulationsmodelle",
+        "beschreibung": "Probabilistische Modelle zur realistischeren Abbildung von Unsicherheiten"
+      },
+      {
+        "name": "Real-Options-Bewertung",
+        "beschreibung": "Bewertungsmethoden, die den strategischen Wert von Flexibilität berücksichtigen"
+      },
+      {
+        "name": "Szenarioplanung",
+        "beschreibung": "Strukturierte Exploration verschiedener Zukunftsszenarien"
+      }
+    ]
+  },
+  "best_practices": {
+    "erfolgreiche_beispiele": [
+      {
+        "name": "Google",
+        "beschreibung": "20% Zeit für selbstinitiierte Innovationsprojekte der Mitarbeiter"
+      },
+      {
+        "name": "3M",
+        "beschreibung": "Tech Forum und 15% Regel für explorative Forschung"
+      },
+      {
+        "name": "Amazon",
+        "beschreibung": "\"Day 1\" Mentalität mit Fokus auf langfristige Wertschöpfung statt kurzfristiger Gewinne"
+      }
+    ],
+    "praktische_tipps": [
+      "Innovationsbudgets vom Tagesgeschäft separieren und vor Kürzungen schützen",
+      "Einen ausgewogenen Mix aus inkrementellen und disruptiven Innovationsvorhaben anstreben",
+      "Führungskräfte regelmäßig mit externen Innovationstreibern und Zukunftstrends konfrontieren"
+    ]
+  },
+  "quellen": [
+    {
+      "autor": "Clayton Christensen",
+      "titel": "The Innovator's Dilemma"
+    },
+    {
+      "autor": "Rita McGrath",
+      "titel": "Discovery-Driven Planning"
+    },
+    {
+      "autor": "Eric Ries",
+      "titel": "The Lean Startup"
+    },
+    {
+      "autor": "Nassim Nicholas Taleb",
+      "titel": "Antifragile: Things That Gain from Disorder"
+    }
+  ]
+}
