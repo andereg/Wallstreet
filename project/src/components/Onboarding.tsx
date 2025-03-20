@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import questions from '../data/questions.ts';
 import {retrieveUserProfile, storeUserResponses} from "../user/user-store.ts";
-import {Question, QuestionResponse} from "../model/question.ts";
+import {Question} from "../model/question.ts";
 
 export function Onboarding() {
 
