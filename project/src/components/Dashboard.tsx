@@ -166,8 +166,8 @@ export function Dashboard() {
           <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative transition-all duration-300">
             {/* Header */}
             {/* Chat Messages Box */}
-            <div className="h-64 overflow-y-auto bg-gray-50 p-3 border rounded-md flex flex-col space-y-2">
-              {messages.map((msg, index) => (
+            <div className="h-64 overflow-y-auto p-3 border rounded-md flex flex-col space-y-2 pastel-gradient">
+            {messages.map((msg, index) => (
                 <div
                   key={index}
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
@@ -232,7 +232,7 @@ export function Dashboard() {
 
                 <button
                   onClick={toggleExpand}
-                  className="text-white px-4 py-2 rounded mt-2"
+                  className="button-light-outline text-white px-4 py-2 rounded mt-2"
                 >
                   {isExpanded ? "Weniger anzeigen" : "Mehr anzeigen"}
                 </button>
