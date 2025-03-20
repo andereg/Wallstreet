@@ -1,0 +1,166 @@
+{
+  "titel": "Wettbewerbsdruck-Dilemma",
+  "definition": "Die paradoxe Situation, in der ein Unternehmen einerseits den Innovationsbedarf aufgrund von Wettbewerbsdruck klar erkennt, andererseits aber aufgrund der damit verbundenen Risiken wie Investitionskosten, Unsicherheiten und potenziellen Disruptionen im eigenen Geschäftsmodell zögert, entschlossen zu handeln.",
+  "ursachen": {
+    "psychologische_faktoren": [
+      {
+        "name": "Entscheidungsparalyse",
+        "beschreibung": "Blockade durch wahrgenommene gleichwertige Risiken des Handelns und Nicht-Handelns"
+      },
+      {
+        "name": "Hyperbolic Discounting",
+        "beschreibung": "Überbewertung kurzfristiger Kosten und Risiken gegenüber langfristigen Vorteilen"
+      },
+      {
+        "name": "Strategischer Optimismus",
+        "beschreibung": "Unbegründete Hoffnung, dass der Wettbewerbsdruck vorübergehend ist oder überschätzt wird"
+      },
+      {
+        "name": "Präzedenzangst",
+        "beschreibung": "Sorge, dass einmal eingeleitete Veränderungen weitere unkontrollierbare Veränderungen nach sich ziehen"
+      }
+    ],
+    "strukturelle_faktoren": [
+      {
+        "name": "Quartalsdenken",
+        "beschreibung": "Kurzfristige Erfolgsmetriken, die gegen langfristige Innovationsinvestitionen sprechen"
+      },
+      {
+        "name": "Margenorientierung",
+        "beschreibung": "Fokus auf Erhalt bestehender Margen statt auf Zukunftssicherung"
+      },
+      {
+        "name": "Unklare Innovationsverantwortung",
+        "beschreibung": "Diffuse Zuständigkeiten für die Reaktion auf Wettbewerbsbedrohungen"
+      },
+      {
+        "name": "Innovationsbürokratie",
+        "beschreibung": "Komplexe Genehmigungsprozesse, die schnelle Reaktionen auf Marktveränderungen behindern"
+      }
+    ]
+  },
+  "symptome_und_auswirkungen": {
+    "erkennungsmerkmale": [
+      "Intensive Wettbewerbsanalysen ohne konkrete Handlungsableitungen",
+      "Häufige Strategiemeetings mit wiederkehrenden Diskussionen ohne Entscheidungen",
+      "Defensive Rhetorik: 'Abwarten, bis Standards etabliert sind' oder 'Der Markt ist noch nicht reif'",
+      "Symbolische Innovationsinitiativen ohne ausreichende Ressourcen oder Entscheidungsbefugnisse",
+      "Übermäßiger Fokus auf Kostenoptimierung im bestehenden Geschäft statt auf Zukunftsfelder"
+    ],
+    "negative_folgen": [
+      {
+        "name": "Erstarrung",
+        "beschreibung": "Handlungsunfähigkeit durch ständiges Abwägen ohne Entscheidung"
+      },
+      {
+        "name": "Marktanteilsverlust",
+        "beschreibung": "Schleichende Erosion der Marktposition durch entschlossenere Wettbewerber"
+      },
+      {
+        "name": "Innovationsinflation",
+        "beschreibung": "Entwertung des Innovationsbegriffs durch viele angekündigte, aber wenige umgesetzte Initiativen"
+      },
+      {
+        "name": "Talentabwanderung",
+        "beschreibung": "Verlust von Innovatoren, die in einem entscheidungsfreudigen Umfeld arbeiten wollen"
+      }
+    ]
+  },
+  "loesungsansaetze": {
+    "methodische_ansaetze": [
+      {
+        "name": "Ambidextrie-Modell",
+        "beschreibung": "Strukturelle Trennung von Kerngeschäft und Innovationsbereich mit unterschiedlichen Steuerungslogiken"
+      },
+      {
+        "name": "Scenario Planning",
+        "beschreibung": "Systematische Erarbeitung verschiedener Zukunftsszenarien zur Entscheidungsunterstützung"
+      },
+      {
+        "name": "Minimal Viable Innovation",
+        "beschreibung": "Fokus auf schnell umsetzbare Innovationsschritte mit begrenztem Risiko und Lerneffekt"
+      },
+      {
+        "name": "Weighted Innovation Portfolio",
+        "beschreibung": "Ausgewogenes Portfolio aus inkrementellen, angrenzenden und transformativen Innovationsinitiativen"
+      }
+    ],
+    "kulturelle_veraenderungen": [
+      {
+        "name": "Entscheidungskultur",
+        "beschreibung": "Förderung klarer, nachvollziehbarer Entscheidungen unter Unsicherheit"
+      },
+      {
+        "name": "Dual-Purpose Leadership",
+        "beschreibung": "Führungskräfte, die sowohl für aktuelle Performance als auch für Zukunftsfähigkeit verantwortlich sind"
+      },
+      {
+        "name": "Externes Mindset",
+        "beschreibung": "Konsequente Außenorientierung und Offenheit für Kundenbedürfnisse und Marktveränderungen"
+      },
+      {
+        "name": "Failure-as-Learning-Kultur",
+        "beschreibung": "Umbewertung von Fehlschlägen als wertvolle Erkenntnisquellen statt als Karriererisiken"
+      }
+    ],
+    "unterstuetzende_tools": [
+      {
+        "name": "Competitive Intelligence Systeme",
+        "beschreibung": "Strukturierte Erfassung und Analyse von Wettbewerbsaktivitäten und Marktveränderungen"
+      },
+      {
+        "name": "Decision Support Tools",
+        "beschreibung": "Analytische Werkzeuge zur Visualisierung von Entscheidungsalternativen und Konsequenzen"
+      },
+      {
+        "name": "Innovation Accounting",
+        "beschreibung": "Alternative Kennzahlensysteme zur Bewertung von Innovationsfortschritten"
+      },
+      {
+        "name": "War Gaming",
+        "beschreibung": "Simulationstechniken zur Antizipation von Wettbewerbsreaktionen bei eigenen Innovationsschritten"
+      }
+    ]
+  },
+  "best_practices": {
+    "erfolgreiche_beispiele": [
+      {
+        "name": "Microsoft",
+        "beschreibung": "Cloud-Transformation unter Satya Nadella trotz Risiken für das lukrative Windows-Geschäft"
+      },
+      {
+        "name": "Fujifilm",
+        "beschreibung": "Diversifikation in neue Geschäftsfelder während des Niedergangs des analogen Fotomarktes"
+      },
+      {
+        "name": "Netflix",
+        "beschreibung": "Proaktiver Übergang vom DVD-Verleih zum Streaming trotz anfänglicher Kannibalisierung"
+      }
+    ],
+    "praktische_tipps": [
+      "Etabliere regelmäßige 'Kill/Proceed'-Entscheidungspunkte für Innovationsinitiativen",
+      "Schaffe geschützte Budgets für Innovationen, die nicht dem Kostendruck des Tagesgeschäfts unterliegen",
+      "Setze eine Verpflichtung zu Entscheidungen innerhalb definierter Zeiträume",
+      "Integriere externe Perspektiven (Kunden, Experten, Startups) in Innovationsentscheidungen",
+      "Verbinde Innovationsinitiativen mit konkreten Wettbewerbsresponse-Szenarien"
+    ]
+  },
+  "quellen": [
+    {
+      "autor": "Clayton M. Christensen",
+      "titel": "The Innovator's Dilemma"
+    },
+    {
+      "autor": "Rita Gunther McGrath",
+      "titel": "The End of Competitive Advantage"
+    },
+    {
+      "autor": "Charles A. O'Reilly III & Michael L. Tushman",
+      "titel": "Lead and Disrupt: How to Solve the Innovator's Dilemma"
+    },
+    {
+      "autor": "Ron Adner",
+      "titel": "The Wide Lens: What Successful Innovators See That Others Miss"
+    }
+  ]
+}

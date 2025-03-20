@@ -6,6 +6,13 @@ import { ChevronDown, CheckCircle } from "lucide-react";
 import { retrieveUserProblem, storeUserTodos } from "../user/user-store.ts";
 import ReactMarkdown from "react-markdown";
 import {getTodoPrompts, getUserTodos, UserProblem} from "../ai/profile-gen.ts";
+import {WikiArticle} from "./WikiArticle.tsx";
+import article1 from './../data/wiki/1_Hesitant_Investitionsrisiko-Aversion_.json';
+import article2 from './../data/wiki/2_Hesitant_Kontrollverlust-Befürchtung.json';
+import article3 from './../data/wiki/3_Hesitant_Veränderungswiderstand.json';
+import article5 from './../data/wiki/5_Hesitant_Kompetenzunsicherheit.json';
+import article6 from './../data/wiki/6_Hesitant_Übergangsmanagement-Ängste.json';
+import article7 from './../data/wiki/7_Hesitant_Wettbewerbsdruck-Dilemma.json';
 
 export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
@@ -259,12 +266,33 @@ export function Dashboard() {
       case 'wiki':
         return (
           <div className="p-4 space-y-4 h-[calc(100vh-8rem)] overflow-y-auto">
-            {wikiArticles.map((article) => (
-              <div key={article.id} className="p-4 border rounded-lg bg-white">
-                <h3 className="text-lg font-semibold mb-2">{article.title}</h3>
-                <p className="">{article.content}</p>
+              <h1 className="text-2xl font-bold mb-4 mt-4">Werkzeuge für Wandel & Wachstum</h1>
+
+            <div className="border rounded-lg shadow-lg p-4 w-full max-w-3xl bg-white">
+              <div className="mb-5">
+                <WikiArticle data={article1} />
               </div>
-            ))}
+              <div className="mb-5">
+
+              <WikiArticle data={article2} />
+              </div>
+              <div className="mb-5">
+
+              <WikiArticle data={article3} />
+              </div>
+              <div className="mb-5">
+
+                <WikiArticle data={article5} />
+              </div>
+              <div className="mb-5">
+
+                <WikiArticle data={article6} />
+              </div>
+              <div className="mb-5">
+
+                <WikiArticle data={article7} />
+              </div>
+              </div>
           </div>
         );
 
@@ -285,7 +313,7 @@ export function Dashboard() {
 
   const menuItems = [
     { id: 'todos', icon: CheckSquare, label: 'Analyse' },
-    { id: 'wiki', icon: Book, label: 'Wiki' },
+    { id: 'wiki', icon: Book, label: 'Innovation Guide' },
     { id: 'chat', icon: MessageSquare, label: 'Chat' },
     { id: 'contact', icon: Phone, label: 'Contact' },
   ];
