@@ -14,7 +14,7 @@ export function LandingPage() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 overflow-hidden">
             {/* Hero Section */}
-            <div className="relative container mx-auto px-4 pt-16 pb-24">
+            <div className="relative container mx-auto px-4 pt-16 pb-24 whitegray">
                 {/* Background Element */}
                 <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-green-50 rounded-bl-full opacity-50 -z-10"></div>
                 

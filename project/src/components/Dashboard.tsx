@@ -14,6 +14,7 @@ import article5 from './../data/wiki/5_Hesitant_Kompetenzunsicherheit.json';
 import article6 from './../data/wiki/6_Hesitant_Übergangsmanagement-Ängste.json';
 import article7 from './../data/wiki/7_Hesitant_Wettbewerbsdruck-Dilemma.json';
 import SpiderDiagram from "./SpiderDiagram.tsx";
+import logo from "./../images/logo.png";
 
 export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
@@ -167,7 +168,7 @@ export function Dashboard() {
     switch (activeTab) {
       case 'chat':
         return (
-          <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative transition-all duration-300">
+          <div className="border rounded-lg p-4 pt-8 shadow-md bg-white relative transition-all duration-300">
             {/* Header */}
             <h1 className="text-xl font-bold mb-4">AI-Chat für Innovation</h1>
             {/* Chat Messages Box */}
@@ -198,10 +199,11 @@ export function Dashboard() {
             <div className="flex items-center mt-4">
               <input
                 type="text"
-                class="flex-1 p-2 border 
+                class="flex-1 p-2 border py-2.5
                 focus-visible:outline-none focus-visible:ring-4 
                 focus-visible:ring-gray-300 focus-visible:border-gray-400 
-                focus-visible:ring-opacity-50 transition-all duration-20"
+                focus-visible:ring-opacity-50 transition-all duration-20
+                rounded-l-lg text-sm"
                 placeholder="Schreibe deine Frage..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -244,7 +246,9 @@ export function Dashboard() {
               <div className="border-t-2 border-gray-200 mb-8"></div>
               <h1 className="text-xl font-bold mb-4">Action Plan</h1>
               <div className="space-y-4">
-                {todosList.length === 0 ? 'Lade Checkliste...' : ''}
+                {todosList.length === 0 ? <p className="centered-fade">
+                  Lade Checkliste...
+                </p> : ''}
                 {todosList.map((todo) => (
                     <div
                         key={todo.id}
@@ -271,7 +275,7 @@ export function Dashboard() {
 
       case 'wiki':
         return (
-          <div className="p-4 space-y-4 h-[calc(100vh-8rem)] overflow-y-auto">
+            <div className="p-4 space-y-4 h-[calc(100vh-8rem)] overflow-y-auto">
               <h1 className="text-2xl font-bold mb-4 mt-4">Werkzeuge für Wandel & Wachstum</h1>
 
             <div >
@@ -330,8 +334,10 @@ export function Dashboard() {
       <header className="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <h1 className="text-xl font-semibold text-gray-800">{menuItems.find(item => item.id === activeTab)?.label}</h1>
-            <button
+          <h1 className="text-xl font-semibold text-gray-800">
+            <img src={logo} alt="Logo" className="h-14 w-auto" />
+          </h1>
+          <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="button-reveal-border p-2 focus:outline-none text-gray-1000 "
             >

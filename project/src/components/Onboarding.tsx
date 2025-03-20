@@ -217,7 +217,7 @@ export function Onboarding() {
     }
 
     return (
-        <div style={{minHeight:"800"}} className="max-w-md mx-auto p-6 bg-white rounded-xl">
+        <div style={{minHeight:"800"}} className="pt-4 max-w-md mx-auto p-6 bg-white rounded-xl">
             {renderStep()}
         </div>
     );
