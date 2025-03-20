@@ -15,6 +15,7 @@ export function Onboarding() {
     const [questionIdx, setQuestionIdx] = useState(0);
     const [personaQuestionsActive, setPersonaQuestionsActive] = useState(false);
     const navigate = useNavigate();
+    const [progress, setProgress] = useState(0);
 
     const [inputValue, setInputValue] = useState('');
 
@@ -28,6 +29,13 @@ export function Onboarding() {
 
     const nextQuestion = (question: Question, answer: string, answerIdx: number) => {
         // save
+
+
+        if (personaQuestionsActive) {
+            setProgress(((questionIdx + mainQuestions.length) / (currentQuestionSet.length + hesitantQuestions.length + 2)) * 100);
+        } else {
+            setProgress(((questionIdx + 1) / (currentQuestionSet.length + hesitantQuestions.length)) * 100);
+        }
 
         if (questionIdx == 1) {
             setPersonaId(answerIdx);
@@ -67,7 +75,9 @@ export function Onboarding() {
 
     const renderStep = () => {
         return (<div>
-            {
+                <div id="progressContainer" style={{backgroundColor: "#cccccc", height: "22px", marginBottom: "16px"}}>
+                    <div id="progressBar" style={{width: progress + "%", height: "22px", backgroundColor: "#008334", transition: "1s"}}></div>
+                </div>
                 <div className="space-y-6">
                     <h1 className="text-2xl font-bold text-gray-800">{currentQuestion?.title}</h1>
                     {currentQuestion?.answers ? (
@@ -76,7 +86,7 @@ export function Onboarding() {
                                 {currentQuestion.answers.map((a, idx) => (
                                     <button
                                         key={a}
-                                        className="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                                        className="w-full p-4 text-lg font-medium text-white -500 rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
                                         onClick={() => nextQuestion(currentQuestion, a, idx)}
                                     >
                                         {a}
@@ -130,7 +140,7 @@ export function Onboarding() {
 
                             <button
                                 onClick={() => nextQuestion(currentQuestion, inputValue, questionIdx)}
-                                className="w-full mt-6 px-6 py-3 text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                className="w-full mt-6 px-6 py-3 text-white -500 rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-blue-400"
                             >
                                 Weiter
                             </button>
@@ -151,7 +161,7 @@ export function Onboarding() {
                                 />
                             </div>
                             <button
-                                className="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                                className="w-full p-4 text-lg font-medium text-white -500 rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
                                 onClick={() => nextQuestion(currentQuestion, inputValue, 0)}
                             >
                                 Weiter
@@ -159,12 +169,11 @@ export function Onboarding() {
                         </div>
                     )}
                 </div>
-            }
         </div>)
     }
 
     return (
-        <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg">
+        <div className="max-w-md mx-auto p-6 bg-white rounded-xl">
             {renderStep()}
         </div>
     );
