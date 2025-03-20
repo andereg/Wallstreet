@@ -5,7 +5,7 @@ import contacts from "../data/innovationContactPerson.json";
 import { ChevronDown, CheckCircle } from "lucide-react";
 import { retrieveUserProblem, storeUserTodos } from "../user/user-store.ts";
 import ReactMarkdown from "react-markdown";
-import { getTodoPrompts, getUserTodos } from "../ai/profile-gen.ts";
+import {getTodoPrompts, getUserTodos, UserProblem} from "../ai/profile-gen.ts";
 
 export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
@@ -13,7 +13,7 @@ export function Dashboard() {
   const [message, setMessage] = useState('');
   const [activeTab, setActiveTab] = useState('todos');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [userProblem, setUserProblem] = useState("");
+  const [userProblem, setUserProblem] = useState<UserProblem>("");
 
   const [isExpanded, setIsExpanded] = React.useState(false);
   const [isLongText, setIsLongText] = React.useState(false);
@@ -82,12 +82,7 @@ export function Dashboard() {
       storeUserTodos(allTodos);
     }
     const problem = retrieveUserProblem() ?? '';
-    setUserProblem(problem);
-    const previewLength = 200; // Anzahl der Zeichen, die zuerst angezeigt werden
-    const problemIsLongText = problem.length > previewLength;
-    setIsLongText(problemIsLongText);
-    const previewText = problemIsLongText ? problem.slice(0, previewLength) + "..." : problem;
-    setPreviewText(previewText ?? '');
+    setUserProblem(JSON.parse(problem));
     fetchTodos();
   }, [])
 
@@ -100,9 +95,9 @@ export function Dashboard() {
         },
         body: JSON.stringify({
           messages: [
-            ...getTodoPrompts(userProblem),
-            { role: "assistant", content: JSON.stringify(todos) },
-            { role: "user", content: "Generiere ein neues Todo im richtigen JSON format." },
+            ...getTodoPrompts(JSON.stringify(userProblem)),
+            { role: "assistant", content: JSON.stringify(todosList) },
+            { role: "user", content: "Generiere ein neues Todo im richtigen JSON format auf Deutsch." },
           ],
           model: "mixtral",
         }),
@@ -217,19 +212,24 @@ export function Dashboard() {
       case 'todos':
         return (
           <div className="p-6 max-w-xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">Ich habe Ihr Innovationsprofil analysiert 🎉</h1>
+            <h1 className="text-4xl font-bold mb-4">Hier liegen Ihre Herausforderungen 🎉</h1>
             <div className="markdown-container mb-10">
-              <ReactMarkdown>
-                {isExpanded || !isLongText ? userProblem : previewText}
-              </ReactMarkdown>
-              {isLongText && (
+                <h2 className="text-2xl font-bold mb-5">Kategorie:</h2>
+                <h2 className="text-2xl mb-5">{userProblem.category}</h2>
+                <h2 className="text-2xl font-bold mb-5">Beschreibung:</h2>
+                <p>{userProblem.description}</p>
+                {isExpanded ? <div>
+                    <h2 className="text-2xl font-bold mt-5 mb-5">Auswirkungen:</h2>
+                    <p className="mb-5">{userProblem.impact}</p>
+                </div> : ''}
+
                 <button
                   onClick={toggleExpand}
                   className="text-white px-4 py-2 rounded mt-2"
                 >
                   {isExpanded ? "Weniger anzeigen" : "Mehr anzeigen"}
                 </button>
-              )}
+
             </div>
             <h1 className="text-2xl font-bold mb-4">Was Sie jetzt tun können</h1>
             <div className="space-y-4">
@@ -318,7 +318,7 @@ export function Dashboard() {
             }`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="p-4 space-y-2">
+          <div className="p-4 space-y-2 mt-24">
             {menuItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -341,7 +341,7 @@ export function Dashboard() {
 
       {/* Main Content */}
       <main className="pt-16">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto mt-5">
           <div className="bg-white shadow-lg rounded-lg overflow-hidden">
             {renderContent()}
           </div>
