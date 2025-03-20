@@ -107,7 +107,35 @@ export function Onboarding() {
 
 
                         </div>
-                    ) : (
+                    ) : currentQuestion.includeSlider ? <div>
+                        <div>
+                            <input
+                                type="range"
+                                min="10000"
+                                max="200000"
+                                step="10000"
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
+                                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400
+             accent-blue-500"
+                                style={{
+                                    background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(Number.parseInt(inputValue) - 10000) / 190000 * 100}%, #e5e7eb ${(inputValue - 10000) / 190000 * 100}%, #e5e7eb 100%)`,
+                                }}
+                            />
+
+                            <div className="mt-4 text-lg font-medium text-gray-700">
+                                <span>Budget: </span>
+                                <span className="text-blue-500 font-bold">CHF {inputValue.toLocaleString()}.-</span>
+                            </div>
+
+                            <button
+                                onClick={() => nextQuestion(currentQuestion, inputValue, questionIdx)}
+                                className="w-full mt-6 px-6 py-3 text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            >
+                                Weiter
+                            </button>
+                        </div>
+                    </div> : (
                         <div className="space-y-6">
                             <div className="flex flex-col space-y-4">
                                 <label htmlFor="answer" className="text-lg font-medium text-gray-700">
