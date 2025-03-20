@@ -1,127 +1,106 @@
-import React from 'react';
-import { useStore } from '../store';
-import { Briefcase, Building2, GraduationCap } from 'lucide-react';
+import React, {useEffect, useState} from 'react';
 
-const roles = ['Developer', 'Designer', 'Product Manager', 'Marketing', 'Sales'];
-const industries = ['Technology', 'Healthcare', 'Finance', 'Education', 'Retail'];
-const questions = [
-  'How many years of experience do you have?',
-  'What are your main interests in your field?',
-  'What are your career goals?',
-];
+import questions, {mainQuestions} from '../data/questions.ts';
+import {retrieveUserProfile, storePersonaId, storeUserResponses} from "../user/user-store.ts";
+import {Question} from "../model/question.ts";
+import {cluelessQuestions} from "../data/clueless-questions.ts";
+import {motivatedQuestions} from "../data/motivated-questions.ts";
 
 export function Onboarding() {
-  const { currentStep, setStep, userProfile, setUserProfile } = useStore();
 
-  const handleNext = () => {
-    if (currentStep < 3) {
-      setStep(currentStep + 1);
+    const [currentQuestion, setCurrentQuestion] = useState({title: '', answers: []});
+    const [currentQuestionSet, setCurrentQuestionSet] = useState(mainQuestions);
+    const [questionIdx, setQuestionIdx] = useState(0);
+
+    const [inputValue, setInputValue] = useState('');
+
+    const [personaId, setPersonaId] = useState(0);
+
+    useEffect(() => {
+        const question = currentQuestionSet[questionIdx];
+        setCurrentQuestion(question as any);
+    }, [questionIdx]);
+
+
+    const nextQuestion = (question: Question, answer: string, answerIdx: number) => {
+        // save
+
+        console.log(questionIdx);
+        if (questionIdx == 1) {
+            setPersonaId(answerIdx);
+            storePersonaId(answerIdx);
+        }
+
+        const savedData = retrieveUserProfile();
+        const updatedData = savedData ? savedData : [];
+        updatedData.push({question: question.title, answer});
+        storeUserResponses(savedData);
+
+        if (questionIdx === currentQuestionSet.length - 1) {
+            switch (personaId) {
+                case 0:
+                    setCurrentQuestionSet(cluelessQuestions);
+                    break;
+                case 1:
+                    setCurrentQuestionSet(motivatedQuestions);
+            }
+            setQuestionIdx(0);
+        } else {
+            setQuestionIdx((prevIdx) => prevIdx + 1);
+        }
+
+        setInputValue("");
     }
-  };
 
-  const renderStep = () => {
-    switch (currentStep) {
-      case 0:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold flex items-center gap-2">
-              <Briefcase className="w-5 h-5" />
-              Select your role
-            </h2>
-            <div className="grid grid-cols-2 gap-3">
-              {roles.map((role) => (
-                <button
-                  key={role}
-                  onClick={() => {
-                    setUserProfile({ role });
-                    handleNext();
-                  }}
-                  className={`p-4 rounded-lg border ${
-                    userProfile.role === role
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-blue-300'
-                  }`}
-                >
-                  {role}
-                </button>
-              ))}
-            </div>
-          </div>
-        );
-      case 1:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold flex items-center gap-2">
-              <Building2 className="w-5 h-5" />
-              Select your industry
-            </h2>
-            <div className="grid grid-cols-2 gap-3">
-              {industries.map((industry) => (
-                <button
-                  key={industry}
-                  onClick={() => {
-                    setUserProfile({ industry });
-                    handleNext();
-                  }}
-                  className={`p-4 rounded-lg border ${
-                    userProfile.industry === industry
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-blue-300'
-                  }`}
-                >
-                  {industry}
-                </button>
-              ))}
-            </div>
-          </div>
-        );
-      case 2:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold flex items-center gap-2">
-              <GraduationCap className="w-5 h-5" />
-              Experience
-            </h2>
-            <select
-              value={userProfile.experience}
-              onChange={(e) => setUserProfile({ experience: e.target.value })}
-              className="w-full p-2 border rounded-lg"
-            >
-              <option value="">Select years of experience</option>
-              <option value="0-2">0-2 years</option>
-              <option value="3-5">3-5 years</option>
-              <option value="5-10">5-10 years</option>
-              <option value="10+">10+ years</option>
-            </select>
-            <button
-              onClick={handleNext}
-              disabled={!userProfile.experience}
-              className="w-full bg-blue-500 text-white p-2 rounded-lg disabled:opacity-50"
-            >
-              Continue
-            </button>
-          </div>
-        );
-      default:
-        return null;
+
+    const renderStep = () => {
+        return (<div>
+            {
+                <div className="space-y-6">
+                    <h1 className="text-2xl font-bold text-gray-800">{currentQuestion?.title}</h1>
+                    {currentQuestion?.answers ? (
+                        <div className="grid grid-cols-1 gap-4">
+                            {currentQuestion.answers.map((a, idx) => (
+                                <button
+                                    key={a}
+                                    className="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                                    onClick={() => nextQuestion(currentQuestion, a, idx)}
+                                >
+                                    {a}
+                                </button>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="space-y-6">
+                            <div className="flex flex-col space-y-4">
+                                <label htmlFor="answer" className="text-lg font-medium text-gray-700">
+                                    Deine Antwort
+                                </label>
+                                <input
+                                    id="answer"
+                                    type="text"
+                                    value={inputValue}
+                                    onChange={(e) => setInputValue(e.target.value)}
+                                    className="w-full p-3 text-lg border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                                    placeholder="Gib deine Antwort ein..."
+                                />
+                            </div>
+                            <button
+                                className="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                                onClick={() => nextQuestion(currentQuestion, inputValue, 0)}
+                            >
+                                Weiter
+                            </button>
+                        </div>
+                    )}
+                </div>
+            }
+        </div>)
     }
-  };
 
-  return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg">
-      <div className="mb-6">
-        <div className="flex justify-between mb-2">
-          {[0, 1, 2].map((step) => (
-            <div
-              key={step}
-              className={`w-1/3 h-2 rounded-full ${
-                step <= currentStep ? 'bg-blue-500' : 'bg-gray-200'
-              }`}
-            />
-          ))}
+    return (
+        <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg">
+            {renderStep()}
         </div>
-      </div>
-      {renderStep()}
-    </div>
-  );
+    );
 }
