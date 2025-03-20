@@ -1,0 +1,55 @@
+{
+    "persona": "Motivated",
+    "problem_categories": [
+        {
+            "id": "M1",
+            "title": "Priorisierungskonflikt",
+            "description": "Schwierigkeiten, zwischen Tagesgeschäft und Innovationsaktivitäten zu priorisieren; Innovation wird oft zugunsten dringender operativer Aufgaben zurückgestellt."
+        },
+        {
+            "id": "M2",
+            "title": "Ressourcenknappheit",
+            "description": "Mangel an spezifischen Ressourcen (Fachkräfte, Zeit, Budget) für die Umsetzung von Innovationsprojekten trotz vorhandener Motivation."
+        },
+        {
+            "id": "M3",
+            "title": "Risikomanagement-Unsicherheit",
+            "description": "Bedenken bezüglich der richtigen Bewertung von Risiken und Return-on-Investment bei Innovationsprojekten; Angst vor Fehlinvestitionen."
+        },
+        {
+            "id": "M4",
+            "title": "Richtungsunsicherheit",
+            "description": "Unsicherheit, welche Innovationsrichtung oder -technologie die vielversprechendste für das eigene Unternehmen ist; Sorge vor strategischen Fehlentscheidungen."
+        },
+        {
+            "id": "M5",
+            "title": "Implementierungsschwierigkeiten",
+            "description": "Herausforderungen bei der praktischen Umsetzung und Integration von Innovationen in bestehende Strukturen und Prozesse."
+        },
+        {
+            "id": "M6",
+            "title": "Perfektionismusblockade",
+            "description": "Übertriebener Anspruch an Perfektion verzögert Innovationsprojekte oder verhindert agiles Vorgehen mit schnellen Iterationen."
+        },
+        {
+            "id": "M7",
+            "title": "Netzwerk-Nutzungsdefizit",
+            "description": "Ineffektive Nutzung von vorhandenen Netzwerken und Kooperationsmöglichkeiten für Innovationszwecke."
+        },
+        {
+            "id": "M8",
+            "title": "Fachkräftemangel",
+            "description": "Schwierigkeiten, qualifizierte Mitarbeiter für innovative Projekte zu finden und zu halten, insbesondere im Wettbewerb mit größeren Unternehmen."
+        },
+        {
+            "id": "M9",
+            "title": "Entscheidungsüberlastung",
+            "description": "Zu viele parallele Optionen und Entscheidungen führen zu Verzögerungen oder suboptimalen Strategien."
+        },
+        {
+            "id": "M10",
+            "title": "Nachhaltigkeits-Profitabilitäts-Balance",
+            "description": "Herausforderung, Innovation sowohl nachhaltig als auch wirtschaftlich profitabel zu gestalten."
+        }
+    ]
+}

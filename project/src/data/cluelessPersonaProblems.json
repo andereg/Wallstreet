@@ -1,0 +1,45 @@
+{
+    "persona": "Clueless",
+    "problem_categories": [
+        {
+            "id": "K1",
+            "title": "Innovationsblindheit",
+            "description": "Sieht keinen Bedarf für Innovation und ist sich der Möglichkeiten nicht bewusst."
+        },
+        {
+            "id": "K2",
+            "title": "Relevanzproblem",
+            "description": "Erkennt Innovation nicht als relevant für die eigene Branche oder das eigene Unternehmen."
+        },
+        {
+            "id": "K3",
+            "title": "Technologieferne",
+            "description": "Fühlt sich überfordert von neuen Technologien oder versteht deren Anwendungsmöglichkeiten nicht."
+        },
+        {
+            "id": "K4",
+            "title": "Traditionsfixierung",
+            "description": "Verlässt sich stark auf bewährte Methoden und Prozesse."
+        },
+        {
+            "id": "K5",
+            "title": "Netzwerkmangel",
+            "description": "Fehlt der Zugang zu Innovationsnetzwerken und -ressourcen."
+        },
+        {
+            "id": "K6",
+            "title": "Wissensdefizit",
+            "description": "Mangelndes Wissen über Innovationsmethoden und -möglichkeiten."
+        },
+        {
+            "id": "K7",
+            "title": "Ressourcenunsicherheit",
+            "description": "Unsicherheit bezüglich der notwendigen Investitionen in Zeit, Geld und Personal."
+        },
+        {
+            "id": "K8",
+            "title": "Implementierungsblockade",
+            "description": "Unsicherheit, wie Innovationen praktisch umgesetzt werden können."
+        }
+    ]
+}
