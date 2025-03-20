@@ -124,19 +124,47 @@ export function Onboarding() {
                         </div>
                     ) : currentQuestion.includeSlider ? <div>
                         <div>
-                            <input
-                                type="range"
-                                min="10000"
-                                max="200000"
-                                step="10000"
-                                value={inputValue}
-                                onChange={(e) => setInputValue(e.target.value)}
-                                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-400
-             accent-green-500"
-                                style={{
-                                    background: `linear-gradient(to right, #008334 0%, #008334 ${(Number.parseInt(inputValue) - 10000) / 190000 * 100}%, #e5e7eb ${(inputValue - 10000) / 190000 * 100}%, #e5e7eb 100%)`,
-                                }}
+                        <input
+                            type="range"
+                            min="10000"
+                            max="200000"
+                            step="10000"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-400"
+                            style={{
+                                background: `linear-gradient(to right, #008334 0%, #008334 ${(Number.parseInt(inputValue) - 10000) / 190000 * 100}%, #e5e7eb ${(inputValue - 10000) / 190000 * 100}%, #e5e7eb 100%)`,
+                                WebkitAppearance: "none",
+                                appearance: "none"
+                            }}
                             />
+                            <style>{`
+                            input[type="range"]::-webkit-slider-thumb {
+                                -webkit-appearance: none;
+                                appearance: none;
+                                width: 30px;
+                                height: 30px;
+                                background: transparent;
+                                cursor: pointer;
+                                border: none;
+                                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 24 24' fill='none' stroke='%23008334' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z'%3e%3c/path%3e%3cpath d='m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z'%3e%3c/path%3e%3cpath d='M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0'%3e%3c/path%3e%3cpath d='M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5'%3e%3c/path%3e%3c/svg%3e");
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                transform: rotate(45deg);
+                            }
+                            
+                            input[type="range"]::-moz-range-thumb {
+                                width: 30px;
+                                height: 30px;
+                                background: transparent;
+                                cursor: pointer;
+                                border: none;
+                                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 24 24' fill='none' stroke='%23008334' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z'%3e%3c/path%3e%3cpath d='m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z'%3e%3c/path%3e%3cpath d='M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0'%3e%3c/path%3e%3cpath d='M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5'%3e%3c/path%3e%3c/svg%3e");
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                transform: rotate(45deg);
+                            }
+                            `}</style>
 
                             <div className="mt-4 text-lg font-medium text-gray-700">
                                 <span>Budget: </span>
