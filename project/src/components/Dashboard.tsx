@@ -14,6 +14,14 @@ export function Dashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userProblem, setUserProblem] = useState("");
 
+  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isLongText, setIsLongText] = React.useState(false);
+  const [previewText, setPreviewText] = React.useState("");
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   const handleSendMessage = () => {
     if (message.trim()) {
       addChatMessage({ text: message, sender: 'user' });
@@ -56,10 +64,14 @@ export function Dashboard() {
   };
 
     useEffect(() => {
-        const problem = retrieveUserProblem();
-        setUserProblem(problem ?? '');
+        const problem = retrieveUserProblem() ?? '';
+        setUserProblem(problem);
+        const previewLength = 200; // Anzahl der Zeichen, die zuerst angezeigt werden
+      const problemIsLongText = problem.length > previewLength;
+      setIsLongText(problemIsLongText);
+      const previewText = problemIsLongText ? problem.slice(0, previewLength) + "..." : problem;
+      setPreviewText(previewText ?? '');
     }, [])
-
 
     const fetchNewTodo = async () => {
     try {
@@ -73,9 +85,9 @@ export function Dashboard() {
           model: "mixtral",
         }),
       });
-  
+
       if (!response.ok) throw new Error(`Server Error: ${response.status}`);
-  
+
       const data = await response.json();
       return {
         id: nextId,
@@ -95,12 +107,12 @@ export function Dashboard() {
 
   const sendMessage = async () => {
     if (!input.trim()) return;
-    
+
     const newMessage = { role: "user", content: input };
     setMessages((prev) => [...prev, newMessage]);
     setInput("");
     setLoading(true);
-    
+
     try {
       const response = await fetch("http://localhost:5000/api/generate-prompt", {
         method: "POST",
@@ -112,7 +124,7 @@ export function Dashboard() {
       });
 
       if (!response.ok) throw new Error(`Server Error: ${response.status}`);
-      
+
       const data = await response.json();
       const botReply = {
         role: "bot",
@@ -123,7 +135,7 @@ export function Dashboard() {
       console.error("Chat Error:", error);
       setMessages((prev) => [...prev, { role: "bot", content: "Error fetching response." }]);
     }
-    
+
     setLoading(false);
   };
 
@@ -138,7 +150,7 @@ export function Dashboard() {
                 <div key={index} className={`p-2 my-1 rounded ${msg.role === "user" ? "bg-blue-200 text-right" : "bg-gray-200 text-left"}`}>
                   {msg.content}
                 </div>
-              ))}
+              ))}Todo List
             </div>
             <div className="flex items-center mt-4">
               <input
@@ -163,10 +175,21 @@ export function Dashboard() {
       case 'todos':
         return (
             <div className="p-6 max-w-xl mx-auto">
-                <div className="markdown-container">
-                    <ReactMarkdown>{userProblem}</ReactMarkdown>
-                </div>
-            <h1 className="text-2xl font-bold mb-4">Todo List</h1>
+                <h1 className="text-4xl font-bold mb-4">Ich habe ihr Problem analysiert 🎉</h1>
+                <div className="markdown-container mb-10">
+                <ReactMarkdown>
+                  {isExpanded || !isLongText ? userProblem : previewText}
+                </ReactMarkdown>
+                {isLongText && (
+                    <button
+                        onClick={toggleExpand}
+                        className="text-white px-4 py-2 rounded mt-2"
+                    >
+                      {isExpanded ? "Weniger anzeigen" : "Mehr anzeigen"}
+                    </button>
+                )}
+              </div>
+            <h1 className="text-2xl font-bold mb-4">Was Sie jetzt tun können</h1>
             <div className="space-y-4">
               {todosList.map((todo) => (
                 <div
@@ -217,7 +240,7 @@ export function Dashboard() {
   };
 
   const menuItems = [
-    { id: 'todos', icon: CheckSquare, label: 'Todo List' },
+    { id: 'todos', icon: CheckSquare, label: 'Analyse' },
     { id: 'wiki', icon: Book, label: 'Wiki' },
     { id: 'chat', icon: MessageSquare, label: 'Chat' },
     { id: 'contact', icon: Phone, label: 'Contact' },

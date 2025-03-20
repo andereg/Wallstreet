@@ -9,7 +9,8 @@ const getPrompt = (responses: QuestionResponse[], personaId: number) =>
     + "\nIch möchte nun wissen, in welche Problemkategorie mein Problem fällt:\n"
     + JSON.stringify(cluelessPersonaProblems)
     + "\n Zudem möchte ich wissen, wie ich das Problem angehen kann und beheben kann."
-    + "Alles in Markdown und gebe keine zusätzlichen Aussagen an. Strukturiere den Text in Titel, Beschreibung";
+    + "Alles in Markdown und gebe keine zusätzlichen Aussagen an. Sage nicht, welche Persona der Benutzer ist."
+    + "Strukturiere deine Antowrt so: Problembeschreibung (1 Absatz), Lösungsansätze (2 Absätze), Fazit (1 Absatz)";
 
 
 export const generateProblemOverview = async  (responses: QuestionResponse[], personaId: number) => {
