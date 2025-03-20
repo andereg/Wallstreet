@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useStore } from '../store';
-import { MessageSquare, CheckSquare, Book, Phone, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
+import { MessageSquare, CheckSquare, Book, Contact, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
 import contacts from "../data/innovationContactPerson.json";
 import { ChevronDown, CheckCircle } from "lucide-react";
 import { retrieveUserProblem, storeUserTodos } from "../user/user-store.ts";
@@ -166,8 +166,9 @@ export function Dashboard() {
         return (
           <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative transition-all duration-300">
             {/* Header */}
+            <h1 className="text-2xl font-bold mb-4">AI-Chat für Innovation</h1>
             {/* Chat Messages Box */}
-            <div className="h-64 overflow-y-auto p-3 border rounded-md flex flex-col space-y-2">
+            <div className="h-96 overflow-y-auto p-3 border rounded-md flex flex-col space-y-2">
             {messages.map((msg, index) => (
                 <div
                   key={index}
@@ -298,7 +299,7 @@ export function Dashboard() {
       case 'contact':
         return (
           <div className="p-6 max-w-2xl mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Contacts</h1>
+            <h1 className="text-2xl font-bold mb-4">Network</h1>
             {contacts.map((contact, index) => (
               <ContactCard key={index} contact={contact} />
             ))}
@@ -313,8 +314,8 @@ export function Dashboard() {
   const menuItems = [
     { id: 'todos', icon: CheckSquare, label: 'Analyse' },
     { id: 'wiki', icon: Book, label: 'Innovation Guide' },
-    { id: 'chat', icon: MessageSquare, label: 'Chat' },
-    { id: 'contact', icon: Phone, label: 'Contact' },
+    { id: 'chat', icon: MessageSquare, label: 'AI-Chat' },
+    { id: 'contact', icon: Contact, label: 'Network' },
   ];
 
   return (
