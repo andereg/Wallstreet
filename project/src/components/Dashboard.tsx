@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useStore } from '../store';
 import { MessageSquare, CheckSquare, Book, Phone, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
+import contacts from "../data/innovationContactPerson.json";
+import { ChevronDown, CheckCircle } from "lucide-react";
 
 export function Dashboard() {
-  const { todos, addTodo, toggleTodo, chatMessages, addChatMessage, wikiArticles } = useStore();
+  const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
   const [newTodo, setNewTodo] = useState('');
   const [message, setMessage] = useState('');
   const [activeTab, setActiveTab] = useState('chat');
@@ -23,17 +25,40 @@ export function Dashboard() {
     }
   };
 
-  const handleAddTodo = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newTodo.trim()) {
-      addTodo(newTodo);
-      setNewTodo('');
-    }
-  };
-
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
     setIsMenuOpen(false);
+  };
+
+  const initialTodos = [
+    { id: 1, title: "Buy Groceries", details: "Milk, Eggs, Bread, Butter", completed: false },
+    { id: 2, title: "Workout", details: "Run 5km and do strength training", completed: false },
+    { id: 3, title: "Study React", details: "Finish hooks and state management module", completed: false },
+    { id: 4, title: "Clean Room", details: "Organize desk, vacuum floor, and dust shelves", completed: false },
+    { id: 5, title: "Call Mom", details: "Catch up on the week and discuss weekend plans", completed: false },
+  ];
+
+  const [todosList, setTodos] = useState(initialTodos);
+  const [nextId, setNextId] = useState(6);
+
+  const toggleTodo = (id) => {
+    setTodos((prevTodos) => {
+      const updatedTodos = prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      );
+      return [...updatedTodos, generateNewTodo()];
+    });
+  };
+
+  const generateNewTodo = () => {
+    const newTodo = {
+      id: nextId,
+      title: `New Task ${nextId}`,
+      details: `This is a dynamically generated task with id ${nextId}.`,
+      completed: false,
+    };
+    setNextId(nextId + 1);
+    return newTodo;
   };
 
   const renderContent = () => {
@@ -79,39 +104,26 @@ export function Dashboard() {
             </div>
           </div>
         );
-
       case 'todos':
         return (
-          <div className="p-4 space-y-4 h-[calc(100vh-8rem)] overflow-y-auto">
-            <form onSubmit={handleAddTodo} className="flex gap-2">
-              <input
-                type="text"
-                value={newTodo}
-                onChange={(e) => setNewTodo(e.target.value)}
-                placeholder="Add a new task..."
-                className="flex-1 p-2 border rounded-lg"
-              />
-              <button type="submit" className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-                <Plus className="w-5 h-5" />
-              </button>
-            </form>
-            <div className="space-y-2">
-              {todos.map((todo) => (
+            <div className="p-6 max-w-xl mx-auto">
+            <h1 className="text-2xl font-bold mb-4">Todo List</h1>
+            <div className="space-y-4">
+              {todosList.map((todo) => (
                 <div
                   key={todo.id}
-                  className="flex items-center gap-2 p-2 border rounded-lg bg-white"
+                  className={`p-4 flex justify-between items-center shadow-md bg-white rounded-lg ${todo.completed ? "opacity-50" : ""}`}
                 >
+                  <div>
+                    <h2 className={`text-lg font-semibold ${todo.completed ? "line-through text-gray-500" : ""}`}>{todo.title}</h2>
+                    <p className={`text-sm ${todo.completed ? "line-through text-gray-400" : "text-gray-600"}`}>{todo.details}</p>
+                  </div>
                   <button
                     onClick={() => toggleTodo(todo.id)}
-                    className={`p-1 rounded ${
-                      todo.completed ? 'text-green-500' : 'text-gray-400'
-                    }`}
+                    className={`p-2 rounded transition ${todo.completed ? "bg-green-300" : "bg-green-500 hover:bg-green-600 text-white"}`}
                   >
-                    {todo.completed ? <Check className="w-5 h-5" /> : <X className="w-5 h-5" />}
+                    <CheckCircle className="w-5 h-5" />
                   </button>
-                  <span className={todo.completed ? 'line-through text-gray-400' : ''}>
-                    {todo.text}
-                  </span>
                 </div>
               ))}
             </div>
@@ -132,40 +144,12 @@ export function Dashboard() {
 
       case 'contact':
         return (
-          <div className="p-4 h-[calc(100vh-8rem)] overflow-y-auto">
-            <form className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Name</label>
-                <input
-                  type="text"
-                  className="mt-1 block w-full p-2 border rounded-lg"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Email</label>
-                <input
-                  type="email"
-                  className="mt-1 block w-full p-2 border rounded-lg"
-                  placeholder="your@email.com"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Message</label>
-                <textarea
-                  className="mt-1 block w-full p-2 border rounded-lg"
-                  rows={4}
-                  placeholder="Your message..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+          <div className="p-6 max-w-2xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Contacts</h1>
+      {contacts.map((contact, index) => (
+        <ContactCard key={index} contact={contact} />
+      ))}
+    </div>
         );
 
       default:
@@ -243,3 +227,45 @@ export function Dashboard() {
     </div>
   );
 }
+
+interface Contact {
+  Name: string;
+  Institution: string;
+  Contact: string;
+  Category: string;
+  Description: string;
+  FocusAreas: string;
+  Website: string;
+}
+
+function ContactCard({ contact }: { contact: Contact }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative">
+      <h2 className="text-lg font-semibold">{contact.Name}</h2>
+      <p className="text-gray-600">{contact.Institution}</p>
+      <p className="text-blue-500">
+        <a href={`mailto:${contact.Contact}`} className="underline">{contact.Contact}</a>
+      </p>
+        <button
+        className="absolute top-4 right-4 text-blue-700 transition-transform duration-300"
+        onClick={() => setExpanded(!expanded)}
+      >
+        <ChevronDown
+          className={`w-5 h-5 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+        />
+      </button>
+      {expanded && (
+        <div className="mt-2 text-gray-700">
+          <p><strong>Category:</strong> {contact.Category}</p>
+          <p><strong>Description:</strong> {contact.Description}</p>
+          <p><strong>Focus Areas:</strong> {contact.FocusAreas}</p>
+          <p><strong>Website:</strong> <a href={contact.Website} className="text-blue-500" target="_blank">Visit</a></p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default ContactCard;

@@ -1,0 +1,587 @@
+[
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"School of Management (SoM-HSG)",
+        "Description":"Research and teaching in business administration, strategy, and innovation.",
+        "FocusAreas":"Business Strategy, Innovation, Leadership",
+        "Contact":"som@unisg.ch",
+        "Website":"https:\/\/som.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"School of Finance (SoF-HSG)",
+        "Description":"Research on financial markets, banking, corporate finance, and risk analysis.",
+        "FocusAreas":"Banking, Corporate Finance, Risk Management",
+        "Contact":"sof@unisg.ch",
+        "Website":"https:\/\/sof.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"School of Economics and Political Science (SEPS-HSG)",
+        "Description":"Research on economic policy, macroeconomics, and global markets.",
+        "FocusAreas":"Economic Policy, Macroeconomics, International Economics",
+        "Contact":"seps@unisg.ch",
+        "Website":"https:\/\/seps.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"School of Law (LS-HSG)",
+        "Description":"Legal research and education with a focus on business law.",
+        "FocusAreas":"Business Law, Technology Law, Corporate Law",
+        "Contact":"law@unisg.ch",
+        "Website":"https:\/\/law.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"School of Humanities and Social Sciences (SHSS-HSG)",
+        "Description":"Interdisciplinary research on society, ethics, and culture.",
+        "FocusAreas":"Ethics, Philosophy, Social Innovation",
+        "Contact":"shss@unisg.ch",
+        "Website":"https:\/\/shss.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"School of Computer Science (SCS-HSG)",
+        "Description":"Research and teaching in artificial intelligence, data science, and IT strategy.",
+        "FocusAreas":"Artificial Intelligence, Data Science, IT Strategy",
+        "Contact":"scs@unisg.ch",
+        "Website":"https:\/\/scs.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Institute of Accounting, Controlling & Auditing (ACA-HSG)",
+        "Description":"Research and education in accounting, financial control, and compliance.",
+        "FocusAreas":"Accounting, Financial Control, Compliance",
+        "Contact":"aca@unisg.ch",
+        "Website":"https:\/\/aca.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Institute of Financial Economics and Finance (IFF-HSG)",
+        "Description":"Research on financial markets, banking, and corporate finance.",
+        "FocusAreas":"Banking, Financial Markets, Corporate Finance",
+        "Contact":"iff@unisg.ch",
+        "Website":"https:\/\/iff.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Institute of Economic Research & Policy (FGN-HSG)",
+        "Description":"Analysis and consulting on economic policy, market behavior, and macroeconomics.",
+        "FocusAreas":"Economic Policy, Macroeconomics, Market Analysis",
+        "Contact":"fgn@unisg.ch",
+        "Website":"https:\/\/fgn.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Institute of Management, Technology & Law (MTRL-HSG)",
+        "Description":"Combining management, technological developments, and legal aspects.",
+        "FocusAreas":"Technology, Law, Management",
+        "Contact":"mtrl@unisg.ch",
+        "Website":"https:\/\/mtrl.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Institute of Business Administration (IfB-HSG)",
+        "Description":"Research on business strategy, organization, and corporate governance.",
+        "FocusAreas":"Strategy, Corporate Governance, Organization",
+        "Contact":"ifb@unisg.ch",
+        "Website":"https:\/\/ifb.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Institute of Technology and Innovation Management (ITEM-HSG)",
+        "Description":"Research on innovation processes and technological developments.",
+        "FocusAreas":"Innovation, Technology, Digitalization",
+        "Contact":"item@unisg.ch",
+        "Website":"https:\/\/item.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Institute of Leadership & Human Resource Management (I.FPM-HSG)",
+        "Description":"Research on leadership, HR management, and organizational development.",
+        "FocusAreas":"Leadership, HR Management, Organizational Development",
+        "Contact":"ifpm@unisg.ch",
+        "Website":"https:\/\/ifpm.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Swiss Institute for Small and Medium-Sized Enterprises (KMU-HSG)",
+        "Description":"Support for SMEs and family businesses through research, teaching, and knowledge transfer.",
+        "FocusAreas":"SMEs, Family Businesses, Corporate Strategy",
+        "Contact":"kmu@unisg.ch",
+        "Website":"https:\/\/kmu.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Institute of Business Ethics (IWE-HSG)",
+        "Description":"Research on ethical challenges in business and society.",
+        "FocusAreas":"Business Ethics, Sustainability, Corporate Social Responsibility",
+        "Contact":"iwe@unisg.ch",
+        "Website":"https:\/\/iwe.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Institute for Management in Latin America (CLA-HSG)",
+        "Description":"Research on business strategies in Latin America.",
+        "FocusAreas":"Latin America, International Business, Emerging Markets",
+        "Contact":"cla@unisg.ch",
+        "Website":"https:\/\/cla.unisg.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Architecture, Civil Engineering & Landscape Architecture",
+        "Description":"Research and education in sustainable construction, civil engineering, and landscape design.",
+        "FocusAreas":"Sustainable Construction, Civil Engineering, Landscape Architecture",
+        "Contact":"architecture@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Computer Science",
+        "Description":"Research and education in software development, artificial intelligence, and data science.",
+        "FocusAreas":"Software Development, Artificial Intelligence, Data Science",
+        "Contact":"cs@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Health Sciences",
+        "Description":"Research in nursing science, medical technology, and healthcare innovation.",
+        "FocusAreas":"Nursing Science, Medical Technology, Healthcare Research",
+        "Contact":"health@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Social Work",
+        "Description":"Research and education in social work, social policy, and inclusion.",
+        "FocusAreas":"Social Work, Inclusion, Social Policy",
+        "Contact":"socialwork@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Technology & Engineering",
+        "Description":"Practice-oriented education in mechanical engineering, electrical engineering, and sustainable technologies.",
+        "FocusAreas":"Mechanical Engineering, Electrical Engineering, Renewable Energies",
+        "Contact":"engineering@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Electrical Engineering",
+        "Description":"Research in microelectronics, signal processing, and high voltage technology.",
+        "FocusAreas":"Microelectronics, Signal Processing, High Voltage Engineering",
+        "Contact":"electrical@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Mechanical Engineering",
+        "Description":"Research and education in manufacturing technology, materials science, and automation.",
+        "FocusAreas":"Manufacturing Technology, Materials Science, Automation",
+        "Contact":"mechanical@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Renewable Energies & Environmental Technology",
+        "Description":"Research on sustainable energy, climate protection, and environmental engineering.",
+        "FocusAreas":"Sustainable Energy, Climate Protection, Environmental Technology",
+        "Contact":"renewable@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Industrial Engineering",
+        "Description":"Research on production management, logistics, and supply chain management.",
+        "FocusAreas":"Production Management, Logistics, Supply Chain Management",
+        "Contact":"industrial@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Medical Informatics",
+        "Description":"Research on digital health, data analysis, and e-health applications.",
+        "FocusAreas":"Digital Health, Data Analysis, E-Health",
+        "Contact":"medicalinformatics@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Systems Engineering",
+        "Description":"Research in mechatronics, automation, and robotics.",
+        "FocusAreas":"Mechatronics, Automation, Robotics",
+        "Contact":"systems@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Transport Systems",
+        "Description":"Research on mobility, traffic engineering, and smart cities.",
+        "FocusAreas":"Mobility, Traffic Engineering, Smart Cities",
+        "Contact":"transport@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Micro- and Nanotechnology",
+        "Description":"Research in semiconductor technology, sensor technology, and photonics.",
+        "FocusAreas":"Semiconductor Technology, Sensor Technology, Photonics",
+        "Contact":"micro@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Plastics Engineering",
+        "Description":"Research on polymer materials, injection molding, and recycling.",
+        "FocusAreas":"Polymer Materials, Injection Molding, Recycling",
+        "Contact":"plastics@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Food and Biotechnology",
+        "Description":"Research on food innovation, biotechnology, and process optimization.",
+        "FocusAreas":"Food Innovation, Biotechnology, Process Optimization",
+        "Contact":"food@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Business Psychology",
+        "Description":"Research on decision psychology, organizational development, and consumer behavior.",
+        "FocusAreas":"Decision Psychology, Organizational Development, Consumer Behavior",
+        "Contact":"psychology@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Digital Transformation & Innovation Management",
+        "Description":"Research on digitalization, innovation strategies, and technology management.",
+        "FocusAreas":"Digitalization, Innovation Strategies, Technology Management",
+        "Contact":"digital@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Academia",
+        "Institution":"Eastern Switzerland University of Applied Sciences (OST)",
+        "Name":"Department of Business and Administration",
+        "Description":"Research and education in business administration, finance, and corporate strategy.",
+        "FocusAreas":"Business Administration, Finance, Corporate Strategy",
+        "Contact":"business@ost.ch",
+        "Website":"https:\/\/www.ost.ch"
+    },
+    {
+        "Category":"Funding",
+        "Institution":"Innovation Network Eastern Switzerland",
+        "Name":"INOS",
+        "Description":"Funding and coaching support for SMEs and startups in Eastern Switzerland.",
+        "FocusAreas":"Product Innovation, Process Optimization, Business Models",
+        "Contact":"info@inos.swiss",
+        "Website":"https:\/\/inos.swiss"
+    },
+    {
+        "Category":"Network",
+        "Institution":"Switzerland Innovation Park Ost (SIPOst)",
+        "Name":"Switzerland Innovation Park Ost",
+        "Description":"Innovation hub connecting science and industry for technological advancements.",
+        "FocusAreas":"Technology Development, Business Models, Startup Support",
+        "Contact":"info@sipost.ch",
+        "Website":"https:\/\/www.switzerland-innovation.com\/ost"
+    },
+    {
+        "Category":"Association",
+        "Institution":"Chamber of Commerce St.Gallen-Appenzell (IHK)",
+        "Name":"IHK - Chamber of Commerce",
+        "Description":"Support and representation for businesses in Eastern Switzerland.",
+        "FocusAreas":"Export Consulting, Further Education, Networking Events",
+        "Contact":"info@ihk.ch",
+        "Website":"https:\/\/www.ihk.ch"
+    },
+    {
+        "Category":"Association",
+        "Institution":"Cantonal Trade Association St.Gallen (KGV)",
+        "Name":"KGV - Trade Association",
+        "Description":"Representation of SME and trade interests in Eastern Switzerland.",
+        "FocusAreas":"Legal Advice, Further Education, Interest Representation",
+        "Contact":"info@kgv.ch",
+        "Website":"https:\/\/www.kgv.ch"
+    },
+    {
+        "Category":"Government",
+        "Institution":"Canton of St. Gallen",
+        "Name":"Economic Promotion Canton of St. Gallen",
+        "Description":"Strengthening the regional economy through networking and information sharing.",
+        "FocusAreas":"Business Networking, Economic Information, Policy Representation",
+        "Contact":"info@wirtschaftsg.ch",
+        "Website":"https:\/\/www.wirtschaftsg.ch"
+    },
+    {
+        "Category":"Research",
+        "Institution":"RhySearch",
+        "Name":"RhySearch Innovation Center",
+        "Description":"Applied research in optical coatings, high-precision manufacturing, and digital innovation.",
+        "FocusAreas":"Optical Coatings, High-Precision Manufacturing, Digital Innovation",
+        "Contact":"info@rhysearch.ch",
+        "Website":"https:\/\/www.rhysearch.ch"
+    },
+    {
+        "Category":"Research",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"KMU-HSG - Swiss SME Institute",
+        "Description":"Support for SMEs and family businesses through research and practical advice.",
+        "FocusAreas":"SMEs, Family Businesses, Corporate Strategy",
+        "Contact":"info@kmu.unisg.ch",
+        "Website":"https:\/\/www.kmu.unisg.ch"
+    },
+    {
+        "Category":"Network",
+        "Institution":"\"IT rockt!\" St.Gallen",
+        "Name":"\"IT rockt!\" Digital Innovation Network",
+        "Description":"Promotion of digital transformation and ICT workforce development in Eastern Switzerland.",
+        "FocusAreas":"ICT, Digital Transformation, Talent Development",
+        "Contact":"info@itrockt.ch",
+        "Website":"https:\/\/www.itrockt.ch"
+    },
+    {
+        "Category":"Funding",
+        "Institution":"Innosuisse",
+        "Name":"Innovation Projects with Partners",
+        "Description":"Financial support for companies collaborating with research partners to develop innovative products, services, or processes.",
+        "FocusAreas":"Product Innovation, Service Development, Process Optimization",
+        "Contact":"info@innosuisse.ch",
+        "Website":"https:\/\/www.innosuisse.admin.ch\/en\/funding-for-national-projects"
+    },
+    {
+        "Category":"Funding",
+        "Institution":"Innosuisse",
+        "Name":"Innovation Projects without Partners",
+        "Description":"Support for researchers to carry out innovation projects independently, aiming to develop ideas with strong commercial potential.",
+        "FocusAreas":"Independent Research, Commercialization, Market Entry",
+        "Contact":"info@innosuisse.ch",
+        "Website":"https:\/\/www.innosuisse.admin.ch\/en\/funding-for-national-projects"
+    },
+    {
+        "Category":"Funding",
+        "Institution":"Innosuisse",
+        "Name":"Innovation Cheque",
+        "Description":"Vouchers for SMEs or small organizations to conduct preliminary studies and test innovative ideas in collaboration with a Swiss research partner.",
+        "FocusAreas":"Feasibility Studies, Idea Validation, Research Collaboration",
+        "Contact":"info@innosuisse.ch",
+        "Website":"https:\/\/www.innosuisse.admin.ch\/en\/funding-for-national-projects"
+    },
+    {
+        "Category":"Funding",
+        "Institution":"Innosuisse",
+        "Name":"Flagship Initiative",
+        "Description":"Encourages systemic and transdisciplinary innovations by fostering collaboration among multiple partners to address current and future challenges.",
+        "FocusAreas":"Collaborative Innovation, Systemic Solutions, Transdisciplinary Research",
+        "Contact":"info@innosuisse.ch",
+        "Website":"https:\/\/www.innosuisse.admin.ch\/en\/funding-for-national-projects"
+    },
+    {
+        "Category":"Funding",
+        "Institution":"Innosuisse",
+        "Name":"BRIDGE Projects",
+        "Description":"Joint program with the Swiss National Science Foundation to help researchers transform their scientific results into marketable products and services.",
+        "FocusAreas":"Research Commercialization, Product Development, Service Innovation",
+        "Contact":"info@innosuisse.ch",
+        "Website":"https:\/\/www.innosuisse.admin.ch\/en\/funding-for-national-projects"
+    },
+    {
+        "Category":"Funding",
+        "Institution":"Innosuisse",
+        "Name":"Swiss Accelerator Innovation Projects",
+        "Description":"Transitional measure to accelerate the growth of SMEs or start-ups already established in the market, aiming to expedite the launch of new products or services.",
+        "FocusAreas":"Business Growth, Market Expansion, Product Launch",
+        "Contact":"info@innosuisse.ch",
+        "Website":"https:\/\/www.innosuisse.admin.ch\/en\/funding-for-national-projects"
+    },
+    {
+        "Category":"Funding",
+        "Institution":"Innosuisse",
+        "Name":"International Innovation Projects",
+        "Description":"Support for Swiss companies and research institutions to collaborate with international partners on innovation projects, combining Swiss expertise with global insights.",
+        "FocusAreas":"Global Collaboration, Cross-border Innovation, International Partnerships",
+        "Contact":"international@innosuisse.ch",
+        "Website":"https:\/\/www.innosuisse.admin.ch\/en\/funding-for-international-projects"
+    },
+    {
+        "Category":"Research",
+        "Institution":"Empa",
+        "Name":"Materials meet Life",
+        "Description":"Develops novel materials and systems to protect and support the human body under various conditions, focusing on health innovations.",
+        "FocusAreas":"Wearable Sensors, Precision Medicine, Implants, Biomedical Imaging, Nanostructured Materials",
+        "Contact":"info@empa.ch",
+        "Website":"https:\/\/www.empa.ch\/web\/s604"
+    },
+    {
+        "Category":"Research",
+        "Institution":"Empa",
+        "Name":"Advanced Manufacturing",
+        "Description":"Focuses on the development and upscaling of advanced manufacturing technologies, including additive manufacturing and coating processes, to facilitate industrial applications.",
+        "FocusAreas":"Additive Manufacturing, Coating Technologies, Process Upscaling",
+        "Contact":"info@empa.ch",
+        "Website":"https:\/\/www.empa.ch\/web\/s209"
+    },
+    {
+        "Category":"Research",
+        "Institution":"Empa",
+        "Name":"Sustainable Built Environment",
+        "Description":"Aims to develop sustainable solutions for buildings and urban areas, enhancing energy efficiency and reducing environmental impact through innovative materials and technologies.",
+        "FocusAreas":"Energy-efficient Buildings, Urban Sustainability, Environmental Impact Reduction",
+        "Contact":"info@empa.ch",
+        "Website":"https:\/\/www.empa.ch\/web\/s190"
+    },
+    {
+        "Category":"Research",
+        "Institution":"Empa",
+        "Name":"Energy and Environment",
+        "Description":"Conducts research on energy conversion, storage, and efficiency, as well as environmental technologies to address challenges related to energy and resource sustainability.",
+        "FocusAreas":"Energy Conversion, Energy Storage, Environmental Technologies",
+        "Contact":"info@empa.ch",
+        "Website":"https:\/\/www.empa.ch\/web\/s313"
+    },
+    {
+        "Category":"Research",
+        "Institution":"Empa",
+        "Name":"Transport at Nanoscale Interfaces",
+        "Description":"Investigates the properties and behaviors of materials at the nanoscale, particularly focusing on transport phenomena at interfaces, to develop applications in electronics, energy, and sensor technologies.",
+        "FocusAreas":"Nanoscale Materials, Interface Phenomena, Electronic Applications, Sensor Technologies",
+        "Contact":"info@empa.ch",
+        "Website":"https:\/\/www.empa.ch\/web\/s504"
+    },
+    {
+        "Category":"Research",
+        "Institution":"Kantonsspital St.Gallen",
+        "Name":"Medical Research Center",
+        "Description":"Supports researchers with a wide range of services and advanced infrastructure to transform diverse research ideas into productive projects.",
+        "FocusAreas":"Clinical Trials, Immunobiology, Translational Research",
+        "Contact":"mfz@h-och.ch",
+        "Website":"https:\/\/www.h-och.ch\/ueber-uns\/organisation\/departemente\/medizinisches-forschungszentrum\/"
+    },
+    {
+        "Category":"Research",
+        "Institution":"Kantonsspital St.Gallen",
+        "Name":"Institute of Immunobiology",
+        "Description":"Conducts its own research projects and maintains the technical infrastructure of the Medical Research Center, focusing on immunological studies and support for clinical research.",
+        "FocusAreas":"Immunological Research, Technical Infrastructure, Clinical Support",
+        "Contact":"mfz@h-och.ch",
+        "Website":"https:\/\/www.h-och.ch\/ueber-uns\/organisation\/departemente\/medizinisches-forschungszentrum\/"
+    },
+    {
+        "Category":"Research",
+        "Institution":"Kantonsspital St.Gallen",
+        "Name":"Clinical Trials Unit (CTU)",
+        "Description":"Offers a broad range of services to assist clinical researchers in implementing their projects, ensuring compliance with regulatory standards and promoting high-quality clinical research.",
+        "FocusAreas":"Clinical Study Design, Regulatory Compliance, Project Implementation",
+        "Contact":"mfz@h-och.ch",
+        "Website":"https:\/\/www.h-och.ch\/ueber-uns\/organisation\/departemente\/medizinisches-forschungszentrum\/"
+    },
+    {
+        "Category":"Research",
+        "Institution":"Kantonsspital St.Gallen",
+        "Name":"Department of Hand, Plastic, and Reconstructive Surgery",
+        "Description":"Provides treatment for various conditions, including acute injuries, degenerative diseases, and congenital malformations, with a focus on upper limb trauma and reconstructive procedures.",
+        "FocusAreas":"Hand Injuries, Reconstructive Surgery, Microsurgical Procedures",
+        "Contact":"martina.greminger@kssg.ch",
+        "Website":"https:\/\/www.ibra.net\/Upper-Limbs\/$\/Kantonsspital-of-St.-Gallen\/24"
+    },
+    {
+        "Category":"Research",
+        "Institution":"Kantonsspital St.Gallen",
+        "Name":"Department of Neurology",
+        "Description":"Engages in research and treatment of neurological disorders, contributing to advancements in understanding and managing conditions affecting the nervous system.",
+        "FocusAreas":"Neurological Disorders, Clinical Neurology, Neurodegenerative Diseases",
+        "Contact":"info@kssg.ch",
+        "Website":"https:\/\/www.researchgate.net\/institution\/Kantonsspital_St_Gallen"
+    },
+    {
+        "Category":"Research",
+        "Institution":"Kantonsspital St.Gallen",
+        "Name":"Department of Haematology and Oncology",
+        "Description":"Focuses on research and treatment of blood disorders and cancer, aiming to improve patient outcomes through innovative therapies and clinical trials.",
+        "FocusAreas":"Haematology, Oncology, Cancer Research",
+        "Contact":"info@kssg.ch",
+        "Website":"https:\/\/www.researchgate.net\/institution\/Kantonsspital_St_Gallen"
+    },
+    {
+        "Category":"Network",
+        "Institution":"St.Gallen Health",
+        "Name":"St.Gallen Health",
+        "Description":"A network of over 40 institutions in St.Gallen, created to position the city as an attractive location for healthcare companies, aiming to create jobs and attract specialists.",
+        "FocusAreas":"Healthcare Industry, Research Collaboration, Education",
+        "Contact":"annina.huber@stadt.sg.ch",
+        "Website":"https:\/\/en.sg-health.ch\/de\/"
+    },
+    {
+        "Category":"Network",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Circular Economy \u2013 Institute of Management & Strategy (IoMS-HSG)",
+        "Description":"Focuses on promoting excellent research and providing high-quality teaching to inspire and empower future generations in the field of Circular Economy. Collaborates with industry partners to implement circular ecosystems.",
+        "FocusAreas":"Circular Economy Research, Sustainable Business Models, Industry Collaboration",
+        "Contact":"info@unisg.ch",
+        "Website":"https:\/\/ifb.unisg.ch\/en\/competence-center\/circular-economy\/"
+    },
+    {
+        "Category":"Network",
+        "Institution":"University of St.Gallen (HSG)",
+        "Name":"Sustainability Innovation Lab",
+        "Description":"Aims to manage sustainability transformations across various sectors by exploring how organizations can implement economically attractive sustainable technologies. Engages in application-oriented projects and cooperates with companies from various industries.",
+        "FocusAreas":"Sustainability Transformations, Digital Sustainability, Smart City Projects",
+        "Contact":"info@sustainability-innovation.org",
+        "Website":"https:\/\/www.sustainability-innovation.org\/"
+    },
+    {
+        "Category":"Network",
+        "Institution":"City of St.Gallen",
+        "Name":"Smart City St.Gallen",
+        "Description":"Focuses on the digital transformation and intelligent urban development of St.Gallen, implementing innovative solutions in areas such as mobility, infrastructure, and citizen engagement to enhance the quality of life.",
+        "FocusAreas":"Digital Transformation, Urban Development, Smart Infrastructure",
+        "Contact":"smartcity@stadt.sg.ch",
+        "Website":"https:\/\/www.sustainability-innovation.org\/"
+    },
+    {
+        "Category":"Association",
+        "Institution":"Swissmem",
+        "Name":"Swissmem",
+        "Description":"The association of the Swiss mechanical, electrical, and metal industries (MEM industries) and related technology-oriented sectors. It represents the interests of the MEM industry in business, politics, and the public and promotes the competitiveness of its approximately 1,400 member companies through tailored services.",
+        "FocusAreas":"Industry Representation, Education & Training, Consulting, Networking, Social Partnership",
+        "Contact":"info@swissmem.ch",
+        "Website":"https:\/\/www.swissmem.ch\/"
+    }
+]
