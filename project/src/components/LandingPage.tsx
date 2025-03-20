@@ -35,7 +35,7 @@ export function LandingPage() {
                         {/* Description */}
                         <p className="text-lg text-gray-600 mb-8">
                             Dein persönlicher Wegweiser zur Innovation! Entdecke neue Perspektiven, 
-                            entwickle maßgeschneiderte Lösungen und erschließe verborgene Innovationspotenziale 
+                            entwickle massgeschneiderte Lösungen und erschließe verborgene Innovationspotenziale 
                             für dein Unternehmen.
                         </p>
                         

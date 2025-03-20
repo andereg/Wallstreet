@@ -167,7 +167,7 @@ export function Dashboard() {
           <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative transition-all duration-300">
             {/* Header */}
             {/* Chat Messages Box */}
-            <div className="h-64 overflow-y-auto p-3 border rounded-md flex flex-col space-y-2 pastel-gradient">
+            <div className="h-64 overflow-y-auto p-3 border rounded-md flex flex-col space-y-2">
             {messages.map((msg, index) => (
                 <div
                   key={index}
@@ -176,21 +176,15 @@ export function Dashboard() {
                   <div className="relative max-w-[70%]">
                     {/* Chat Bubble */}
                     <div
-                      className={`relative p-3 rounded-lg text-white shadow-md break-words ${msg.role === "user"
-                          ? "bg-green-600 text-right rounded-br-none self-end" // User message (right, green)
-                          : "bg-gray-400 text-left rounded-bl-none self-start" // Bot message (left, gray)
-                        }`}
-                    >
-                      {msg.content}
+  className={`relative p-3 rounded-lg text-white shadow-md break-words bg-gray-700 bg-opacity-80 text-gray-900  ${
+    msg.role === "user"
+      ? "text-right rounded-br-none self-end " // User message (right)
+      : "text-left rounded-bl-none self-start" // Bot message (left)
+  }`}
+>
+  {msg.content}
+</div>
 
-                      {/* Speech Bubble Tail */}
-                      <div
-                        className={`absolute w-0 h-0 border-solid ${msg.role === "user"
-                            ? "border-t-[10px] border-t-transparent border-r-[15px] border-r-green-600 border-b-[10px] border-b-transparent bottom-[-5px] right-2"
-                            : "border-t-[10px] border-t-transparent border-l-[15px] border-l-gray-400 border-b-[10px] border-b-transparent bottom-[-5px] left-2"
-                          }`}
-                      ></div>
-                    </div>
                   </div>
                 </div>
               ))}
@@ -200,8 +194,11 @@ export function Dashboard() {
             <div className="flex items-center mt-4">
               <input
                 type="text"
-                className="flex-1 p-2 border rounded-md"
-                placeholder="Type a message..."
+                class="flex-1 p-2 border 
+                focus-visible:outline-none focus-visible:ring-4 
+                focus-visible:ring-gray-300 focus-visible:border-gray-400 
+                focus-visible:ring-opacity-50 transition-all duration-20"
+                placeholder="Schreibe deine Frage..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && sendMessage()}
