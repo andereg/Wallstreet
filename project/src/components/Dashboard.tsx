@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useStore } from '../store';
 import { MessageSquare, CheckSquare, Book, Phone, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
 import contacts from "../data/innovationContactPerson.json";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, CheckCircle } from "lucide-react";
 
 export function Dashboard() {
-  const { todos, addTodo, toggleTodo, chatMessages, addChatMessage, wikiArticles } = useStore();
+  const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
   const [newTodo, setNewTodo] = useState('');
   const [message, setMessage] = useState('');
   const [activeTab, setActiveTab] = useState('chat');
@@ -25,17 +25,40 @@ export function Dashboard() {
     }
   };
 
-  const handleAddTodo = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newTodo.trim()) {
-      addTodo(newTodo);
-      setNewTodo('');
-    }
-  };
-
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
     setIsMenuOpen(false);
+  };
+
+  const initialTodos = [
+    { id: 1, title: "Buy Groceries", details: "Milk, Eggs, Bread, Butter", completed: false },
+    { id: 2, title: "Workout", details: "Run 5km and do strength training", completed: false },
+    { id: 3, title: "Study React", details: "Finish hooks and state management module", completed: false },
+    { id: 4, title: "Clean Room", details: "Organize desk, vacuum floor, and dust shelves", completed: false },
+    { id: 5, title: "Call Mom", details: "Catch up on the week and discuss weekend plans", completed: false },
+  ];
+
+  const [todosList, setTodos] = useState(initialTodos);
+  const [nextId, setNextId] = useState(6);
+
+  const toggleTodo = (id) => {
+    setTodos((prevTodos) => {
+      const updatedTodos = prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      );
+      return [...updatedTodos, generateNewTodo()];
+    });
+  };
+
+  const generateNewTodo = () => {
+    const newTodo = {
+      id: nextId,
+      title: `New Task ${nextId}`,
+      details: `This is a dynamically generated task with id ${nextId}.`,
+      completed: false,
+    };
+    setNextId(nextId + 1);
+    return newTodo;
   };
 
   const renderContent = () => {
@@ -81,39 +104,26 @@ export function Dashboard() {
             </div>
           </div>
         );
-
       case 'todos':
         return (
-          <div className="p-4 space-y-4 h-[calc(100vh-8rem)] overflow-y-auto">
-            <form onSubmit={handleAddTodo} className="flex gap-2">
-              <input
-                type="text"
-                value={newTodo}
-                onChange={(e) => setNewTodo(e.target.value)}
-                placeholder="Add a new task..."
-                className="flex-1 p-2 border rounded-lg"
-              />
-              <button type="submit" className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-                <Plus className="w-5 h-5" />
-              </button>
-            </form>
-            <div className="space-y-2">
-              {todos.map((todo) => (
+            <div className="p-6 max-w-xl mx-auto">
+            <h1 className="text-2xl font-bold mb-4">Todo List</h1>
+            <div className="space-y-4">
+              {todosList.map((todo) => (
                 <div
                   key={todo.id}
-                  className="flex items-center gap-2 p-2 border rounded-lg bg-white"
+                  className={`p-4 flex justify-between items-center shadow-md bg-white rounded-lg ${todo.completed ? "opacity-50" : ""}`}
                 >
+                  <div>
+                    <h2 className={`text-lg font-semibold ${todo.completed ? "line-through text-gray-500" : ""}`}>{todo.title}</h2>
+                    <p className={`text-sm ${todo.completed ? "line-through text-gray-400" : "text-gray-600"}`}>{todo.details}</p>
+                  </div>
                   <button
                     onClick={() => toggleTodo(todo.id)}
-                    className={`p-1 rounded ${
-                      todo.completed ? 'text-green-500' : 'text-gray-400'
-                    }`}
+                    className={`p-2 rounded transition ${todo.completed ? "bg-green-300" : "bg-green-500 hover:bg-green-600 text-white"}`}
                   >
-                    {todo.completed ? <Check className="w-5 h-5" /> : <X className="w-5 h-5" />}
+                    <CheckCircle className="w-5 h-5" />
                   </button>
-                  <span className={todo.completed ? 'line-through text-gray-400' : ''}>
-                    {todo.text}
-                  </span>
                 </div>
               ))}
             </div>
