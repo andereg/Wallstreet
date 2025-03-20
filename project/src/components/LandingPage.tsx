@@ -23,13 +23,13 @@ export function LandingPage() {
                     <div className="flex flex-col max-w-xl text-left">
                         {/* Logo & Tagline */}
                         <div className="flex items-center mb-6">
-                            <img src="/logo.png" alt="Innovation Coach Logo" className="w-16 h-16 mr-4" />
+                            <img src="/logo.png" alt="Logo" className="w-16 h-16 mr-4" />
                             <span className="text-sm font-semibold text-green-600 uppercase tracking-wider">Innovation Guide</span>
                         </div>
                         
                         {/* Main Heading */}
                         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight">
-                            Willkommen bei <span className="text-green-600">Innovation Coach</span>
+                            Willkommen bei <span className="text-green-600">Säntis Catalyst</span>
                         </h1>
                         
                         {/* Description */}
