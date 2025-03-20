@@ -96,7 +96,7 @@ export const generateProblemOverview = async (responses: QuestionResponse[], per
                 personaId,
                 "Generiere ein Innovationsprofil basierend auf den Antworten des Nutzers. Gib keine eigene Aussagen und anworte NUR mit Werten."
                 + "Gib folgende Werte getrennt mit Komma: Bereitschaft, Ressourcen, Knowhow, Positionierung, Netzwerk, Mindset, Strategie, Agilität."
-                + "Gib nur Werte von 50-100. Nicht unter 50!"
+                + "Gib nur Werte von 30-100. Nicht unter 30!"
             )
         );
 
