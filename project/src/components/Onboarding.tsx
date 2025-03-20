@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import questions, {mainQuestions} from '../data/questions.ts';
+import {mainQuestions} from '../data/questions.ts';
 import {retrieveUserProfile, storePersonaId, storeUserResponses} from "../user/user-store.ts";
 import {Question} from "../model/question.ts";
 import {cluelessQuestions} from "../data/clueless-questions.ts";

@@ -1,6 +1,7 @@
 import {QuestionResponse} from "../model/question.ts";
 
 const USER_STORAGE_KEY = "USER_DATA_QUESTIONS";
+const USER_PROBLEM_STORAGE_KEY = "USER_PROBLEM";
 const PERSONA_ID_KEY = "PERSONA_ID";
 
 export const storeUserResponses = (data: QuestionResponse[]) => {
@@ -19,4 +20,13 @@ export const storePersonaId = (id: number) => {
 
 export const retrievePersonaId = () => {
     return +(localStorage.getItem(PERSONA_ID_KEY) ?? '0');
+}
+
+
+export const storeUserProblem = (problem: string) => {
+    localStorage.setItem(USER_PROBLEM_STORAGE_KEY, problem);
+}
+
+export const retrieveUserProblem = () => {
+    return localStorage.getItem(USER_PROBLEM_STORAGE_KEY);
 }
