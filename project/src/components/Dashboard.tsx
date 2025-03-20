@@ -5,6 +5,7 @@ import contacts from "../data/innovationContactPerson.json";
 import { ChevronDown, CheckCircle } from "lucide-react";
 import {retrieveUserProblem} from "../user/user-store.ts";
 import ReactMarkdown from "react-markdown";
+import {getUserTodos} from "../ai/profile-gen.ts";
 
 export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
@@ -42,11 +43,7 @@ export function Dashboard() {
   };
 
   const initialTodos = [
-    { id: 1, title: "Buy Groceries", details: "Milk, Eggs, Bread, Butter", completed: false },
-    { id: 2, title: "Workout", details: "Run 5km and do strength training", completed: false },
-    { id: 3, title: "Study React", details: "Finish hooks and state management module", completed: false },
-    { id: 4, title: "Clean Room", details: "Organize desk, vacuum floor, and dust shelves", completed: false },
-    { id: 5, title: "Call Mom", details: "Catch up on the week and discuss weekend plans", completed: false },
+
   ];
 
   const [todosList, setTodos] = useState(initialTodos);
@@ -58,12 +55,17 @@ export function Dashboard() {
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
     );
-    const newTodo = await fetchNewTodo();
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
-    setNextId(nextId + 1);
+    // const newTodo = await fetchNewTodo();
+    // setTodos((prevTodos) => [...prevTodos, newTodo]);
+    // setNextId(nextId + 1);
   };
 
     useEffect(() => {
+      const fetchTodos = async () => {
+        const todos = await getUserTodos(problem);
+        const allTodos: {id: number, title: string, details: string, completed: boolean}[] = JSON.parse(todos.details);
+        setTodos(allTodos)
+      }
         const problem = retrieveUserProblem() ?? '';
         setUserProblem(problem);
         const previewLength = 200; // Anzahl der Zeichen, die zuerst angezeigt werden
@@ -71,6 +73,7 @@ export function Dashboard() {
       setIsLongText(problemIsLongText);
       const previewText = problemIsLongText ? problem.slice(0, previewLength) + "..." : problem;
       setPreviewText(previewText ?? '');
+      fetchTodos();
     }, [])
 
     const fetchNewTodo = async () => {
@@ -175,7 +178,7 @@ export function Dashboard() {
       case 'todos':
         return (
             <div className="p-6 max-w-xl mx-auto">
-                <h1 className="text-4xl font-bold mb-4">Ich habe ihr Problem analysiert 🎉</h1>
+                <h1 className="text-4xl font-bold mb-4">Ich habe Ihr Anliegen sorgfältig analysiert 🎉</h1>
                 <div className="markdown-container mb-10">
                 <ReactMarkdown>
                   {isExpanded || !isLongText ? userProblem : previewText}

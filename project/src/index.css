@@ -83,6 +83,17 @@ footer a:hover {
     left: 16px;
 }
 
+.markdown-container ul {
+    list-style-type: disc;
+    position: relative;
+    left: 16px;
+}
+
+.markdown-container ul li {
+    position: relative;
+    padding-left: 8px;
+}
+
 .markdown-container strong {
     margin: 16px 0;
     font-size: 24px;
