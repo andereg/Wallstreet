@@ -120,8 +120,8 @@ const SpiderDiagram = ({values}) => {
               const coords = getCoordinates(index, skillLevels[skill]);
               return `${coords.x},${coords.y}`;
             }).join(' ')}
-            fill="rgba(59, 130, 246, 0.6)"
-            stroke="#3b82f6"
+            fill="rgba(0, 122, 51, 0.2)"
+            stroke="#007a33"
             strokeWidth="2"
           />
           
@@ -134,19 +134,18 @@ const SpiderDiagram = ({values}) => {
                   cx={coords.x}
                   cy={coords.y}
                   r={hoveredSkill === skill ? 6 : 4}
-                  fill={hoveredSkill === skill ? "#2563eb" : "#3b82f6"}
+                  fill={hoveredSkill === skill ? "#007a33" : "#007a33"}
                   stroke="white"
                   strokeWidth="2"
                   onMouseEnter={() => setHoveredSkill(skill)}
                   onMouseLeave={() => setHoveredSkill(null)}
-                  onClick={() => handlePolygonClick(index)}
                 />
                 {hoveredSkill === skill && (
                   <text
                     x={coords.x}
                     y={coords.y - 12}
                     textAnchor="middle"
-                    fill="#2563eb"
+                    fill="#007a33"
                     fontWeight="bold"
                     fontSize="12"
                   >
@@ -171,12 +170,11 @@ const SpiderDiagram = ({values}) => {
                   y={coords.labelY}
                   textAnchor={anchor}
                   dominantBaseline="central"
-                  fill={hoveredSkill === skill ? "#2563eb" : "#4b5563"}
+                  fill={hoveredSkill === skill ? "#007a33" : "#4b5563"}
                   fontWeight={hoveredSkill === skill ? "bold" : "normal"}
                   fontSize="14"
                   onMouseEnter={() => setHoveredSkill(skill)}
                   onMouseLeave={() => setHoveredSkill(null)}
-                  onClick={() => handlePolygonClick(index)}
                 >
                   {skill}
                 </text>
@@ -190,7 +188,7 @@ const SpiderDiagram = ({values}) => {
             y="200"
             textAnchor="middle"
             dominantBaseline="central"
-            fill="#1e40af"
+            fill="#007a33"
             fontWeight="bold"
             fontSize="16"
           >
