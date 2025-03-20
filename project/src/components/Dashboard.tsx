@@ -41,24 +41,60 @@ export function Dashboard() {
   const [todosList, setTodos] = useState(initialTodos);
   const [nextId, setNextId] = useState(6);
 
-  const toggleTodo = (id) => {
-    setTodos((prevTodos) => {
-      const updatedTodos = prevTodos.map((todo) =>
+  const toggleTodo = async (id) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      );
-      return [...updatedTodos, generateNewTodo()];
-    });
+      )
+    );
+    const newTodo = await fetchNewTodo();
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
+    setNextId(nextId + 1);
   };
 
-  const generateNewTodo = () => {
-    const newTodo = {
-      id: nextId,
-      title: `New Task ${nextId}`,
-      details: `This is a dynamically generated task with id ${nextId}.`,
-      completed: false,
-    };
-    setNextId(nextId + 1);
-    return newTodo;
+  const fetchNewTodo = async () => {
+    try {
+      const response = await fetch("https://api.infomaniak.com/1/ai/103319/openai/chat/completions", {
+        method: "POST",
+        mode: 'no-cors',
+        headers: {
+          Authorization: "Bearer _OfbZ9CCsw8JZjavmxZW4WtkugJSw1L7pikn6DLKW22X4H9Zg7HmSwDpUG8_iLzmPD_c2ZimtZhAYrDc",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: [
+            {
+              content: "Make a todo :P",
+              role: "user",
+            },
+          ],
+          model: "mixtral",
+        }),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text(); // Read error message
+        throw new Error(`Error ${response.status}: ${errorText}`);
+      }
+      
+      const data = await response.json();
+      const generatedContent = data?.choices?.[0]?.message?.content || "Generated Task";
+      alert(data)
+      return {
+        id: nextId,
+        title: `Task ${nextId}`,
+        details: generatedContent,
+        completed: false,
+      };
+    } catch (error) {
+      console.error("Error fetching new todo:", error);
+      return {
+        id: nextId,
+        title: `Task ${nextId}`,
+        details: "Failed to generate task. Try again later.",
+        completed: false,
+      };
+    }
   };
 
   const renderContent = () => {
