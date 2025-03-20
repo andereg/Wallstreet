@@ -13,6 +13,10 @@ export const retrieveUserProfile = (): QuestionResponse[] => {
     return savedData ? JSON.parse(savedData) : [];
 }
 
+export const clearUserProfile = () => {
+    localStorage.removeItem(USER_STORAGE_KEY);
+}
+
 export const storePersonaId = (id: number) => {
     localStorage.setItem(PERSONA_ID_KEY, id.toString());
 }
