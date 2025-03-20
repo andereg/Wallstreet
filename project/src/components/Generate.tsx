@@ -1,6 +1,6 @@
 import React, {CSSProperties, useEffect, useState} from 'react';
 import {generateProblemOverview} from "../ai/profile-gen.ts";
-import {retrievePersonaId, retrieveUserProfile, storeUserProblem} from "../user/user-store.ts";
+import {clearUserTodos, retrievePersonaId, retrieveUserProfile, storeUserProblem} from "../user/user-store.ts";
 import {useNavigate} from "react-router-dom";
 import {SyncLoader} from "react-spinners";
 import logo from "./../images/logo.png";
@@ -24,6 +24,7 @@ export function Generate() {
       const personaId = retrievePersonaId();
       const problem = await generateProblemOverview(userResponses, personaId);
       storeUserProblem(problem.details);
+      clearUserTodos();
       navigate("/dashboard");
     };
 

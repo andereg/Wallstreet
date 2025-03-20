@@ -4,6 +4,7 @@ import cluelessPersonaProblems from "../data/cluelessPersonaProblems.json"
 import hesitantPersonaProblems from "../data/hesistantPersonaProblems.json"
 import motivatedPersonaProblems from "../data/motivatedPersonaQuestions.json"
 import contacts from "../data/innovationContactPerson.json"
+import {retrieveUserTodos} from "../user/user-store.ts";
 
 const getUserBasePrompt = (responses: QuestionResponse[], personaId: number, formatting: string) => {
     return [
@@ -63,6 +64,13 @@ export const generateProblemOverview = async (responses: QuestionResponse[], per
 }
 
 export const getUserTodos = async (actionPlan: string) => {
+    const saved = retrieveUserTodos();
+    if (saved) {
+        return {
+            details: saved
+        }
+    }
+
     const response = await fetch("http://localhost:5000/api/generate-prompt", {
         method: "POST",
         headers: {

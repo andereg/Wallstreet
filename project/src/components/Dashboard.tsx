@@ -3,7 +3,7 @@ import { useStore } from '../store';
 import { MessageSquare, CheckSquare, Book, Phone, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
 import contacts from "../data/innovationContactPerson.json";
 import { ChevronDown, CheckCircle } from "lucide-react";
-import {retrieveUserProblem} from "../user/user-store.ts";
+import {retrieveUserProblem, storeUserTodos} from "../user/user-store.ts";
 import ReactMarkdown from "react-markdown";
 import {getUserTodos} from "../ai/profile-gen.ts";
 
@@ -50,11 +50,14 @@ export function Dashboard() {
   const [nextId, setNextId] = useState(6);
 
   const toggleTodo = async (id) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    setTodos((prevTodos) => {
+      const newTodos = prevTodos.map((todo) =>
+          todo.id === id ? {...todo, completed: !todo.completed} : todo
       )
-    );
+
+      storeUserTodos(newTodos);
+      return newTodos;
+    });
     // const newTodo = await fetchNewTodo();
     // setTodos((prevTodos) => [...prevTodos, newTodo]);
     // setNextId(nextId + 1);
@@ -64,7 +67,8 @@ export function Dashboard() {
       const fetchTodos = async () => {
         const todos = await getUserTodos(problem);
         const allTodos: {id: number, title: string, details: string, completed: boolean}[] = JSON.parse(todos.details);
-        setTodos(allTodos)
+        setTodos(allTodos);
+        storeUserTodos(allTodos);
       }
         const problem = retrieveUserProblem() ?? '';
         setUserProblem(problem);
@@ -84,7 +88,7 @@ export function Dashboard() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          messages: [{ content: "Generate a sexy freaky task with details", role: "user" }],
+          messages: [{ content: "Generate a task with details", role: "user" }],
           model: "mixtral",
         }),
       });
@@ -194,6 +198,7 @@ export function Dashboard() {
               </div>
             <h1 className="text-2xl font-bold mb-4">Was Sie jetzt tun können</h1>
             <div className="space-y-4">
+              {todosList.length === 0 ? 'Lade Checkliste...' : ''}
               {todosList.map((todo) => (
                 <div
                   key={todo.id}
