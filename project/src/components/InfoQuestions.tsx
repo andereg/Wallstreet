@@ -9,7 +9,7 @@ export function InfoButton() {
             {/* Button mit Info-Icon */}
             <button
                 onClick={() => setShowInfo(!showInfo)}
-                className="flex items-center space-x-2 px-4 py-2 text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+                className="button-reveal-border flex space-x-2 px-4 py-2 shadow-md focus:outline-none focus:ring-2"
             >
                 <FiInfo size={20} />
                 <span>Info</span>
@@ -23,7 +23,7 @@ export function InfoButton() {
                     </p>
                     <button
                         onClick={() => setShowInfo(false)}
-                        className="mt-3 px-4 py-2 text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
+                        className="mt-3 px-4 py-2 text-white shadow-md  focus:outline-none focus:ring-2"
                     >
                         Verstanden
                     </button>

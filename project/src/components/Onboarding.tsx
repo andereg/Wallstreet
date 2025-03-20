@@ -84,8 +84,12 @@ export function Onboarding() {
                 </div>
                 
                 <div className="space-y-6">
-                    <h2 className="font-bold text-gray-800 text-center">{currentQuestion?.title}</h2>
-                    {currentQuestion?.answers ? (
+                    <div className="bg-gray-40 p-4 rounded-xl shadow-sm">
+                    <h2 className="font-semibold text-gray-800 text-center">
+                        {currentQuestion?.title}
+                    </h2>
+                    </div>                   
+                     {currentQuestion?.answers ? (
                         <div>
                             <div className="grid grid-cols-1 gap-4">
                                 {currentQuestion.answers.map((a, idx) => (
@@ -106,16 +110,17 @@ export function Onboarding() {
                                             placeholder="Etwas anderes..."
                                             value={inputValue}
                                             onChange={(e) => setInputValue(e.target.value)}
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                            className="w-full text-xs p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
                                         />
                                     </div>
                                     {inputValue.length != 0 ?
                                         <button
-                                            className="w-full mt-2 p-4 text-lg font-medium text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
-                                            onClick={() => nextQuestion(currentQuestion, inputValue, questionIdx)} // -1 für benutzerdefinierte Eingabe
-                                        >
-                                            Weiter
-                                        </button>
+                                        className="w-full mt-2 px-4 py-2 text-white font-semibold shadow-md 
+         transition-all duration-300"
+                                        onClick={() => nextQuestion(currentQuestion, inputValue, questionIdx)} // -1 für benutzerdefinierte Eingabe
+                                      >
+                                        Weiter
+                                      </button>
                                         : ''}
                                 </div>
                                 : ''}
@@ -173,7 +178,8 @@ export function Onboarding() {
 
                             <button
                                 onClick={() => nextQuestion(currentQuestion, inputValue, questionIdx)}
-                                className="w-full mt-6 px-6 py-3 text-white -500 rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                className="w-full mt-2 px-4 py-2 text-white font-semibold shadow-md 
+         transition-all duration-300"
                             >
                                 Weiter
                             </button>
@@ -189,13 +195,14 @@ export function Onboarding() {
                                     type="text"
                                     value={inputValue}
                                     onChange={(e) => setInputValue(e.target.value)}
-                                    className="w-full p-3 text-lg border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                                    className="w-full p-3 text-xs border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                     placeholder="Gib deine Antwort ein..."
                                 />
                             </div>
                             
                             <button
-                                className="w-full p-4 text-lg font-medium text-white -500 rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                                className="w-full mt-2 px-4 py-2 text-white font-semibold shadow-md 
+         transition-all duration-300"
                                 onClick={() => nextQuestion(currentQuestion, inputValue, 0)}
                             >
                                 Weiter
