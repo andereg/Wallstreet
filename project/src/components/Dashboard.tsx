@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useStore } from '../store';
 import { MessageSquare, CheckSquare, Book, Phone, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
 import contacts from "../data/innovationContactPerson.json";
 import { ChevronDown, CheckCircle } from "lucide-react";
+import {retrieveUserProblem} from "../user/user-store.ts";
+import ReactMarkdown from "react-markdown";
 
 export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
@@ -10,6 +12,7 @@ export function Dashboard() {
   const [message, setMessage] = useState('');
   const [activeTab, setActiveTab] = useState('todos');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [userProblem, setUserProblem] = useState("");
 
   const handleSendMessage = () => {
     if (message.trim()) {
@@ -52,7 +55,13 @@ export function Dashboard() {
     setNextId(nextId + 1);
   };
 
-  const fetchNewTodo = async () => {
+    useEffect(() => {
+        const problem = retrieveUserProblem();
+        setUserProblem(userProblem);
+    }, [])
+
+
+    const fetchNewTodo = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/generate-prompt", {
         method: "POST",
@@ -154,6 +163,9 @@ export function Dashboard() {
       case 'todos':
         return (
             <div className="p-6 max-w-xl mx-auto">
+                <div className="markdown-container">
+                    <ReactMarkdown>{userProblem}</ReactMarkdown>
+                </div>
             <h1 className="text-2xl font-bold mb-4">Todo List</h1>
             <div className="space-y-4">
               {todosList.map((todo) => (
