@@ -42,7 +42,7 @@ export function LandingPage() {
                         {/* Call to Action */}
                         <div className="flex flex-col sm:flex-row gap-4 mb-8">
                             <button 
-                                onClick={() => navigate("/onboarding")} 
+                                onClick={() => navigate("/")} 
                                 className="px-8 py-4 text-white bg-green-600 rounded-lg shadow-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 transition-all flex items-center justify-center font-medium"
                             >
                                 Jetzt starten
@@ -128,7 +128,7 @@ export function LandingPage() {
                         Beginne jetzt deinen persönlichen Innovationsprozess und entdecke neue Wege für nachhaltiges Wachstum.
                     </p>
                     <button 
-                        onClick={() => navigate("/onboarding")} 
+                        onClick={() => navigate("/")} 
                         className="px-8 py-4 bg-white text-green-600 rounded-lg shadow-lg hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition-all font-medium"
                     >
                         Jetzt starten
