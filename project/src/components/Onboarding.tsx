@@ -7,6 +7,7 @@ import {cluelessQuestions} from "../data/clueless-questions.ts";
 import {motivatedQuestions} from "../data/motivated-questions.ts";
 import {hesitantQuestions} from "../data/hesitant-questions.ts";
 import {useNavigate} from "react-router-dom";
+import { Radius } from 'lucide-react';
 
 export function Onboarding() {
 
@@ -81,14 +82,14 @@ export function Onboarding() {
                     <div id="progressBar" style={{width: progress + "%", height: "22px", backgroundColor: "#008334", transition: "1s"}}></div>
                 </div>
                 <div className="space-y-6">
-                    <h1 className="text-2xl font-bold text-gray-800">{currentQuestion?.title}</h1>
+                    <h2 className="font-bold text-gray-800 text-center">{currentQuestion?.title}</h2>
                     {currentQuestion?.answers ? (
                         <div>
                             <div className="grid grid-cols-1 gap-4">
                                 {currentQuestion.answers.map((a, idx) => (
                                     <button
                                         key={a}
-                                        className="w-full p-4 text-lg font-medium text-white -500 rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                                        className="button-light-outline"
                                         onClick={() => nextQuestion(currentQuestion, a, idx)}
                                     >
                                         {a}
@@ -175,7 +176,7 @@ export function Onboarding() {
     }
 
     return (
-        <div className="max-w-md mx-auto p-6 bg-white rounded-xl">
+        <div style={{minHeight:"800"}} className="max-w-md mx-auto p-6 bg-white rounded-xl">
             {renderStep()}
         </div>
     );
