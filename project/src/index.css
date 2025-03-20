@@ -76,3 +76,15 @@ footer a:hover {
     font-size: 18px;
     font-weight: bold;
 }
+
+.markdown-container ol {
+    list-style: decimal !important;
+    position: relative;
+    left: 16px;
+}
+
+.markdown-container strong {
+    margin: 16px 0;
+    font-size: 24px;
+    display: block;
+}

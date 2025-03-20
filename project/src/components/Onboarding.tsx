@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import {mainQuestions} from '../data/questions.ts';
-import {retrieveUserProfile, storePersonaId, storeUserResponses} from "../user/user-store.ts";
+import {clearUserProfile, retrieveUserProfile, storePersonaId, storeUserResponses} from "../user/user-store.ts";
 import {Question} from "../model/question.ts";
 import {cluelessQuestions} from "../data/clueless-questions.ts";
 import {motivatedQuestions} from "../data/motivated-questions.ts";
@@ -29,12 +29,13 @@ export function Onboarding() {
 
     const nextQuestion = (question: Question, answer: string, answerIdx: number) => {
         // save
-
-
         if (personaQuestionsActive) {
             setProgress(((questionIdx + mainQuestions.length) / (currentQuestionSet.length + hesitantQuestions.length + 2)) * 100);
         } else {
             setProgress(((questionIdx + 1) / (currentQuestionSet.length + hesitantQuestions.length)) * 100);
+        }
+        if (questionIdx === 0 && !personaQuestionsActive) {
+            clearUserProfile();
         }
 
         if (questionIdx == 1) {
@@ -43,8 +44,7 @@ export function Onboarding() {
         }
 
         const savedData = retrieveUserProfile();
-        const updatedData = savedData ? savedData : [];
-        updatedData.push({question: question.title, answer});
+        savedData.push({question: question.title, answer});
         storeUserResponses(savedData);
 
         if (questionIdx === currentQuestionSet.length - 1) {
