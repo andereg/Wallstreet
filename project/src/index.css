@@ -273,18 +273,6 @@ button {
     transition: background 0.3s;
     border-radius: 0px 20px 0px 0px; /* 3 rounded corners, 1 sharp */
   }
-
-  @keyframes fluidBackground {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
-  .pastel-gradient {
-    background: linear-gradient(270deg, #fde4cf, #bde0fe, #a2d2ff, #cdb4db);
-    background-size: 400% 400%;
-    animation: fluidBackground 20s ease infinite;
-  }
   
 
   
