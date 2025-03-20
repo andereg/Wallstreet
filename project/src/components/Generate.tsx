@@ -34,9 +34,14 @@ export function Generate() {
   }, []);
 
   return <div className="flex flex-col items-center justify-center h-screen text-center">
-    <img src={logo} height={20} width={150} alt="Logo" className={"mb-20"} />
-    <LightbulbLoader />
-  </div>
+  <img
+    src={logo}
+    height={20}
+    width={150}
+    alt="Logo"
+    className="mb-20 animate-pulse-light"
+  />
+</div>
 }
 
 export default Generate;

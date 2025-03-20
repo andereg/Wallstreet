@@ -277,10 +277,10 @@ button {
   
   .animated-margin {
     position: relative;
-    border-radius: 8px 8px 0 0; /* Keeps the rounded shape */
+    border-radius: 8px; /* Keeps the rounded shape */
     padding: 12px; /* Keeps inner spacing */
     margin-top: 20px;
-    background: linear-gradient(90deg, #005a24, #00994c, #007a33); /* HSG Green */
+    background: linear-gradient(90deg, #005a242c, #00994d0e, #007a33); /* HSG Green */
     background-size: 200% 200%;
   }
   
@@ -300,4 +300,31 @@ button {
     font-weight: 600; /* font-semibold */
     color: #374151; /* text-gray-700 */
     animation: fadeInOut 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulseLight {
+    0% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 50px rgba(255, 230, 0, 0.3));
+    }
+    50% {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 100px rgb(255, 231, 16));
+    }
+    100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 50px rgba(255, 230, 0, 0.3));
+    }
+  }
+  
+  .animate-pulse-light {
+    animation: pulseLight 3s infinite ease-in-out;
+  }
+
+  .min-h-screen {
+    background: linear-gradient(180deg, rgba(106, 165, 183, 0.322) 0%, rgba(178, 201, 212, 0.3) 100%);
+  }
+
+  .whitegray {
+    background: #f6f6f6;
   }
