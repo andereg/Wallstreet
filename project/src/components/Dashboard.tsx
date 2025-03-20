@@ -166,7 +166,7 @@ export function Dashboard() {
           <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative transition-all duration-300">
             {/* Header */}
             {/* Chat Messages Box */}
-            <div className="h-64 overflow-y-auto p-3 border rounded-md flex flex-col space-y-2">
+            <div className="h-64 overflow-y-auto p-3 border rounded-md flex flex-col space-y-2 animated-margin">
             {messages.map((msg, index) => (
                 <div
                   key={index}
@@ -175,7 +175,7 @@ export function Dashboard() {
                   <div className="relative max-w-[70%]">
                     {/* Chat Bubble */}
                     <div
-  className={`relative p-3 rounded-lg text-white shadow-md break-words bg-gray-700 bg-opacity-80 text-gray-900  ${
+  className={`relative p-3 rounded-lg text-white shadow-md break-words bg-gray-800 bg-opacity-80 text-gray-900  ${
     msg.role === "user"
       ? "text-right rounded-br-none self-end " // User message (right)
       : "text-left rounded-bl-none self-start" // Bot message (left)
@@ -219,7 +219,7 @@ export function Dashboard() {
             <h1 className="text-4xl font-bold mb-4">Hier liegen Ihre Herausforderungen 🎉</h1>
             <div className="markdown-container mb-10">
                 <h2 className="text-2xl font-bold mb-5">Kategorie:</h2>
-                <h2 className="text-2xl mb-5">{userProblem.category}</h2>
+                <h3 className="text-l mb-5 italic">{userProblem.category}</h3>
                 <h2 className="text-2xl font-bold mb-5">Beschreibung:</h2>
                 <p>{userProblem.description}</p>
                 {isExpanded ? <div>
@@ -245,7 +245,7 @@ export function Dashboard() {
                 >
                   <div>
                     <h2 className={`text-lg font-semibold ${todo.completed ? "line-through text-gray-500" : ""}`}>{todo.title}</h2>
-                    <p className={`text-sm ${todo.completed ? "line-through text-gray-400" : ""}`}>{todo.details}</p>
+                    <p className={`pr-1 text-sm ${todo.completed ? "line-through text-gray-400" : ""}`}>{todo.details}</p>
                   </div>
                   <button
                     onClick={() => toggleTodo(todo.id)}
@@ -255,7 +255,9 @@ export function Dashboard() {
                   </button>
                 </div>
               ))}
-              {loadingNewTodo ? 'Lade neues Todo...' : ''}
+              {loadingNewTodo ? <p className="centered-fade">
+  Lade neues Todo...
+</p> : ''}
             </div>
           </div>
         );
@@ -265,7 +267,7 @@ export function Dashboard() {
           <div className="p-4 space-y-4 h-[calc(100vh-8rem)] overflow-y-auto">
               <h1 className="text-2xl font-bold mb-4 mt-4">Werkzeuge für Wandel & Wachstum</h1>
 
-            <div className="border rounded-lg shadow-lg p-4 w-full max-w-3xl bg-white">
+            <div >
               <div className="mb-5">
                 <WikiArticle data={article1} />
               </div>
