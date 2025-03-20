@@ -199,10 +199,11 @@ export function Dashboard() {
             <div className="flex items-center mt-4">
               <input
                 type="text"
-                class="flex-1 p-2 border 
+                class="flex-1 p-2 border py-2.5
                 focus-visible:outline-none focus-visible:ring-4 
                 focus-visible:ring-gray-300 focus-visible:border-gray-400 
-                focus-visible:ring-opacity-50 transition-all duration-20"
+                focus-visible:ring-opacity-50 transition-all duration-20
+                rounded-l-lg text-sm"
                 placeholder="Schreibe deine Frage..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
