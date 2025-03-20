@@ -310,7 +310,7 @@ export function Dashboard() {
                     }`}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <div className="p-4 space-y-2">
+                    <div className="p-4 space-y-2 mt-24">
                         {menuItems.map((item) => {
                             const Icon = item.icon;
                             return (
@@ -334,7 +334,7 @@ export function Dashboard() {
 
             {/* Main Content */}
             <main className="pt-16">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-4xl mx-auto mt-12">
                     <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                         {renderContent()}
                     </div>
