@@ -8,7 +8,7 @@ export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
   const [newTodo, setNewTodo] = useState('');
   const [message, setMessage] = useState('');
-  const [activeTab, setActiveTab] = useState('chat');
+  const [activeTab, setActiveTab] = useState('todos');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSendMessage = () => {
@@ -54,7 +54,7 @@ export function Dashboard() {
 
   const fetchNewTodo = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/generate-todo", {
+      const response = await fetch("http://localhost:5000/api/generate-prompt", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,46 +80,74 @@ export function Dashboard() {
     }
   };
 
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const sendMessage = async () => {
+    if (!input.trim()) return;
+    
+    const newMessage = { role: "user", content: input };
+    setMessages((prev) => [...prev, newMessage]);
+    setInput("");
+    setLoading(true);
+    
+    try {
+      const response = await fetch("http://localhost:5000/api/generate-prompt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [{ content: input, role: "user" }],
+          model: "mixtral",
+        }),
+      });
+
+      if (!response.ok) throw new Error(`Server Error: ${response.status}`);
+      
+      const data = await response.json();
+      const botReply = {
+        role: "bot",
+        content: data?.choices?.[0]?.message?.content || "No response received.",
+      };
+      setMessages((prev) => [...prev, botReply]);
+    } catch (error) {
+      console.error("Chat Error:", error);
+      setMessages((prev) => [...prev, { role: "bot", content: "Error fetching response." }]);
+    }
+    
+    setLoading(false);
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case 'chat':
         return (
-          <div className="h-[calc(100vh-8rem)] flex flex-col">
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              {chatMessages.map((msg) => (
-                <div
-                  key={msg.id}
-                  className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div
-                    className={`max-w-[70%] p-3 rounded-lg ${
-                      msg.sender === 'user'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-100 text-gray-800'
-                    }`}
-                  >
-                    {msg.text}
-                  </div>
+          <div className="max-w-md mx-auto p-4 bg-gray-100 rounded-lg shadow-md">
+            <h2 className="text-xl font-bold mb-4">Chat with AI</h2>
+            <div className="h-64 overflow-y-auto bg-white p-2 border rounded-md">
+              {messages.map((msg, index) => (
+                <div key={index} className={`p-2 my-1 rounded ${msg.role === "user" ? "bg-blue-200 text-right" : "bg-gray-200 text-left"}`}>
+                  {msg.content}
                 </div>
               ))}
             </div>
-            <div className="p-4 border-t bg-white">
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Type your message..."
-                  className="flex-1 p-2 border rounded-lg"
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                />
-                <button
-                  onClick={handleSendMessage}
-                  className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-                >
-                  <Send className="w-5 h-5" />
-                </button>
-              </div>
+            <div className="flex items-center mt-4">
+              <input
+                type="text"
+                className="flex-1 p-2 border rounded-md"
+                placeholder="Type a message..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                disabled={loading}
+              />
+              <button
+                onClick={sendMessage}
+                className="ml-2 bg-blue-600 text-white px-4 py-2 rounded-md disabled:opacity-50"
+                disabled={loading}
+              >
+                Send
+              </button>
             </div>
           </div>
         );
@@ -177,9 +205,9 @@ export function Dashboard() {
   };
 
   const menuItems = [
-    { id: 'chat', icon: MessageSquare, label: 'Chat' },
     { id: 'todos', icon: CheckSquare, label: 'Todo List' },
     { id: 'wiki', icon: Book, label: 'Wiki' },
+    { id: 'chat', icon: MessageSquare, label: 'Chat' },
     { id: 'contact', icon: Phone, label: 'Contact' },
   ];
 

@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles inspired by St. Gallen */
+:root {
+    --primary-color: #007A33; /* St. Gallen Green */
+    --secondary-color: #F1F1F1; /* Light Gray */
+    --text-color: #333333; /* Dark Gray for readability */
+  }
+  
+  body {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+  }
+  
+  .header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+  }
