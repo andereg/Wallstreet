@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 
 export function Onboarding() {
 
-    const [currentQuestion, setCurrentQuestion] = useState({title: '', answers: []});
+    const [currentQuestion, setCurrentQuestion] = useState<Question>({title: '', answers: []});
     const [currentQuestionSet, setCurrentQuestionSet] = useState(mainQuestions);
     const [questionIdx, setQuestionIdx] = useState(0);
     const [personaQuestionsActive, setPersonaQuestionsActive] = useState(false);
@@ -71,16 +71,41 @@ export function Onboarding() {
                 <div className="space-y-6">
                     <h1 className="text-2xl font-bold text-gray-800">{currentQuestion?.title}</h1>
                     {currentQuestion?.answers ? (
-                        <div className="grid grid-cols-1 gap-4">
-                            {currentQuestion.answers.map((a, idx) => (
-                                <button
-                                    key={a}
-                                    className="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-                                    onClick={() => nextQuestion(currentQuestion, a, idx)}
-                                >
-                                    {a}
-                                </button>
-                            ))}
+                        <div>
+                            <div className="grid grid-cols-1 gap-4">
+                                {currentQuestion.answers.map((a, idx) => (
+                                    <button
+                                        key={a}
+                                        className="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                                        onClick={() => nextQuestion(currentQuestion, a, idx)}
+                                    >
+                                        {a}
+                                    </button>
+                                ))}
+                            </div>
+                            {currentQuestion.additionalAnswer ?
+                                <div>
+                                    <div className="mt-4">
+                                        <input
+                                            type="text"
+                                            placeholder="Etwas anderes..."
+                                            value={inputValue}
+                                            onChange={(e) => setInputValue(e.target.value)}
+                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                        />
+                                    </div>
+                                    {inputValue.length != 0 ?
+                                        <button
+                                            className="w-full mt-2 p-4 text-lg font-medium text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                                            onClick={() => nextQuestion(currentQuestion, inputValue, questionIdx)} // -1 für benutzerdefinierte Eingabe
+                                        >
+                                            Weiter
+                                        </button>
+                                        : ''}
+                                </div>
+                                : ''}
+
+
                         </div>
                     ) : (
                         <div className="space-y-6">
