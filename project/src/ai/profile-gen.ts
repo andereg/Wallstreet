@@ -10,6 +10,7 @@ export interface UserProblem {
     category: string;
     description: string;
     impact: string;
+    profile: string;
 }
 
 const getUserBasePrompt = (responses: QuestionResponse[], personaId: number) => {
@@ -65,7 +66,6 @@ const getProblemSection = async (responses: QuestionResponse[], personaId: numbe
 }
 
 export const generateProblemOverview = async (responses: QuestionResponse[], personaId: number) => {
-        // Definiere die Promises für die drei Aufrufe
         const categoryPromise = getProblemSection(
             responses,
             personaId,
@@ -90,52 +90,38 @@ export const generateProblemOverview = async (responses: QuestionResponse[], per
             )
         );
 
-        // Warte auf alle Promises gleichzeitig
-        const [categoryResult, descriptionResult, impactResult] = await Promise.all([
+        const profilePromise = categoryPromise.then((categoryResult) =>
+            getProblemSection(
+                responses,
+                personaId,
+                "Generiere ein Innovationsprofil basierend auf den Antworten des Nutzers. Gib keine eigene Aussagen und anworte NUR mit Werten."
+                + "Gib folgende Werte getrennt mit Komma: Bereitschaft, Ressourcen, Knowhow, Positionierung, Netzwerk, Mindset, Strategie, Agilität."
+                + "Gib nur Werte von 50-100. Nicht unter 50!"
+            )
+        );
+
+        const [categoryResult, descriptionResult, impactResult, profileResult] = await Promise.all([
             categoryPromise,
             descriptionPromise,
             impactPromise,
+            profilePromise
         ]);
 
-        // Extrahiere die Details
         const category = categoryResult.details;
         const description = descriptionResult.details;
         const impact = impactResult.details;
+        const profile = profileResult.details.replace("\n", "").replace("`").replace("undefined", "").replace('\'', '');
+        console.log(profile)
 
         return {
             details: {
                 category,
                 description,
                 impact,
+                profile,
             },
             completed: true,
         };
-
-
-    // const response = await fetch("http://localhost:5000/api/generate-prompt", {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //         messages: [
-    //             ...getUserBasePrompt(responses, personaId,
-    //                 "Formatiere deine Antwort immer in JSON und füge nie eigenen Aussagen hinzu!"
-    //                 + "Führe genau eine Herausforderung  aus, antworte NUR im Format: {category: string, description: string, impact: string}. Beachte, dass die JSON attribute lowercase sind. " +
-    //                 "'description' und 'impact' sollte genau 3 Sätze haben. 'category' sollte beim Namen genannte werden."
-    //             )
-    //         ],
-    //         model: "llama3",
-    //     }),
-    // });
-    //
-    // if (!response.ok) throw new Error(`Server Error: ${response.status}`);
-    //
-    // const data = await response.json();
-    // return {
-    //     details: data?.choices?.[0]?.message?.content || "Es ist ein Fehler aufgetreten",
-    //     completed: false,
-    // };
 }
 
 export const getTodoPrompts = (actionPlan: string) =>
@@ -152,6 +138,7 @@ export const getTodoPrompts = (actionPlan: string) =>
                 + " Do not include any explanation and only speak German."
         }
     ];
+
 
 export const getUserTodos = async (actionPlan: string) => {
     const saved = retrieveUserTodos();

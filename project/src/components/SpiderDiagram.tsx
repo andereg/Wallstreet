@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
-const SpiderDiagram = () => {
+const SpiderDiagram = ({values}) => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
   const [skillLevels, setSkillLevels] = useState<SkillLevels>({
     Bereitschaft: 80,
@@ -24,6 +24,32 @@ const SpiderDiagram = () => {
     "Strategie",
     "Agilität"
   ];
+
+  useEffect(() => {
+    if (values) {
+      const allValues = values.split(",");
+
+      const spiderValues = {
+        Bereitschaft: 0,
+        Ressourcen: 0,
+        Knowhow: 0,
+        Positionierung: 0,
+        Netzwerk: 0,
+        Mindset: 0,
+        Strategie: 0,
+        Agilität: 0
+      };
+
+      Object.keys(spiderValues).forEach((key, index) => {
+        spiderValues[key] = Number.parseInt(allValues[index]);
+      });
+
+      setSkillLevels(spiderValues)
+
+
+      //setSkillLevels();
+    }
+  }, [values]);
 
   // Calculate positions for the skill labels and data points
   interface Coordinates {
@@ -52,23 +78,9 @@ const SpiderDiagram = () => {
     [key: string]: number;
   }
 
-  const handlePolygonClick = (index: number): void => {
-    const skill = skills[index];
-    const currentValue = skillLevels[skill];
-    
-    // Cycle through values: 60 -> 75 -> 90 -> 60
-    let newValue: number;
-    if (currentValue < 70) newValue = 75;
-    else if (currentValue < 85) newValue = 90;
-    else newValue = 60;
-    
-    setSkillLevels({ ...skillLevels, [skill]: newValue });
-  };
-
   return (
     <div className="flex flex-col items-center justify-center w-full h-full bg-gray-50 p-4 rounded-lg">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Kompetenzprofil</h2>
-      
+
       <div className="relative w-full max-w-lg">
         <svg viewBox="0 0 400 400" className="w-full">
           {/* Background circles */}
@@ -108,8 +120,8 @@ const SpiderDiagram = () => {
               const coords = getCoordinates(index, skillLevels[skill]);
               return `${coords.x},${coords.y}`;
             }).join(' ')}
-            fill="rgba(59, 130, 246, 0.6)"
-            stroke="#3b82f6"
+            fill="rgba(0, 122, 51, 0.2)"
+            stroke="#007a33"
             strokeWidth="2"
           />
           
@@ -122,19 +134,18 @@ const SpiderDiagram = () => {
                   cx={coords.x}
                   cy={coords.y}
                   r={hoveredSkill === skill ? 6 : 4}
-                  fill={hoveredSkill === skill ? "#2563eb" : "#3b82f6"}
+                  fill={hoveredSkill === skill ? "#007a33" : "#007a33"}
                   stroke="white"
                   strokeWidth="2"
                   onMouseEnter={() => setHoveredSkill(skill)}
                   onMouseLeave={() => setHoveredSkill(null)}
-                  onClick={() => handlePolygonClick(index)}
                 />
                 {hoveredSkill === skill && (
                   <text
                     x={coords.x}
                     y={coords.y - 12}
                     textAnchor="middle"
-                    fill="#2563eb"
+                    fill="#007a33"
                     fontWeight="bold"
                     fontSize="12"
                   >
@@ -159,12 +170,11 @@ const SpiderDiagram = () => {
                   y={coords.labelY}
                   textAnchor={anchor}
                   dominantBaseline="central"
-                  fill={hoveredSkill === skill ? "#2563eb" : "#4b5563"}
+                  fill={hoveredSkill === skill ? "#007a33" : "#4b5563"}
                   fontWeight={hoveredSkill === skill ? "bold" : "normal"}
                   fontSize="14"
                   onMouseEnter={() => setHoveredSkill(skill)}
                   onMouseLeave={() => setHoveredSkill(null)}
-                  onClick={() => handlePolygonClick(index)}
                 >
                   {skill}
                 </text>
@@ -178,16 +188,14 @@ const SpiderDiagram = () => {
             y="200"
             textAnchor="middle"
             dominantBaseline="central"
-            fill="#1e40af"
+            fill="#007a33"
             fontWeight="bold"
             fontSize="16"
           >
-            Kompetenzen
+            Innovationsprofil
           </text>
         </svg>
       </div>
-      
-      <p className="text-sm text-gray-600 mt-4">Klicken Sie auf einen Datenpunkt, um den Wert zu ändern</p>
     </div>
   );
 };

@@ -19,7 +19,7 @@ export function InfoButton() {
             {showInfo && (
                 <div className="absolute z-10 mt-2 w-72 p-4 bg-white border border-gray-300 rounded-lg shadow-lg">
                     <p className="text-sm text-gray-700">
-                        Bitte beantworten Sie die Fragen sorgfältig. Basierend auf Ihren Antworten werden präzisere und relevantere Fragen gestellt, um Ihr Innovationsprofil zu schärfen. Dadurch kann Ihr spezifisches Problem klar definiert und maßgeschneiderte Lösungsvorschläge erarbeitet werden. Dieses Programm ist Teil der Innovationsförderung des Kantons St. Gallen.
+                        Bitte beantworten Sie die Fragen sorgfältig. Basierend auf Ihren Antworten werden präzisere und relevantere Fragen gestellt, um Ihr Innovationsprofil zu schärfen. Dadurch kann Ihr spezifisches Problem klar definiert und massgeschneiderte Lösungsvorschläge erarbeitet werden. Dieses Programm ist Teil der Innovationsförderung des Kantons St. Gallen.
                     </p>
                     <button
                         onClick={() => setShowInfo(false)}
