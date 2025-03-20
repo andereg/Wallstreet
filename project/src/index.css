@@ -2,75 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* Custom styles inspired by St. Gallen */
 :root {
-    --primary-color: #008334;
-    --secondary-color: #046529;
-    --background-color: #f5f5f5;
-    --text-color: #333333;
-    --white: #ffffff;
-}
+    --primary-color: #007A33; /* St. Gallen Green */
+    --secondary-color: #F1F1F1; /* Light Gray */
+    --text-color: #333333; /* Dark Gray for readability */
+  }
 
-body {
-    font-family: 'Frutiger', Arial, sans-serif;
-    background-color: var(--background-color);
+  body {
+    background-color: var(--secondary-color);
     color: var(--text-color);
-    margin: 0;
-    padding: 0;
-}
+  }
 
-header {
-    background-color: var(--white);
-    padding: 20px;
-    text-align: center;
-    border-bottom: 2px solid var(--primary-color);
-}
-
-header h1 {
-    color: var(--primary-color);
-    font-size: 2.5rem;
-}
-
-nav a {
-    color: var(--primary-color);
-    text-decoration: none;
-    margin: 0 15px;
-}
-
-nav a:hover {
-    color: var(--secondary-color);
-}
-
-button {
+  .header {
     background-color: var(--primary-color);
-    color: var(--white);
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 0 !important;
-}
-
-button:hover {
-    background-color: var(--secondary-color);
-    color: var(--white);
-}
-
-footer {
-    background-color: var(--secondary-color);
-    color: var(--white);
-    text-align: center;
-    padding: 10px 0;
-}
-
-footer a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
+    color: white;
+    padding: 1rem;
+  }
 
 .markdown-container h1 {
     font-size: 24px;

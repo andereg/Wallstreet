@@ -14,7 +14,7 @@ app.use(express.json());
 const API_URL = "https://api.infomaniak.com/1/ai/103319/openai/chat/completions";
 const API_KEY = process.env.INFOMANIAK_API_KEY;
 
-app.post("/api/generate-todo", async (req, res) => {
+app.post("/api/generate-prompt", async (req, res) => {
   try {
     const response = await axios.post(API_URL, req.body, {
       headers: {
