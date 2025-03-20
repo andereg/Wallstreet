@@ -5,12 +5,14 @@ import {retrieveUserProfile, storePersonaId, storeUserResponses} from "../user/u
 import {Question} from "../model/question.ts";
 import {cluelessQuestions} from "../data/clueless-questions.ts";
 import {motivatedQuestions} from "../data/motivated-questions.ts";
+import {hesitantQuestions} from "../data/hesitant-questions.ts";
 
 export function Onboarding() {
 
     const [currentQuestion, setCurrentQuestion] = useState({title: '', answers: []});
     const [currentQuestionSet, setCurrentQuestionSet] = useState(mainQuestions);
     const [questionIdx, setQuestionIdx] = useState(0);
+    const [personaQuestionsActive, setPersonaQuestionsActive] = useState(true);
 
     const [inputValue, setInputValue] = useState('');
 
@@ -37,13 +39,22 @@ export function Onboarding() {
         storeUserResponses(savedData);
 
         if (questionIdx === currentQuestionSet.length - 1) {
+
+            // if (personaQuestionsActive) {
+            //
+            // }
+
             switch (personaId) {
                 case 0:
                     setCurrentQuestionSet(cluelessQuestions);
                     break;
                 case 1:
                     setCurrentQuestionSet(motivatedQuestions);
+                    break;
+                case 2:
+                    setCurrentQuestionSet(hesitantQuestions);
             }
+            setPersonaQuestionsActive(true);
             setQuestionIdx(0);
         } else {
             setQuestionIdx((prevIdx) => prevIdx + 1);
