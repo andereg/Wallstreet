@@ -193,7 +193,7 @@ export function Dashboard() {
       case 'todos':
         return (
             <div className="p-6 max-w-xl mx-auto">
-                <h1 className="text-4xl font-bold mb-4">Ich habe Ihr Anliegen sorgfältig analysiert 🎉</h1>
+                <h1 className="text-4xl font-bold mb-4">Ich habe Ihr Innovationsprofil analysiert 🎉</h1>
                 <div className="markdown-container mb-10">
                 <ReactMarkdown>
                   {isExpanded || !isLongText ? userProblem : previewText}
