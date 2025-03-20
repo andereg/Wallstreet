@@ -96,6 +96,8 @@ export function Dashboard() {
 
     const fetchNewTodo = async () => {
         try {
+
+            console.log(JSON.stringify(todosList));
             const response = await fetch("http://localhost:5000/api/generate-prompt", {
                 method: "POST",
                 headers: {
@@ -103,9 +105,9 @@ export function Dashboard() {
                 },
                 body: JSON.stringify({
                     messages: [
-                        ...getTodoPrompts(userProblem),
-                        {role: "assistant", content: JSON.stringify(todos)},
-                        {role: "user", content: "Generiere ein neues Todo im richtigen JSON format."},
+                        ...getTodoPrompts(JSON.stringify(userProblem)),
+                        {role: "assistant", content: JSON.stringify(todosList)},
+                        {role: "user", content: "Generiere ein neues Todo im richtigen JSON format auf Deutsch."},
                     ],
                     model: "mixtral",
                 }),
@@ -114,7 +116,6 @@ export function Dashboard() {
             if (!response.ok) throw new Error(`Server Error: ${response.status}`);
 
             const data = await response.json();
-            console.log(data?.choices?.[0]?.message?.content)
             return JSON.parse(data?.choices?.[0]?.message?.content ?? '');
         } catch (error) {
             console.error("Error fetching new todo:", error);
