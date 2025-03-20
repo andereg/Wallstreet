@@ -8,6 +8,7 @@ import {motivatedQuestions} from "../data/motivated-questions.ts";
 import {hesitantQuestions} from "../data/hesitant-questions.ts";
 import {useNavigate} from "react-router-dom";
 import { Radius } from 'lucide-react';
+import { InfoButton } from './InfoQuestions.tsx';
 
 export function Onboarding() {
 
@@ -81,6 +82,7 @@ export function Onboarding() {
                 <div id="progressContainer" style={{backgroundColor: "#cccccc", height: "22px", marginBottom: "16px"}}>
                     <div id="progressBar" style={{width: progress + "%", height: "22px", backgroundColor: "#008334", transition: "1s"}}></div>
                 </div>
+                
                 <div className="space-y-6">
                     <h2 className="font-bold text-gray-800 text-center">{currentQuestion?.title}</h2>
                     {currentQuestion?.answers ? (
@@ -163,6 +165,7 @@ export function Onboarding() {
                                     placeholder="Gib deine Antwort ein..."
                                 />
                             </div>
+                            
                             <button
                                 className="w-full p-4 text-lg font-medium text-white -500 rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
                                 onClick={() => nextQuestion(currentQuestion, inputValue, 0)}
@@ -171,6 +174,9 @@ export function Onboarding() {
                             </button>
                         </div>
                     )}
+                </div>
+                <div className="mt-4">
+                <InfoButton />
                 </div>
         </div>)
     }
