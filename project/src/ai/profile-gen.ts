@@ -13,7 +13,7 @@ const getPrompt = (responses: QuestionResponse[], personaId: number) =>
 
 
 export const generateProblemOverview = async  (responses: QuestionResponse[], personaId: number) => {
-    const response = await fetch("http://localhost:5000/api/generate-todo", {
+    const response = await fetch("http://localhost:5000/api/generate-prompt", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
