@@ -54,46 +54,29 @@ export function Dashboard() {
 
   const fetchNewTodo = async () => {
     try {
-      const response = await fetch("https://api.infomaniak.com/1/ai/103319/openai/chat/completions", {
+      const response = await fetch("http://localhost:5000/api/generate-todo", {
         method: "POST",
-        mode: 'no-cors',
         headers: {
-          Authorization: "Bearer _OfbZ9CCsw8JZjavmxZW4WtkugJSw1L7pikn6DLKW22X4H9Zg7HmSwDpUG8_iLzmPD_c2ZimtZhAYrDc",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          messages: [
-            {
-              content: "Make a todo :P",
-              role: "user",
-            },
-          ],
+          messages: [{ content: "Generate a sexy freaky task with details", role: "user" }],
           model: "mixtral",
         }),
       });
-
-      if (!response.ok) {
-        const errorText = await response.text(); // Read error message
-        throw new Error(`Error ${response.status}: ${errorText}`);
-      }
-      
+  
+      if (!response.ok) throw new Error(`Server Error: ${response.status}`);
+  
       const data = await response.json();
-      const generatedContent = data?.choices?.[0]?.message?.content || "Generated Task";
-      alert(data)
       return {
         id: nextId,
         title: `Task ${nextId}`,
-        details: generatedContent,
+        details: data?.choices?.[0]?.message?.content || "Generated Task",
         completed: false,
       };
     } catch (error) {
       console.error("Error fetching new todo:", error);
-      return {
-        id: nextId,
-        title: `Task ${nextId}`,
-        details: "Failed to generate task. Try again later.",
-        completed: false,
-      };
+      return { id: nextId, title: `Task ${nextId}`, details: "Failed to fetch", completed: false };
     }
   };
 
