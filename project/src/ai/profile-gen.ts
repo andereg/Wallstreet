@@ -11,7 +11,7 @@ const getUserBasePrompt = (responses: QuestionResponse[], personaId: number, for
         {
             role: "system",
             content: "Du bist jetzt Innovationscoach vom Kanton St. Gallen und weisst, wie man Innovation für KMUs voranbringen kann. Du sprichst Deutsch. Ausserdem Unterstützt du verschiedene Arten von Innovatoren, solche die neu, motiviert oder noch unschlüssig sind."
-                + "Du kennst folgende Problemkategorien für deine Zielgruppe: " + getPersonaProblems(personaId)
+                + "Du kennst folgende Problemkategorien für deine Zielgruppe: " + JSON.stringify(getPersonaProblems(personaId))
                 + "\nFüge niemals irgendwelche eigenen Aussagen hinzu, antworte nur faktenbasiert."
                 + "Sprich direkt den Benutzer an mit Sie und gib respektvolle Antoworten"
                 + formatting
@@ -45,7 +45,7 @@ export const generateProblemOverview = async (responses: QuestionResponse[], per
         },
         body: JSON.stringify({
             messages: [
-                getUserBasePrompt(responses, personaId,
+                ...getUserBasePrompt(responses, personaId,
                     "Formatiere deine Antwort in Markdown mit jeweils ## und #."
                     + "Strukturiere deine Antwort immer so: Kategorie (Nenne Kategorie mit K...), Herausforderung (1 Absatz), Lösungsansätze (2 Absätze), Fazit (1 Absatz)"
                 )
@@ -63,6 +63,21 @@ export const generateProblemOverview = async (responses: QuestionResponse[], per
     };
 }
 
+export const getTodoPrompts = (actionPlan: string) =>
+    [
+        {
+            role: "system",
+            content: "Only respond in JSON and DO NOT include any additional explanations. Use the format: [{id: number, title: string, details: string, completed: boolean}]"
+        },
+        {role: "assistant", content: actionPlan},
+        {
+            role: "user",
+            content: "Generate 5 todos for my provided action plan in the JSON format. The first todo should be contact the appropriate institution from this list:"
+                + JSON.stringify(contacts)
+                + " Do not include any explanation and only speak German."
+        }
+    ];
+
 export const getUserTodos = async (actionPlan: string) => {
     const saved = retrieveUserTodos();
     if (saved) {
@@ -77,13 +92,7 @@ export const getUserTodos = async (actionPlan: string) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            messages: [
-                {role: "system", content: "Only respond in JSON and DO NOT include any additional explanations. Use the format: [{id: number, title: string, details: string, completed: boolean}]"},
-                {role: "assistant", content: actionPlan},
-                {role: "user", content: "Generate 5 todos for my provided action plan in the JSON format. The first todo should be contact the appropriate institution from this list:"
-                        + JSON.stringify(contacts)
-                        + " Do not include any explanation and only speak German."}
-            ],
+            messages: getTodoPrompts(actionPlan),
             model: "mixtral",
         }),
     });

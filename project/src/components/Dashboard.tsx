@@ -5,11 +5,11 @@ import contacts from "../data/innovationContactPerson.json";
 import { ChevronDown, CheckCircle } from "lucide-react";
 import {retrieveUserProblem, storeUserTodos} from "../user/user-store.ts";
 import ReactMarkdown from "react-markdown";
-import {getUserTodos} from "../ai/profile-gen.ts";
+import {getTodoPrompts, getUserTodos} from "../ai/profile-gen.ts";
 
 export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
-  const [newTodo, setNewTodo] = useState('');
+  const [loadingNewTodo, setLoadingNewTodo] = useState(false);
   const [message, setMessage] = useState('');
   const [activeTab, setActiveTab] = useState('todos');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,9 +58,20 @@ export function Dashboard() {
       storeUserTodos(newTodos);
       return newTodos;
     });
-    // const newTodo = await fetchNewTodo();
-    // setTodos((prevTodos) => [...prevTodos, newTodo]);
-    // setNextId(nextId + 1);
+    setLoadingNewTodo(true);
+    let newTodo = await fetchNewTodo();
+    if (Array.isArray(newTodo)) {
+      newTodo = newTodo[0];
+    }
+
+    setTodos((prevTodos) => {
+      const newList = [...prevTodos, newTodo];
+      newList.map((it, idx) => it.id = idx);
+      storeUserTodos(newList);
+      return newList;
+    });
+    setLoadingNewTodo(false);
+    setNextId(nextId + 1);
   };
 
     useEffect(() => {
@@ -88,7 +99,11 @@ export function Dashboard() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          messages: [{ content: "Generate a task with details", role: "user" }],
+          messages: [
+              ...getTodoPrompts(userProblem),
+            {role: "assistant", content: JSON.stringify(todos)},
+            {role: "user", content: "Generiere ein neues Todo im richtigen JSON format."},
+          ],
           model: "mixtral",
         }),
       });
@@ -96,12 +111,8 @@ export function Dashboard() {
       if (!response.ok) throw new Error(`Server Error: ${response.status}`);
 
       const data = await response.json();
-      return {
-        id: nextId,
-        title: `Task ${nextId}`,
-        details: data?.choices?.[0]?.message?.content || "Generated Task",
-        completed: false,
-      };
+      console.log(data?.choices?.[0]?.message?.content)
+      return JSON.parse(data?.choices?.[0]?.message?.content ?? '');
     } catch (error) {
       console.error("Error fetching new todo:", error);
       return { id: nextId, title: `Task ${nextId}`, details: "Failed to fetch", completed: false };
@@ -216,6 +227,7 @@ export function Dashboard() {
                   </button>
                 </div>
               ))}
+              {loadingNewTodo ? 'Lade neues Todo...' : ''}
             </div>
           </div>
         );
