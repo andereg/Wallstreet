@@ -47,9 +47,6 @@ export const cluelessQuestions: Question[] = [
         ]
     },
     {
-        title: "Möchten Sie mir noch was mitteilen?",
-        answers: [
-            "Benutzereingabe erforderlich"
-        ]
+        title: "Möchten Sie mir noch was mitteilen?"
     }
 ];

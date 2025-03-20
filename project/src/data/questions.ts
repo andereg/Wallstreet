@@ -11,8 +11,8 @@ export const mainQuestions: Question[] = [
       "IT/Digitalisierung",
       "Personalwesen",
       "Forschung & Entwicklung",
-      "Andere Position: _______________"
-    ]
+    ],
+    additionalAnswer: true
   },
   {
     title: "Wie würden Sie Ihre aktuelle Beziehung zu Innovation beschreiben?",
@@ -32,14 +32,12 @@ export const mainQuestions: Question[] = [
       "Gastgewerbe",
       "IT/Technologie",
       "Gesundheitswesen",
-      "Andere Branche: _______________"
-    ]
+    ],
+    additionalAnswer: true
   },
   {
     title: "Welches Budget könnten Sie realistischerweise für Innovationsprojekte bereitstellen?",
-    answers: [
-      "Benutzereingabe erforderlich (Schieberegler)"
-    ]
+    includeSlider: true
   },
   {
     title: "Was denken Sie über Innovation für Ihr Unternehmen?",
