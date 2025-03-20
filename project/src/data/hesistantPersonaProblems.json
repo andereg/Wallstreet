@@ -1,0 +1,55 @@
+{
+    "persona": "Hesitant",
+    "problem_categories": [
+        {
+            "id": "H1",
+            "title": "Investitionsrisiko-Aversion",
+            "description": "Starke Bedenken bezüglich der finanziellen Risiken und unklaren Amortisationszeiten bei Innovationsinvestitionen; Angst vor Fehlinvestitionen."
+        },
+        {
+            "id": "H2",
+            "title": "Kontrollverlust-Befürchtung",
+            "description": "Sorge, durch neue Technologien oder externe Partnerschaften die Kontrolle über Kernprozesse zu verlieren oder abhängig zu werden."
+        },
+        {
+            "id": "H3",
+            "title": "Veränderungswiderstand",
+            "description": "Übermäßige Präferenz für bewährte Lösungen und etablierte Prozesse; Unbehagen bei größeren Veränderungen im Unternehmen."
+        },
+        {
+            "id": "H4",
+            "title": "Beweislastproblem",
+            "description": "Bedarf an konkreten Erfolgsbeispielen und Wirtschaftlichkeitsnachweisen, bevor Innovationsschritte unternommen werden."
+        },
+        {
+            "id": "H5",
+            "title": "Kompetenzunsicherheit",
+            "description": "Bedenken, dass im Unternehmen die notwendigen Fachkenntnisse für neue Technologien fehlen; Unsicherheit bei der Mitarbeiterentwicklung."
+        },
+        {
+            "id": "H6",
+            "title": "Übergangsmanagement-Ängste",
+            "description": "Sorge, dass Innovationen bestehende Abläufe stören und zu Produktionsausfällen oder Qualitätseinbußen führen könnten."
+        },
+        {
+            "id": "H7",
+            "title": "Wettbewerbsdruck-Dilemma",
+            "description": "Erkennt den Innovationsbedarf aufgrund von Wettbewerbsdruck, zögert aber aufgrund der damit verbundenen Risiken."
+        },
+        {
+            "id": "H8",
+            "title": "Ressourcen-Priorisierungskonflikt",
+            "description": "Schwierigkeiten, Ressourcen für Innovation freizusetzen, da operatives Geschäft und Kundenanforderungen Vorrang haben."
+        },
+        {
+            "id": "H9",
+            "title": "Finanzierungsunsicherheit",
+            "description": "Unsicherheit über Finanzierungsmöglichkeiten für Innovationsprojekte; unzureichende Kenntnis von Förderangeboten."
+        },
+        {
+            "id": "H10",
+            "title": "Schrittweite-Problem",
+            "description": "Unsicherheit über die richtige Größe und Geschwindigkeit von Innovationsschritten; Tendenz zu minimalen, oft unzureichenden Änderungen."
+        }
+    ]
+}
