@@ -7,7 +7,7 @@ import Generate from "./components/Generate.tsx";
 function App() {
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12">
+    <div className="min-h-screen bg-gray-100">
       <BrowserRouter>
         <Routes>
           <Route path="/">
