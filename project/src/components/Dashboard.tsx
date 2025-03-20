@@ -122,7 +122,10 @@ export function Dashboard() {
     }
   };
 
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([{
+    content: "Hallo! 🚀 Ich bin der AI-Chatbot von Säntis Catalyst und stehe bereit, um deine Fragen zu Innovation zu beantworten. Womit kann ich dir helfen? 😊",
+    role: "assistant"
+  }]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
