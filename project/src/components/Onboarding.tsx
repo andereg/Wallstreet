@@ -1,29 +1,54 @@
 import React, {useEffect, useState} from 'react';
 
-import questions from '../data/questions.ts';
-import {retrieveUserProfile, storeUserResponses} from "../user/user-store.ts";
+import questions, {mainQuestions} from '../data/questions.ts';
+import {retrieveUserProfile, storePersonaId, storeUserResponses} from "../user/user-store.ts";
 import {Question} from "../model/question.ts";
+import {cluelessQuestions} from "../data/clueless-questions.ts";
+import {motivatedQuestions} from "../data/motivated-questions.ts";
 
 export function Onboarding() {
 
     const [currentQuestion, setCurrentQuestion] = useState({title: '', answers: []});
+    const [currentQuestionSet, setCurrentQuestionSet] = useState(mainQuestions);
     const [questionIdx, setQuestionIdx] = useState(0);
 
     const [inputValue, setInputValue] = useState('');
 
+    const [personaId, setPersonaId] = useState(0);
+
     useEffect(() => {
-        const question = questions[questionIdx];
+        const question = currentQuestionSet[questionIdx];
         setCurrentQuestion(question as any);
     }, [questionIdx]);
 
 
-    const nextQuestion = (question: Question, answer: string) => {
+    const nextQuestion = (question: Question, answer: string, answerIdx: number) => {
         // save
+
+        console.log(questionIdx);
+        if (questionIdx == 1) {
+            setPersonaId(answerIdx);
+            storePersonaId(answerIdx);
+        }
+
         const savedData = retrieveUserProfile();
         const updatedData = savedData ? savedData : [];
         updatedData.push({question: question.title, answer});
         storeUserResponses(savedData);
-        setQuestionIdx((prevIdx) => prevIdx + 1);
+
+        if (questionIdx === currentQuestionSet.length - 1) {
+            switch (personaId) {
+                case 0:
+                    setCurrentQuestionSet(cluelessQuestions);
+                    break;
+                case 1:
+                    setCurrentQuestionSet(motivatedQuestions);
+            }
+            setQuestionIdx(0);
+        } else {
+            setQuestionIdx((prevIdx) => prevIdx + 1);
+        }
+
         setInputValue("");
     }
 
@@ -35,11 +60,11 @@ export function Onboarding() {
                     <h1 className="text-2xl font-bold text-gray-800">{currentQuestion?.title}</h1>
                     {currentQuestion?.answers ? (
                         <div className="grid grid-cols-1 gap-4">
-                            {currentQuestion.answers.map((a) => (
+                            {currentQuestion.answers.map((a, idx) => (
                                 <button
                                     key={a}
                                     className="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-                                    onClick={() => nextQuestion(currentQuestion, a)}
+                                    onClick={() => nextQuestion(currentQuestion, a, idx)}
                                 >
                                     {a}
                                 </button>
@@ -62,7 +87,7 @@ export function Onboarding() {
                             </div>
                             <button
                                 className="w-full p-4 text-lg font-medium text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-                                onClick={() => nextQuestion(currentQuestion, inputValue)}
+                                onClick={() => nextQuestion(currentQuestion, inputValue, 0)}
                             >
                                 Weiter
                             </button>
