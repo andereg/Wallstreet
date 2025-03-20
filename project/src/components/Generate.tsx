@@ -25,7 +25,7 @@ export function Generate() {
       const userResponses = retrieveUserProfile();
       const personaId = retrievePersonaId();
       const problem = await generateProblemOverview(userResponses, personaId);
-      storeUserProblem(problem.details);
+      storeUserProblem(JSON.stringify(problem.details));
       clearUserTodos();
       navigate("/dashboard");
     };
