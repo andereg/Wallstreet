@@ -24,7 +24,7 @@ export function LandingPage() {
                         {/* Logo & Tagline */}
                         <div className="flex items-center mb-6">
                             <img src="/logo.png" alt="Logo" className="w-16 h-16 mr-4" />
-                            <span className="text-sm font-semibold text-green-600 uppercase tracking-wider">Innovation Guide</span>
+                            <span className="text-sm font-semibold text-green-600 uppercase tracking-wider">Säntis Catalyst</span>
                         </div>
                         
                         {/* Main Heading */}

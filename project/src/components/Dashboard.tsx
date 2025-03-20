@@ -123,7 +123,10 @@ export function Dashboard() {
     }
   };
 
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([{
+    content: "Hallo! 🚀 Ich bin der AI-Chatbot von Säntis Catalyst und stehe bereit, um deine Fragen zu Innovation zu beantworten. Womit kann ich dir helfen? 😊",
+    role: "assistant"
+  }]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -218,59 +221,60 @@ export function Dashboard() {
         );
       case 'todos':
         return (
-          <div className="p-6 max-w-xl mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Hier liegen Ihre Herausforderungen 🎉</h1>
-            <div className="markdown-container mb-10">
-              <SpiderDiagram values={userProblem.profile} />
+            <div className="p-6 max-w-xl mx-auto">
+              <h1 className="text-2xl font-bold mb-4">Hier liegen Ihre Herausforderungen 🎉</h1>
+              <div className="markdown-container mb-10">
+                <SpiderDiagram values={userProblem.profile}/>
                 <h2 className="text-xl font-bold mb-5">Kategorie:</h2>
                 <h3 className="text-l mb-5 italic">{userProblem.category}</h3>
                 <h2 className="text-xl font-bold mb-5">Beschreibung:</h2>
                 <p>{userProblem.description}</p>
                 {isExpanded ? <div>
-                    <h2 className="text-2xl font-bold mt-5 mb-5">Auswirkungen:</h2>
-                    <p className="mb-5">{userProblem.impact}</p>
+                  <h2 className="text-2xl font-bold mt-5 mb-5">Auswirkungen:</h2>
+                  <p className="mb-5">{userProblem.impact}</p>
                 </div> : ''}
 
                 <button
-                  onClick={toggleExpand}
-                  className="button-light-outline text-white px-4 py-2 rounded mt-2"
+                    onClick={toggleExpand}
+                    className="button-light-outline text-white px-4 py-2 rounded mt-2"
                 >
                   {isExpanded ? "Weniger anzeigen" : "Mehr anzeigen"}
                 </button>
 
+              </div>
+              <div className="border-t-2 border-gray-200 mb-8"></div>
+              <h1 className="text-xl font-bold mb-4">Action Plan</h1>
+              <div className="space-y-4">
+                {todosList.length === 0 ? <p className="centered-fade">
+                  Lade Checkliste...
+                </p> : ''}
+                {todosList.map((todo) => (
+                    <div
+                        key={todo.id}
+                        className={`p-4 flex justify-between items-center shadow-md bg-white rounded-lg ${todo.completed ? "opacity-50" : ""}`}
+                    >
+                      <div>
+                        <h2 className={`text-lg font-semibold ${todo.completed ? "line-through text-gray-500" : ""}`}>{todo.title}</h2>
+                        <p className={`pr-1 text-sm ${todo.completed ? "line-through text-gray-400" : ""}`}>{todo.details}</p>
+                      </div>
+                      <button
+                          onClick={() => toggleTodo(todo.id)}
+                          className={`p-2 rounded transition ${todo.completed ? "bg-green-50 text-gray-600" : ""}`}
+                      >
+                        <CheckCircle className="w-5 h-5"/>
+                      </button>
+                    </div>
+                ))}
+                {loadingNewTodo ? <p className="centered-fade">
+                  Lade neues Todo...
+                </p> : ''}
+              </div>
             </div>
-            <h1 className="text-xl font-bold mb-4">Action Plan</h1>
-            <div className="space-y-4">
-              {todosList.length === 0 ? <p className="centered-fade">
-  Lade Checkliste...
-</p> : ''}
-              {todosList.map((todo) => (
-                <div
-                  key={todo.id}
-                  className={`p-4 flex justify-between items-center shadow-md bg-white rounded-lg ${todo.completed ? "opacity-50" : ""}`}
-                >
-                  <div>
-                    <h2 className={`text-lg font-semibold ${todo.completed ? "line-through text-gray-500" : ""}`}>{todo.title}</h2>
-                    <p className={`pr-1 text-sm ${todo.completed ? "line-through text-gray-400" : ""}`}>{todo.details}</p>
-                  </div>
-                  <button
-                    onClick={() => toggleTodo(todo.id)}
-                    className={`p-2 rounded transition ${todo.completed ? "bg-green-50 text-gray-600" : ""}`}
-                  >
-                    <CheckCircle className="w-5 h-5" />
-                  </button>
-                </div>
-              ))}
-              {loadingNewTodo ? <p className="centered-fade">
-  Lade neues Todo...
-</p> : ''}
-            </div>
-          </div>
         );
 
       case 'wiki':
         return (
-          <div className="p-4 space-y-4 h-[calc(100vh-8rem)] overflow-y-auto">
+            <div className="p-4 space-y-4 h-[calc(100vh-8rem)] overflow-y-auto">
               <h1 className="text-2xl font-bold mb-4 mt-4">Werkzeuge für Wandel & Wachstum</h1>
 
             <div >
@@ -331,7 +335,7 @@ export function Dashboard() {
           <div className="flex items-center justify-between h-16">
           <h1 className="text-xl font-semibold text-gray-800">
             <img src={logo} alt="Logo" className="h-14 w-auto" />
-          </h1>            
+          </h1>
           <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="button-reveal-border p-2 focus:outline-none text-gray-1000 "
