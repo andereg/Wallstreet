@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const PremiumLightbulbLoader = () => {
   const [glowIntensity, setGlowIntensity] = useState(0);
   const [isIdea, setIsIdea] = useState(false);
-  const [particles, setParticles] = useState([]);
+  const [particles, setParticles] = useState<{ id: number; x: number; y: number; size: number; speed: number }[]>([]);
   
   useEffect(() => {
     // Glow animation
@@ -217,7 +217,7 @@ const PremiumLightbulbLoader = () => {
       </div>
 
       {/* Custom CSS for particle animation */}
-      <style jsx>{`
+      <style>{`
         @keyframes moveOut {
           0% {
             transform: scale(0);
