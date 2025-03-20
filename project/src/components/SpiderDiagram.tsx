@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
-const SpiderDiagram = () => {
+const SpiderDiagram = ({values}) => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
   const [skillLevels, setSkillLevels] = useState<SkillLevels>({
     Bereitschaft: 80,
@@ -24,6 +24,32 @@ const SpiderDiagram = () => {
     "Strategie",
     "Agilität"
   ];
+
+  useEffect(() => {
+    if (values) {
+      const allValues = values.split(",");
+
+      const spiderValues = {
+        Bereitschaft: 0,
+        Ressourcen: 0,
+        Knowhow: 0,
+        Positionierung: 0,
+        Netzwerk: 0,
+        Mindset: 0,
+        Strategie: 0,
+        Agilität: 0
+      };
+
+      Object.keys(spiderValues).forEach((key, index) => {
+        spiderValues[key] = Number.parseInt(allValues[index]);
+      });
+
+      setSkillLevels(spiderValues)
+
+
+      //setSkillLevels();
+    }
+  }, [values]);
 
   // Calculate positions for the skill labels and data points
   interface Coordinates {
@@ -52,23 +78,9 @@ const SpiderDiagram = () => {
     [key: string]: number;
   }
 
-  const handlePolygonClick = (index: number): void => {
-    const skill = skills[index];
-    const currentValue = skillLevels[skill];
-    
-    // Cycle through values: 60 -> 75 -> 90 -> 60
-    let newValue: number;
-    if (currentValue < 70) newValue = 75;
-    else if (currentValue < 85) newValue = 90;
-    else newValue = 60;
-    
-    setSkillLevels({ ...skillLevels, [skill]: newValue });
-  };
-
   return (
     <div className="flex flex-col items-center justify-center w-full h-full bg-gray-50 p-4 rounded-lg">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Kompetenzprofil</h2>
-      
+
       <div className="relative w-full max-w-lg">
         <svg viewBox="0 0 400 400" className="w-full">
           {/* Background circles */}
@@ -182,12 +194,10 @@ const SpiderDiagram = () => {
             fontWeight="bold"
             fontSize="16"
           >
-            Kompetenzen
+            Innovationsprofil
           </text>
         </svg>
       </div>
-      
-      <p className="text-sm text-gray-600 mt-4">Klicken Sie auf einen Datenpunkt, um den Wert zu ändern</p>
     </div>
   );
 };
