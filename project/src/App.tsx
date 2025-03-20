@@ -12,10 +12,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route index element={<Onboarding />} />
+            <Route index element={<LandingPage />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="generate" element={<Generate />} />
-            <Route path="landing" element={<LandingPage />} />
+            <Route path="onboarding" element={<Onboarding />} />
           </Route>
         </Routes>
       </BrowserRouter>
