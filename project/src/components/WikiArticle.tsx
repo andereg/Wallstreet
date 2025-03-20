@@ -1,4 +1,5 @@
 import {useState} from "react";
+import { ChevronDown } from "lucide-react"; // Import Lucide Icons
 
 export const WikiArticle = ({data}) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -6,11 +7,15 @@ export const WikiArticle = ({data}) => {
     return (
         <div>
             <button
-                className="w-full text-left text-xl font-bold flex justify-between items-center"
-                onClick={() => setIsOpen(!isOpen)}
+            className="button-light-outline w-full text-left text-xl font-bold flex justify-between items-center"
+            onClick={() => setIsOpen(!isOpen)}
             >
-                {data.titel}
-                <span>{isOpen ? "▲" : "▼"}</span>
+            {data.titel}
+            <ChevronDown 
+                className={`w-6 h-6 transition-transform duration-300 ${
+                isOpen ? "rotate-180" : "rotate-0"
+                }`}
+            />
             </button>
             {isOpen && (
                 <div className="mt-4 space-y-4 pl-2 pr-2">

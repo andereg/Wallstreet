@@ -273,6 +273,31 @@ button {
     transition: background 0.3s;
     border-radius: 0px 20px 0px 0px; /* 3 rounded corners, 1 sharp */
   }
-  
 
   
+  .animated-margin {
+    position: relative;
+    border-radius: 8px 8px 0 0; /* Keeps the rounded shape */
+    padding: 12px; /* Keeps inner spacing */
+    margin-top: 20px;
+    background: linear-gradient(90deg, #005a24, #00994c, #007a33); /* HSG Green */
+    background-size: 200% 200%;
+  }
+  
+  @keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+  .centered-fade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    font-size: 0.9rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: #374151; /* text-gray-700 */
+    animation: fadeInOut 1.5s ease-in-out infinite;
+  }
