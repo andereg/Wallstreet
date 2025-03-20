@@ -2,7 +2,7 @@ import {QuestionResponse} from "../model/question.ts";
 
 import cluelessPersonaProblems from "../data/cluelessPersonaProblems.json"
 import hesitantPersonaProblems from "../data/hesistantPersonaProblems.json"
-import motivatedPersonaProblems from "../data/motivatedPersonaQuestions.json"
+import motivatedPersonaProblems from "../data/motivatedPrsonaProblems.json"
 import contacts from "../data/innovationContactPerson.json"
 import {retrieveUserTodos} from "../user/user-store.ts";
 
