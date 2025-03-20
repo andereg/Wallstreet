@@ -3,12 +3,13 @@ import { useStore } from '../store';
 import { MessageSquare, CheckSquare, Book, Phone, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
 import contacts from "../data/innovationContactPerson.json";
 import { ChevronDown, CheckCircle } from "lucide-react";
-import {retrieveUserProblem} from "../user/user-store.ts";
+import {retrieveUserProblem, storeUserTodos} from "../user/user-store.ts";
 import ReactMarkdown from "react-markdown";
+import {getTodoPrompts, getUserTodos} from "../ai/profile-gen.ts";
 
 export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
-  const [newTodo, setNewTodo] = useState('');
+  const [loadingNewTodo, setLoadingNewTodo] = useState(false);
   const [message, setMessage] = useState('');
   const [activeTab, setActiveTab] = useState('todos');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,28 +43,44 @@ export function Dashboard() {
   };
 
   const initialTodos = [
-    { id: 1, title: "Buy Groceries", details: "Milk, Eggs, Bread, Butter", completed: false },
-    { id: 2, title: "Workout", details: "Run 5km and do strength training", completed: false },
-    { id: 3, title: "Study React", details: "Finish hooks and state management module", completed: false },
-    { id: 4, title: "Clean Room", details: "Organize desk, vacuum floor, and dust shelves", completed: false },
-    { id: 5, title: "Call Mom", details: "Catch up on the week and discuss weekend plans", completed: false },
+
   ];
 
   const [todosList, setTodos] = useState(initialTodos);
   const [nextId, setNextId] = useState(6);
 
   const toggleTodo = async (id) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    setTodos((prevTodos) => {
+      const newTodos = prevTodos.map((todo) =>
+          todo.id === id ? {...todo, completed: !todo.completed} : todo
       )
-    );
-    const newTodo = await fetchNewTodo();
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
+
+      storeUserTodos(newTodos);
+      return newTodos;
+    });
+    setLoadingNewTodo(true);
+    let newTodo = await fetchNewTodo();
+    if (Array.isArray(newTodo)) {
+      newTodo = newTodo[0];
+    }
+
+    setTodos((prevTodos) => {
+      const newList = [...prevTodos, newTodo];
+      newList.map((it, idx) => it.id = idx);
+      storeUserTodos(newList);
+      return newList;
+    });
+    setLoadingNewTodo(false);
     setNextId(nextId + 1);
   };
 
     useEffect(() => {
+      const fetchTodos = async () => {
+        const todos = await getUserTodos(problem);
+        const allTodos: {id: number, title: string, details: string, completed: boolean}[] = JSON.parse(todos.details);
+        setTodos(allTodos);
+        storeUserTodos(allTodos);
+      }
         const problem = retrieveUserProblem() ?? '';
         setUserProblem(problem);
         const previewLength = 200; // Anzahl der Zeichen, die zuerst angezeigt werden
@@ -71,6 +88,7 @@ export function Dashboard() {
       setIsLongText(problemIsLongText);
       const previewText = problemIsLongText ? problem.slice(0, previewLength) + "..." : problem;
       setPreviewText(previewText ?? '');
+      fetchTodos();
     }, [])
 
     const fetchNewTodo = async () => {
@@ -81,7 +99,11 @@ export function Dashboard() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          messages: [{ content: "Generate a sexy freaky task with details", role: "user" }],
+          messages: [
+              ...getTodoPrompts(userProblem),
+            {role: "assistant", content: JSON.stringify(todos)},
+            {role: "user", content: "Generiere ein neues Todo im richtigen JSON format."},
+          ],
           model: "mixtral",
         }),
       });
@@ -89,12 +111,8 @@ export function Dashboard() {
       if (!response.ok) throw new Error(`Server Error: ${response.status}`);
 
       const data = await response.json();
-      return {
-        id: nextId,
-        title: `Task ${nextId}`,
-        details: data?.choices?.[0]?.message?.content || "Generated Task",
-        completed: false,
-      };
+      console.log(data?.choices?.[0]?.message?.content)
+      return JSON.parse(data?.choices?.[0]?.message?.content ?? '');
     } catch (error) {
       console.error("Error fetching new todo:", error);
       return { id: nextId, title: `Task ${nextId}`, details: "Failed to fetch", completed: false };
@@ -175,7 +193,7 @@ export function Dashboard() {
       case 'todos':
         return (
             <div className="p-6 max-w-xl mx-auto">
-                <h1 className="text-4xl font-bold mb-4">Ich habe ihr Problem analysiert 🎉</h1>
+                <h1 className="text-4xl font-bold mb-4">Ich habe Ihr Innovationsprofil analysiert 🎉</h1>
                 <div className="markdown-container mb-10">
                 <ReactMarkdown>
                   {isExpanded || !isLongText ? userProblem : previewText}
@@ -191,6 +209,7 @@ export function Dashboard() {
               </div>
             <h1 className="text-2xl font-bold mb-4">Was Sie jetzt tun können</h1>
             <div className="space-y-4">
+              {todosList.length === 0 ? 'Lade Checkliste...' : ''}
               {todosList.map((todo) => (
                 <div
                   key={todo.id}
@@ -208,6 +227,7 @@ export function Dashboard() {
                   </button>
                 </div>
               ))}
+              {loadingNewTodo ? 'Lade neues Todo...' : ''}
             </div>
           </div>
         );

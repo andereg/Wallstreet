@@ -1,6 +1,7 @@
 import {QuestionResponse} from "../model/question.ts";
 
 const USER_STORAGE_KEY = "USER_DATA_QUESTIONS";
+const USER_TODO_KEY = "USER_DATA_TODOS";
 const USER_PROBLEM_STORAGE_KEY = "USER_PROBLEM";
 const PERSONA_ID_KEY = "PERSONA_ID";
 
@@ -33,4 +34,17 @@ export const storeUserProblem = (problem: string) => {
 
 export const retrieveUserProblem = () => {
     return localStorage.getItem(USER_PROBLEM_STORAGE_KEY);
+}
+
+export const storeUserTodos = (todos: any) => {
+    localStorage.setItem(USER_TODO_KEY, JSON.stringify(todos));
+}
+
+export const retrieveUserTodos = () => {
+    return localStorage.getItem(USER_TODO_KEY);
+}
+
+
+export const clearUserTodos = () => {
+    return localStorage.removeItem(USER_TODO_KEY);
 }
