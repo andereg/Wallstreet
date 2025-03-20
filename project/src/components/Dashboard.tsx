@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useStore } from '../store';
-import { MessageSquare, CheckSquare, Book, Phone, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
+import { MessageSquare, CheckSquare, Book, Contact, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
 import contacts from "../data/innovationContactPerson.json";
 import { ChevronDown, CheckCircle } from "lucide-react";
 import { retrieveUserProblem, storeUserTodos } from "../user/user-store.ts";
@@ -13,6 +13,7 @@ import article3 from './../data/wiki/3_Hesitant_Veränderungswiderstand.json';
 import article5 from './../data/wiki/5_Hesitant_Kompetenzunsicherheit.json';
 import article6 from './../data/wiki/6_Hesitant_Übergangsmanagement-Ängste.json';
 import article7 from './../data/wiki/7_Hesitant_Wettbewerbsdruck-Dilemma.json';
+import SpiderDiagram from "./SpiderDiagram.tsx";
 
 export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
@@ -165,8 +166,9 @@ export function Dashboard() {
         return (
           <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative transition-all duration-300">
             {/* Header */}
+            <h1 className="text-xl font-bold mb-4">AI-Chat für Innovation</h1>
             {/* Chat Messages Box */}
-            <div className="h-64 overflow-y-auto p-3 border rounded-md flex flex-col space-y-2 animated-margin">
+            <div className="h-96 overflow-y-auto p-3 border rounded-md flex flex-col space-y-2 animated-margin">
             {messages.map((msg, index) => (
                 <div
                   key={index}
@@ -218,6 +220,7 @@ export function Dashboard() {
           <div className="p-6 max-w-xl mx-auto">
             <h1 className="text-2xl font-bold mb-4">Hier liegen Ihre Herausforderungen 🎉</h1>
             <div className="markdown-container mb-10">
+              <SpiderDiagram values={userProblem.profile} />
                 <h2 className="text-xl font-bold mb-5">Kategorie:</h2>
                 <h3 className="text-l mb-5 italic">{userProblem.category}</h3>
                 <h2 className="text-xl font-bold mb-5">Beschreibung:</h2>
@@ -298,7 +301,7 @@ export function Dashboard() {
       case 'contact':
         return (
           <div className="p-6 max-w-2xl mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Contacts</h1>
+            <h1 className="text-2xl font-bold mb-4">Network</h1>
             {contacts.map((contact, index) => (
               <ContactCard key={index} contact={contact} />
             ))}
@@ -313,8 +316,8 @@ export function Dashboard() {
   const menuItems = [
     { id: 'todos', icon: CheckSquare, label: 'Analyse' },
     { id: 'wiki', icon: Book, label: 'Innovation Guide' },
-    { id: 'chat', icon: MessageSquare, label: 'Chat' },
-    { id: 'contact', icon: Phone, label: 'Contact' },
+    { id: 'chat', icon: MessageSquare, label: 'AI-Chat' },
+    { id: 'contact', icon: Contact, label: 'Network' },
   ];
 
   return (
