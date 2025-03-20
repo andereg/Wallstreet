@@ -198,11 +198,11 @@ export function Dashboard() {
                 >
                   <div>
                     <h2 className={`text-lg font-semibold ${todo.completed ? "line-through text-gray-500" : ""}`}>{todo.title}</h2>
-                    <p className={`text-sm ${todo.completed ? "line-through text-gray-400" : "text-gray-600"}`}>{todo.details}</p>
+                    <p className={`text-sm ${todo.completed ? "line-through text-gray-400" : ""}`}>{todo.details}</p>
                   </div>
                   <button
                     onClick={() => toggleTodo(todo.id)}
-                    className={`p-2 rounded transition ${todo.completed ? "bg-green-300" : "bg-green-500 hover:bg-green-600 text-white"}`}
+                    className={`p-2 rounded transition ${todo.completed ? "bg-green-50 text-gray-600" : ""}`}
                   >
                     <CheckCircle className="w-5 h-5" />
                   </button>
@@ -218,7 +218,7 @@ export function Dashboard() {
             {wikiArticles.map((article) => (
               <div key={article.id} className="p-4 border rounded-lg bg-white">
                 <h3 className="text-lg font-semibold mb-2">{article.title}</h3>
-                <p className="text-gray-600">{article.content}</p>
+                <p className="">{article.content}</p>
               </div>
             ))}
           </div>
@@ -255,9 +255,9 @@ export function Dashboard() {
             <h1 className="text-xl font-semibold text-gray-800">{menuItems.find(item => item.id === activeTab)?.label}</h1>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-gray-600 hover:text-gray-900 focus:outline-none"
+              className="button-reveal-border p-2 focus:outline-none text-gray-1000 "
             >
-              {isMenuOpen ? <Close className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? <Close className="w-6 h-6 text-gray-1000" /> : <Menu className="w-6 h-6 text-gray-1000" />}
             </button>
           </div>
         </div>
@@ -283,13 +283,13 @@ export function Dashboard() {
                 <button
                   key={item.id}
                   onClick={() => handleTabChange(item.id)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                  className={`w-full flex items-center ${
                     activeTab === item.id
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-600 hover:bg-gray-50'
+                      ? 'button-light-outline bg-green-50 text-gray-600 hover:text-white transition-all duration-300'
+                      : ''
                   }`}
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-5 h-5" style={{marginRight: "10px"}}/>
                   {item.label}
                 </button>
               );
@@ -324,28 +324,75 @@ function ContactCard({ contact }: { contact: Contact }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative">
+    <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative transition-all duration-300">
       <h2 className="text-lg font-semibold">{contact.Name}</h2>
-      <p className="text-gray-600">{contact.Institution}</p>
+      <p>{contact.Institution}</p>
       <p className="text-blue-500">
-        <a href={`mailto:${contact.Contact}`} className="underline">{contact.Contact}</a>
+        <a href={`mailto:${contact.Contact}`} className="underline">
+          {contact.Contact}
+        </a>
       </p>
-        <button
-        className="absolute top-4 right-4 text-blue-700 transition-transform duration-300"
+
+      {/* Expand Button */}
+      <button
+        style={{padding: "10px"}} className="button-light-outline absolute top-4 right-4 transition-transform duration-300"
         onClick={() => setExpanded(!expanded)}
       >
         <ChevronDown
-          className={`w-5 h-5 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+          className={`w-5 h-5 transition-transform duration-300 ${
+            expanded ? "rotate-180" : ""
+          }`}
         />
       </button>
-      {expanded && (
+
+      {/* Expandable Content with Smooth Animation */}
+      <div
+        className={`transition-all duration-700 overflow-hidden`}
+        style={{
+          maxHeight: expanded ? "400px" : "0px",
+          opacity: expanded ? 1 : 0,
+        }}
+      >
         <div className="mt-2 text-gray-700">
-          <p><strong>Category:</strong> {contact.Category}</p>
-          <p><strong>Description:</strong> {contact.Description}</p>
-          <p><strong>Focus Areas:</strong> {contact.FocusAreas}</p>
-          <p><strong>Website:</strong> <a href={contact.Website} className="text-blue-500" target="_blank">Visit</a></p>
+          <p>
+            <strong>Category:</strong> {contact.Category}
+          </p>
+          <p>
+            <strong>Description:</strong> {contact.Description}
+          </p>
+          <div className="flex justify-between items-center w-full text-gray-700">
+            {/* Focus Areas on the Left */}
+            <p>
+              <strong>Focus Areas:</strong> {contact.FocusAreas}
+            </p>
+
+            {/* Website Link on the Right */}
+            <a
+              href={contact.Website}
+              target="_blank"
+              className="button-reveal-border flex items-center gap-2 text-green-700 hover:text-green-900 transition-all duration-300"
+            >
+              Visit Website
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="lucide lucide-globe"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" x2="22" y1="12" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"></path>
+              </svg>
+            </a>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
