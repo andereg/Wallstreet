@@ -13,6 +13,7 @@ import article3 from './../data/wiki/3_Hesitant_Veränderungswiderstand.json';
 import article5 from './../data/wiki/5_Hesitant_Kompetenzunsicherheit.json';
 import article6 from './../data/wiki/6_Hesitant_Übergangsmanagement-Ängste.json';
 import article7 from './../data/wiki/7_Hesitant_Wettbewerbsdruck-Dilemma.json';
+import SpiderDiagram from "./SpiderDiagram.tsx";
 
 export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
@@ -219,6 +220,7 @@ export function Dashboard() {
           <div className="p-6 max-w-xl mx-auto">
             <h1 className="text-4xl font-bold mb-4">Hier liegen Ihre Herausforderungen 🎉</h1>
             <div className="markdown-container mb-10">
+              <SpiderDiagram values={userProblem.profile} />
                 <h2 className="text-2xl font-bold mb-5">Kategorie:</h2>
                 <h3 className="text-l mb-5 italic">{userProblem.category}</h3>
                 <h2 className="text-2xl font-bold mb-5">Beschreibung:</h2>
