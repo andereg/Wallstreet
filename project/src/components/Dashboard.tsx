@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useStore } from '../store';
 import { MessageSquare, CheckSquare, Book, Phone, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
+import contacts from "../data/innovationContactPerson.json";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export function Dashboard() {
   const { todos, addTodo, toggleTodo, chatMessages, addChatMessage, wikiArticles } = useStore();
@@ -132,40 +134,12 @@ export function Dashboard() {
 
       case 'contact':
         return (
-          <div className="p-4 h-[calc(100vh-8rem)] overflow-y-auto">
-            <form className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Name</label>
-                <input
-                  type="text"
-                  className="mt-1 block w-full p-2 border rounded-lg"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Email</label>
-                <input
-                  type="email"
-                  className="mt-1 block w-full p-2 border rounded-lg"
-                  placeholder="your@email.com"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Message</label>
-                <textarea
-                  className="mt-1 block w-full p-2 border rounded-lg"
-                  rows={4}
-                  placeholder="Your message..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+          <div className="p-6 max-w-2xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Contacts</h1>
+      {contacts.map((contact, index) => (
+        <ContactCard key={index} contact={contact} />
+      ))}
+    </div>
         );
 
       default:
@@ -243,3 +217,45 @@ export function Dashboard() {
     </div>
   );
 }
+
+interface Contact {
+  Name: string;
+  Institution: string;
+  Contact: string;
+  Category: string;
+  Description: string;
+  FocusAreas: string;
+  Website: string;
+}
+
+function ContactCard({ contact }: { contact: Contact }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative">
+      <h2 className="text-lg font-semibold">{contact.Name}</h2>
+      <p className="text-gray-600">{contact.Institution}</p>
+      <p className="text-blue-500">
+        <a href={`mailto:${contact.Contact}`} className="underline">{contact.Contact}</a>
+      </p>
+        <button
+        className="absolute top-4 right-4 text-blue-700 transition-transform duration-300"
+        onClick={() => setExpanded(!expanded)}
+      >
+        <ChevronDown
+          className={`w-5 h-5 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+        />
+      </button>
+      {expanded && (
+        <div className="mt-2 text-gray-700">
+          <p><strong>Category:</strong> {contact.Category}</p>
+          <p><strong>Description:</strong> {contact.Description}</p>
+          <p><strong>Focus Areas:</strong> {contact.FocusAreas}</p>
+          <p><strong>Website:</strong> <a href={contact.Website} className="text-blue-500" target="_blank">Visit</a></p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default ContactCard;
