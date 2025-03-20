@@ -5,7 +5,7 @@ import contacts from "../data/innovationContactPerson.json";
 import { ChevronDown, CheckCircle } from "lucide-react";
 import {retrieveUserProblem, storeUserTodos} from "../user/user-store.ts";
 import ReactMarkdown from "react-markdown";
-import {getTodoPrompts, getUserTodos} from "../ai/profile-gen.ts";
+import {getTodoPrompts, getUserTodos, UserProblem} from "../ai/profile-gen.ts";
 
 export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
@@ -13,7 +13,7 @@ export function Dashboard() {
   const [message, setMessage] = useState('');
   const [activeTab, setActiveTab] = useState('todos');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [userProblem, setUserProblem] = useState("");
+  const [userProblem, setUserProblem] = useState<UserProblem>("");
 
   const [isExpanded, setIsExpanded] = React.useState(false);
   const [isLongText, setIsLongText] = React.useState(false);
@@ -81,8 +81,8 @@ export function Dashboard() {
         setTodos(allTodos);
         storeUserTodos(allTodos);
       }
-        const problem = retrieveUserProblem() ?? '';
-        setUserProblem(problem);
+        const problem = retrieveUserProblem() ?? '{}';
+        setUserProblem(JSON.parse(problem));
         const previewLength = 200; // Anzahl der Zeichen, die zuerst angezeigt werden
       const problemIsLongText = problem.length > previewLength;
       setIsLongText(problemIsLongText);
@@ -193,48 +193,56 @@ export function Dashboard() {
       case 'todos':
         return (
             <div className="p-6 max-w-xl mx-auto">
-                <h1 className="text-4xl font-bold mb-4">Ich habe Ihr Innovationsprofil analysiert 🎉</h1>
-                <div className="markdown-container mb-10">
-                <ReactMarkdown>
-                  {isExpanded || !isLongText ? userProblem : previewText}
-                </ReactMarkdown>
-                {isLongText && (
-                    <button
-                        onClick={toggleExpand}
-                        className="text-white px-4 py-2 rounded mt-2"
-                    >
-                      {isExpanded ? "Weniger anzeigen" : "Mehr anzeigen"}
-                    </button>
-                )}
-              </div>
-            <h1 className="text-2xl font-bold mb-4">Was Sie jetzt tun können</h1>
-            <div className="space-y-4">
-              {todosList.length === 0 ? 'Lade Checkliste...' : ''}
-              {todosList.map((todo) => (
-                <div
-                  key={todo.id}
-                  className={`p-4 flex justify-between items-center shadow-md bg-white rounded-lg ${todo.completed ? "opacity-50" : ""}`}
-                >
-                  <div>
-                    <h2 className={`text-lg font-semibold ${todo.completed ? "line-through text-gray-500" : ""}`}>{todo.title}</h2>
-                    <p className={`text-sm ${todo.completed ? "line-through text-gray-400" : "text-gray-600"}`}>{todo.details}</p>
-                  </div>
-                  <button
-                    onClick={() => toggleTodo(todo.id)}
-                    className={`p-2 rounded transition ${todo.completed ? "bg-green-300" : "bg-green-500 hover:bg-green-600 text-white"}`}
-                  >
-                    <CheckCircle className="w-5 h-5" />
-                  </button>
+              <h1 className="text-4xl font-bold mb-4">Sie haben die folgende Herausforderung 🎉</h1>
+              <div className="markdown-container mb-10">
+                <div>
+                  <h2 className="text-2xl font-bold mb-4">Kategorie: {userProblem.category}</h2>
+                  <h2 className="text-2xl font-bold mb-2 mt-2">Beschreibung</h2>
+                  <p>{userProblem.description}</p>
+                  {isExpanded ? <div>
+                    <h2 className="text-2xl font-bold mb-2 mt-2">Auswirkung</h2>
+                    <p>{userProblem.impact}</p>
+                  </div> : ''}
+
                 </div>
-              ))}
-              {loadingNewTodo ? 'Lade neues Todo...' : ''}
+
+                <button
+                    onClick={toggleExpand}
+                    className="text-white px-4 py-2 rounded mt-2"
+                >
+                  {isExpanded ? "Weniger anzeigen" : "Mehr anzeigen"}
+                </button>
+              </div>
+
+              <div className="border border-gray-200 mb-5"></div>
+              <h1 className="text-2xl font-bold mb-4">Was Sie jetzt tun können</h1>
+              <div className="space-y-4">
+                {todosList.length === 0 ? 'Lade Checkliste...' : ''}
+                {todosList.map((todo) => (
+                    <div
+                        key={todo.id}
+                        className={`p-4 flex justify-between items-center shadow-md bg-white rounded-lg ${todo.completed ? "opacity-50" : ""}`}
+                    >
+                      <div>
+                        <h2 className={`text-lg font-semibold ${todo.completed ? "line-through text-gray-500" : ""}`}>{todo.title}</h2>
+                        <p className={`text-sm ${todo.completed ? "line-through text-gray-400" : "text-gray-600"}`}>{todo.details}</p>
+                      </div>
+                      <button
+                          onClick={() => toggleTodo(todo.id)}
+                          className={`p-2 rounded transition ${todo.completed ? "bg-green-300" : "bg-green-500 hover:bg-green-600 text-white"}`}
+                      >
+                        <CheckCircle className="w-5 h-5"/>
+                      </button>
+                    </div>
+                ))}
+                {loadingNewTodo ? 'Lade neues Todo...' : ''}
+              </div>
             </div>
-          </div>
         );
 
       case 'wiki':
         return (
-          <div className="p-4 space-y-4 h-[calc(100vh-8rem)] overflow-y-auto">
+            <div className="p-4 space-y-4 h-[calc(100vh-8rem)] overflow-y-auto">
             {wikiArticles.map((article) => (
               <div key={article.id} className="p-4 border rounded-lg bg-white">
                 <h3 className="text-lg font-semibold mb-2">{article.title}</h3>
