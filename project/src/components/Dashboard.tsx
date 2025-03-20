@@ -57,7 +57,7 @@ export function Dashboard() {
 
     useEffect(() => {
         const problem = retrieveUserProblem();
-        setUserProblem(userProblem);
+        setUserProblem(problem ?? '');
     }, [])
 
 
