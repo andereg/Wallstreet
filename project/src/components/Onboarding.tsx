@@ -61,7 +61,9 @@ export function Onboarding() {
                     setCurrentQuestionSet(motivatedQuestions);
                     break;
                 case 2:
+                    console.log(hesitantQuestions);
                     setCurrentQuestionSet(hesitantQuestions);
+                    break;
             }
             setPersonaQuestionsActive(true);
             setQuestionIdx(0);
