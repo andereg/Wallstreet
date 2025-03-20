@@ -1,11 +1,11 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useStore } from '../store';
 import { MessageSquare, CheckSquare, Book, Phone, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
 import contacts from "../data/innovationContactPerson.json";
 import { ChevronDown, CheckCircle } from "lucide-react";
-import {retrieveUserProblem, storeUserTodos} from "../user/user-store.ts";
+import { retrieveUserProblem, storeUserTodos } from "../user/user-store.ts";
 import ReactMarkdown from "react-markdown";
-import {getTodoPrompts, getUserTodos} from "../ai/profile-gen.ts";
+import { getTodoPrompts, getUserTodos } from "../ai/profile-gen.ts";
 
 export function Dashboard() {
   const { todos, chatMessages, addChatMessage, wikiArticles } = useStore();
@@ -52,7 +52,7 @@ export function Dashboard() {
   const toggleTodo = async (id) => {
     setTodos((prevTodos) => {
       const newTodos = prevTodos.map((todo) =>
-          todo.id === id ? {...todo, completed: !todo.completed} : todo
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
 
       storeUserTodos(newTodos);
@@ -74,24 +74,24 @@ export function Dashboard() {
     setNextId(nextId + 1);
   };
 
-    useEffect(() => {
-      const fetchTodos = async () => {
-        const todos = await getUserTodos(problem);
-        const allTodos: {id: number, title: string, details: string, completed: boolean}[] = JSON.parse(todos.details);
-        setTodos(allTodos);
-        storeUserTodos(allTodos);
-      }
-        const problem = retrieveUserProblem() ?? '';
-        setUserProblem(problem);
-        const previewLength = 200; // Anzahl der Zeichen, die zuerst angezeigt werden
-      const problemIsLongText = problem.length > previewLength;
-      setIsLongText(problemIsLongText);
-      const previewText = problemIsLongText ? problem.slice(0, previewLength) + "..." : problem;
-      setPreviewText(previewText ?? '');
-      fetchTodos();
-    }, [])
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const todos = await getUserTodos(problem);
+      const allTodos: { id: number, title: string, details: string, completed: boolean }[] = JSON.parse(todos.details);
+      setTodos(allTodos);
+      storeUserTodos(allTodos);
+    }
+    const problem = retrieveUserProblem() ?? '';
+    setUserProblem(problem);
+    const previewLength = 200; // Anzahl der Zeichen, die zuerst angezeigt werden
+    const problemIsLongText = problem.length > previewLength;
+    setIsLongText(problemIsLongText);
+    const previewText = problemIsLongText ? problem.slice(0, previewLength) + "..." : problem;
+    setPreviewText(previewText ?? '');
+    fetchTodos();
+  }, [])
 
-    const fetchNewTodo = async () => {
+  const fetchNewTodo = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/generate-prompt", {
         method: "POST",
@@ -100,9 +100,9 @@ export function Dashboard() {
         },
         body: JSON.stringify({
           messages: [
-              ...getTodoPrompts(userProblem),
-            {role: "assistant", content: JSON.stringify(todos)},
-            {role: "user", content: "Generiere ein neues Todo im richtigen JSON format."},
+            ...getTodoPrompts(userProblem),
+            { role: "assistant", content: JSON.stringify(todos) },
+            { role: "user", content: "Generiere ein neues Todo im richtigen JSON format." },
           ],
           model: "mixtral",
         }),
@@ -162,77 +162,75 @@ export function Dashboard() {
       case 'chat':
         return (
           <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative transition-all duration-300">
-      {/* Header */}
-      {/* Chat Messages Box */}
-      <div className="h-64 overflow-y-auto bg-gray-50 p-3 border rounded-md flex flex-col space-y-2">
-  {messages.map((msg, index) => (
-    <div
-      key={index}
-      className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-    >
-      <div className="relative max-w-[70%]">
-        {/* Chat Bubble */}
-        <div
-          className={`relative p-3 rounded-lg text-white shadow-md break-words ${
-            msg.role === "user"
-              ? "bg-green-600 text-right rounded-br-none self-end" // User message (right, green)
-              : "bg-gray-400 text-left rounded-bl-none self-start" // Bot message (left, gray)
-          }`}
-        >
-          {msg.content}
+            {/* Header */}
+            {/* Chat Messages Box */}
+            <div className="h-64 overflow-y-auto bg-gray-50 p-3 border rounded-md flex flex-col space-y-2">
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                >
+                  <div className="relative max-w-[70%]">
+                    {/* Chat Bubble */}
+                    <div
+                      className={`relative p-3 rounded-lg text-white shadow-md break-words ${msg.role === "user"
+                          ? "bg-green-600 text-right rounded-br-none self-end" // User message (right, green)
+                          : "bg-gray-400 text-left rounded-bl-none self-start" // Bot message (left, gray)
+                        }`}
+                    >
+                      {msg.content}
 
-          {/* Speech Bubble Tail */}
-          <div
-            className={`absolute w-0 h-0 border-solid ${
-              msg.role === "user"
-                ? "border-t-[10px] border-t-transparent border-r-[15px] border-r-green-600 border-b-[10px] border-b-transparent bottom-[-5px] right-2"
-                : "border-t-[10px] border-t-transparent border-l-[15px] border-l-gray-400 border-b-[10px] border-b-transparent bottom-[-5px] left-2"
-            }`}
-          ></div>
-        </div>
-      </div>
-    </div>
-  ))}
-</div>
+                      {/* Speech Bubble Tail */}
+                      <div
+                        className={`absolute w-0 h-0 border-solid ${msg.role === "user"
+                            ? "border-t-[10px] border-t-transparent border-r-[15px] border-r-green-600 border-b-[10px] border-b-transparent bottom-[-5px] right-2"
+                            : "border-t-[10px] border-t-transparent border-l-[15px] border-l-gray-400 border-b-[10px] border-b-transparent bottom-[-5px] left-2"
+                          }`}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-      {/* Chat Input Section */}
-      <div className="flex items-center mt-4">
-        <input
-          type="text"
-          className="flex-1 p-2 border rounded-md"
-          placeholder="Type a message..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          disabled={loading}
-        />
-        <button
-          onClick={sendMessage}
-          className="button-chat disabled:opacity-50 transition-all duration-300"
-          disabled={loading}
-        >
-          Send
-        </button>
-      </div>
-    </div>
+            {/* Chat Input Section */}
+            <div className="flex items-center mt-4">
+              <input
+                type="text"
+                className="flex-1 p-2 border rounded-md"
+                placeholder="Type a message..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                disabled={loading}
+              />
+              <button
+                onClick={sendMessage}
+                className="button-chat disabled:opacity-50 transition-all duration-300"
+                disabled={loading}
+              >
+                Send
+              </button>
+            </div>
+          </div>
         );
       case 'todos':
         return (
-            <div className="p-6 max-w-xl mx-auto">
-                <h1 className="text-4xl font-bold mb-4">Ich habe Ihr Innovationsprofil analysiert 🎉</h1>
-                <div className="markdown-container mb-10">
-                <ReactMarkdown>
-                  {isExpanded || !isLongText ? userProblem : previewText}
-                </ReactMarkdown>
-                {isLongText && (
-                    <button
-                        onClick={toggleExpand}
-                        className="text-white px-4 py-2 rounded mt-2"
-                    >
-                      {isExpanded ? "Weniger anzeigen" : "Mehr anzeigen"}
-                    </button>
-                )}
-              </div>
+          <div className="p-6 max-w-xl mx-auto">
+            <h1 className="text-4xl font-bold mb-4">Ich habe Ihr Innovationsprofil analysiert 🎉</h1>
+            <div className="markdown-container mb-10">
+              <ReactMarkdown>
+                {isExpanded || !isLongText ? userProblem : previewText}
+              </ReactMarkdown>
+              {isLongText && (
+                <button
+                  onClick={toggleExpand}
+                  className="text-white px-4 py-2 rounded mt-2"
+                >
+                  {isExpanded ? "Weniger anzeigen" : "Mehr anzeigen"}
+                </button>
+              )}
+            </div>
             <h1 className="text-2xl font-bold mb-4">Was Sie jetzt tun können</h1>
             <div className="space-y-4">
               {todosList.length === 0 ? 'Lade Checkliste...' : ''}
@@ -273,11 +271,11 @@ export function Dashboard() {
       case 'contact':
         return (
           <div className="p-6 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Contacts</h1>
-      {contacts.map((contact, index) => (
-        <ContactCard key={index} contact={contact} />
-      ))}
-    </div>
+            <h1 className="text-2xl font-bold mb-4">Contacts</h1>
+            {contacts.map((contact, index) => (
+              <ContactCard key={index} contact={contact} />
+            ))}
+          </div>
         );
 
       default:
@@ -311,15 +309,13 @@ export function Dashboard() {
 
       {/* Navigation Menu */}
       <div
-        className={`fixed inset-0 bg-gray-800 bg-opacity-75 z-40 transition-opacity duration-300 ${
-          isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 bg-gray-800 bg-opacity-75 z-40 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
         onClick={() => setIsMenuOpen(false)}
       >
         <div
-          className={`fixed right-0 top-0 bottom-0 w-64 bg-white shadow-xl transform transition-transform duration-300 ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+          className={`fixed right-0 top-0 bottom-0 w-64 bg-white shadow-xl transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
           onClick={(e) => e.stopPropagation()}
         >
           <div className="p-4 space-y-2">
@@ -329,13 +325,12 @@ export function Dashboard() {
                 <button
                   key={item.id}
                   onClick={() => handleTabChange(item.id)}
-                  className={`w-full flex items-center ${
-                    activeTab === item.id
+                  className={`w-full flex items-center ${activeTab === item.id
                       ? 'button-light-outline bg-green-50 text-gray-600 hover:text-white transition-all duration-300'
                       : ''
-                  }`}
+                    }`}
                 >
-                  <Icon className="w-5 h-5" style={{marginRight: "10px"}}/>
+                  <Icon className="w-5 h-5" style={{ marginRight: "10px" }} />
                   {item.label}
                 </button>
               );
@@ -381,13 +376,12 @@ function ContactCard({ contact }: { contact: Contact }) {
 
       {/* Expand Button */}
       <button
-        style={{padding: "10px"}} className="button-light-outline absolute top-4 right-4 transition-transform duration-300"
+        style={{ padding: "10px" }} className="button-light-outline absolute top-4 right-4 transition-transform duration-300"
         onClick={() => setExpanded(!expanded)}
       >
         <ChevronDown
-          className={`w-5 h-5 transition-transform duration-300 ${
-            expanded ? "rotate-180" : ""
-          }`}
+          className={`w-5 h-5 transition-transform duration-300 ${expanded ? "rotate-180" : ""
+            }`}
         />
       </button>
 
