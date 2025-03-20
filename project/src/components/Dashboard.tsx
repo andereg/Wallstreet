@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import { useStore } from '../store';
 import { MessageSquare, CheckSquare, Book, Phone, Send, Plus, Check, X, Menu, X as Close } from 'lucide-react';
 import contacts from "../data/innovationContactPerson.json";
@@ -161,34 +161,60 @@ export function Dashboard() {
     switch (activeTab) {
       case 'chat':
         return (
-          <div className="max-w-md mx-auto p-4 bg-gray-100 rounded-lg shadow-md">
-            <h2 className="text-xl font-bold mb-4">Chat with AI</h2>
-            <div className="h-64 overflow-y-auto bg-white p-2 border rounded-md">
-              {messages.map((msg, index) => (
-                <div key={index} className={`p-2 my-1 rounded ${msg.role === "user" ? "bg-blue-200 text-right" : "bg-gray-200 text-left"}`}>
-                  {msg.content}
-                </div>
-              ))}Todo List
-            </div>
-            <div className="flex items-center mt-4">
-              <input
-                type="text"
-                className="flex-1 p-2 border rounded-md"
-                placeholder="Type a message..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                disabled={loading}
-              />
-              <button
-                onClick={sendMessage}
-                className="ml-2 bg-blue-600 text-white px-4 py-2 rounded-md disabled:opacity-50"
-                disabled={loading}
-              >
-                Send
-              </button>
-            </div>
-          </div>
+          <div className="border rounded-lg p-4 mb-4 shadow-md bg-white relative transition-all duration-300">
+      {/* Header */}
+      {/* Chat Messages Box */}
+      <div className="h-64 overflow-y-auto bg-gray-50 p-3 border rounded-md flex flex-col space-y-2">
+  {messages.map((msg, index) => (
+    <div
+      key={index}
+      className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+    >
+      <div className="relative max-w-[70%]">
+        {/* Chat Bubble */}
+        <div
+          className={`relative p-3 rounded-lg text-white shadow-md break-words ${
+            msg.role === "user"
+              ? "bg-green-600 text-right rounded-br-none self-end" // User message (right, green)
+              : "bg-gray-400 text-left rounded-bl-none self-start" // Bot message (left, gray)
+          }`}
+        >
+          {msg.content}
+
+          {/* Speech Bubble Tail */}
+          <div
+            className={`absolute w-0 h-0 border-solid ${
+              msg.role === "user"
+                ? "border-t-[10px] border-t-transparent border-r-[15px] border-r-green-600 border-b-[10px] border-b-transparent bottom-[-5px] right-2"
+                : "border-t-[10px] border-t-transparent border-l-[15px] border-l-gray-400 border-b-[10px] border-b-transparent bottom-[-5px] left-2"
+            }`}
+          ></div>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+      {/* Chat Input Section */}
+      <div className="flex items-center mt-4">
+        <input
+          type="text"
+          className="flex-1 p-2 border rounded-md"
+          placeholder="Type a message..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          disabled={loading}
+        />
+        <button
+          onClick={sendMessage}
+          className="button-chat disabled:opacity-50 transition-all duration-300"
+          disabled={loading}
+        >
+          Send
+        </button>
+      </div>
+    </div>
         );
       case 'todos':
         return (

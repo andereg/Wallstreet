@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
 
 /* HSG-inspiriertes Design */
 :root {
@@ -198,8 +199,10 @@ button {
   /* Hover Effekt */
   button:hover {
     background-color: #005a24;
-    transform: translateY(-2px);
-  }
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.08), /* Bottom-Right */
+              -3px -3px 6px rgba(0, 0, 0, 0.08); /* Top-Left */
+    filter: brightness(0.97); /* Very subtle darkening */
+    }
   
   /* Outline-Variante */
   .button-outline {
@@ -258,5 +261,19 @@ button {
     border-color: var(--primary-color); /* Border becomes visible */
     background: transparent;
   }
+
+  .button-chat {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+    border-radius: 0px 20px 0px 0px; /* 3 rounded corners, 1 sharp */
+  }
+
+  
 
   
