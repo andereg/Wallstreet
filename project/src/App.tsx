@@ -1,8 +1,8 @@
 import React from 'react';
-import { useStore } from './store';
-import { Onboarding } from './components/Onboarding';
-import { Dashboard } from './components/Dashboard';
+import {Onboarding} from './components/Onboarding';
+import {Dashboard} from './components/Dashboard';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Generate from "./components/Generate.tsx";
 
 function App() {
 
@@ -13,6 +13,7 @@ function App() {
           <Route path="/">
             <Route index element={<Onboarding />} />
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="generate" element={<Generate />} />
           </Route>
         </Routes>
       </BrowserRouter>
