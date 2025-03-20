@@ -4,6 +4,8 @@ import {clearUserTodos, retrievePersonaId, retrieveUserProfile, storeUserProblem
 import {useNavigate} from "react-router-dom";
 import {SyncLoader} from "react-spinners";
 import logo from "./../images/logo.png";
+import LightbulbLoader from './Lightbulb.tsx';
+
 
 const override: CSSProperties = {
   display: "block",
@@ -33,14 +35,7 @@ export function Generate() {
 
   return <div className="flex flex-col items-center justify-center h-screen text-center">
     <img src={logo} height={20} width={150} alt="Logo" className={"mb-20"} />
-    <SyncLoader
-        color={color}
-        loading={loading}
-        cssOverride={override}
-        size={10}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-    />
+    <LightbulbLoader />
   </div>
 }
 
